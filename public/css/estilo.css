@@ -1,0 +1,248 @@
+														/* ? Fondo del login o Inicio de Sesion */
+
+body {
+	margin: 0;
+	padding: 0;
+	background: url(../img/fondo_inces.jpg);
+	background-size: cover;
+	font-family: sans-serif; 
+}
+
+														/* ? Estilos del Formulario del login o inicio de sesion */
+
+.loginbox {
+	width: 380px;
+	height: 415px;
+	background: linear-gradient(to bottom right, rgb(202, 6, 6), rgb(237, 237, 238));
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	padding: 70px 30px;
+}
+
+.loginbox-register {
+	width: 470px;
+	height: 680px;
+	background: linear-gradient(to bottom right, rgb(202, 6, 6), rgb(237, 237, 238));
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	box-sizing: solid;
+	padding: 70px 30px;
+}
+
+.loginbox-importar {
+	width: 380px;
+	height: 290px;
+	background: linear-gradient(to bottom right, rgb(202, 6, 6), rgb(237, 237, 238));
+	color: #fff;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	padding: 70px 30px;
+}
+
+										/* ? Cabeza del Formulario de Login o Inicio de Sesion */
+
+.avatar {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -10%;
+	left: calc(50% - 50px);
+}
+
+			/* ? Accesos directos o URL del cambio de contraseña y registro de cuenta en el pie del formulario del login o inicio de sesion */
+
+h1 {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-size: 30px; 
+}
+
+.loginbox p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.loginbox input {
+	width: 100%;
+	margin-bottom: 20px; 
+}
+
+.loginbox-register input {
+	width: 100%;
+	margin-bottom: 20px; 
+}
+
+.loginbox-importar input {
+	width: 100%;
+	margin-bottom: 20px; 
+}
+
+.loginbox a{
+	text-decoration: none;
+	font-size: 16px;
+	line-height: 20px;
+	color: #fff;
+}
+
+															/* ? Estilos de los campos o celdas de nombre y apellido */
+
+.loginbox input[type = "text"], input[type = "password"], input[type = "email"] {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;	
+}
+
+.loginbox-register input[type = "text"], input[type = "password"], input[type = "email"] {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 20px;
+	color: #fff;
+	font-size: 16px;	
+}
+
+.loginbox-register select {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	width: 100%;
+	height: 20px;
+	color: #fff;
+	font-size: 16px;	
+}
+
+.loginbox-register option {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	width: 100%;
+	height: 20px;
+	color: #000000;
+	font-size: 16px;	
+}
+
+.loginbox-importar input[type = "file"], [type = "text"] {
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;	
+}
+
+									/* ? Estilos del Boton Entrar del Login o Inicio de Sesion */
+
+.loginbox input[type = "submit"]{
+	border:none;
+	outline: none;
+	height: 40px;
+	background: #F0243D;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.loginbox input[type = "submit"]:hover {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+}
+
+.loginbox button[type = "submit"]{
+	border:none;
+	outline: none;
+	height: 20px;
+	width: 85px;
+	background: #F0243D;
+	color: #fff;
+	border-radius: 20px;
+}
+
+.loginbox button[type = "submit"]:hover {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+}
+
+.login a:hover {
+	color: #fff;
+}
+
+.loginbox-register button[type = "submit"]{
+	border:none;
+	outline: none;
+	height: 40px;
+	width: 250px;
+	background: #F0243D;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+	margin-left:20%;
+}
+
+.loginbox-register button[type = "submit"]:hover {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+}
+
+.login a:hover {
+	color: #fff;
+}
+
+.loginbox-importar input[type = "submit"]{
+	border:none;
+	outline: none;
+	height: 40px;
+	background: #F0243D;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.loginbox-importar input[type = "submit"]:hover {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+}
+
+.loginbox-importar button[type = "submit"]{
+	border:none;
+	outline: none;
+	height: 20px;
+	width: 85px;
+	background: #F0243D;
+	color: #fff;
+	border-radius: 20px;
+}
+
+.loginbox-importar button[type = "submit"]:hover {
+	cursor: pointer;
+	background: #fff;
+	color: #000;
+}
+
+.login a:hover {
+	color: #fff;
+}
