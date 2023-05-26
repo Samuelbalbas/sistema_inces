@@ -16,7 +16,6 @@ class Division extends Model
      // Relación con DivisionSede
      public function sedes()
      {
-        return $this->belongsToMany(Sede::class, 'division_sede', 'id_division', 'id_sede')
-        ->withTimestamps(); 
+        return $this->belongsToMany(Sede::class, 'division_sede', 'id_division', 'id_sede'); 
      }
 }

@@ -39,10 +39,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        // $cargos = cargo::all(); // Obtener todos los registros de la tabla "cargo"
-        // return view('persona.create', compact('cargos')); // Pasar los cargos a la vista "form.blade.php"
-        
-        /* //////////////////////////////////////////////////////////////////// */
+
         
         $cargos = Cargo::all(); // Obtener todos los registros de la tabla "cargo"
         $sedes = Sede::all(); // Obtener todos los registros de la tabla "sede"
@@ -62,12 +59,7 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-    //    $datosPersona = request()->except('_token');
-    //     Persona::insert($datosPersona);
 
-    //     return redirect ('persona');
-
-        /* //////////////////////////////////////////////////////////////////// */
     
         $datosPersona = $request->except('_token');
         $persona = Persona::create($datosPersona);
@@ -112,12 +104,6 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-        // $persona=Persona::find($id);
-        // $cargos = Cargo::all(); // Obtener todos los registros de la tabla "cargo"
-
-        // return view('persona.edit',compact('persona','cargos'));
-
-        /* //////////////////////////////////////////////////////////////////// */
 
         $persona = Persona::findOrFail($id);
             $cargos = Cargo::all();
@@ -152,18 +138,6 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Actualiza los datos de la persona con los datos del formulario
-        // persona::where('id', $id)->update($request->except(['_token', '_method', 'id']));
-        
-        // Obtén la persona actualizada
-        // $persona = persona::findOrFail($id);
-        
-        // Obtén la lista de cargos
-        // $cargos = Cargo::all();
-
-        // return redirect ('persona');
-
-        /* //////////////////////////////////////////////////////////////////// */
 
         // Obtener y actualizar los datos de la persona
         $persona = Persona::find($id);
@@ -205,10 +179,6 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        // persona::destroy($id);
-        // return redirect('persona');
-
-        /* //////////////////////////////////////////////////////////////////// */
 
         // Obtener la persona a eliminar
         $persona = persona::findOrFail($id);

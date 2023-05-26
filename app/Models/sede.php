@@ -18,6 +18,6 @@ class Sede extends Model
       public function division()
       {
           return $this->belongsToMany(Division::class, 'division_sede', 'id_sede', 'id_division'
-          )->withTimestamps();
+          );
       }
 }
