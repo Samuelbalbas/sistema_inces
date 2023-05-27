@@ -10,7 +10,12 @@ class Perifericos extends Model
     protected $table = 'perifericos';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['periferic', 'id_marca', 'id_modelo', 'serial', 'serialA'];
+    protected $fillable = ['id_tipo', 'id_marca', 'id_modelo', 'serial', 'serialA'];
+
+    public function tipo_periferico()
+    {
+        return $this->belongsTo(TipoPeriferico::class, 'id_tipo');
+    }
 
     public function marca()
     {

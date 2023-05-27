@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Periféricos</title>
+<title>@yield('title') Tipo Periérico</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -9,55 +9,46 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 2.5%">
+    <div class="container-fluid" style="margin-top: 2%">
         <div class="p-3" style="background: rgb(240, 236, 236); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
+                <h2 style="color: black; margin-left: 30%;">Gestión de los Tipos de Periéricos</h2>
                 
-                <h2 style="color: black;  margin-left: 33%;">Gestión del Periférico</h2>
-                
-                @can('crear-periferico')
-                    <form action="{{ url('periferico/create') }}" method="get">
+                @can('crear-tipoperif')
+                    <form action="{{ url('tipoperif/create') }}" method="get">
                         <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
             </div>
             <div class="">
-                <table id="perifericos" class="table text-start align-middle table-bordered table-hover mb-0">
+                <table id="tipoperif" class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-white">
-                            <th  style="color: black;">Tipo</th>
-                            <th  style="color: black;">Marca</th>
-                            <th  style="color: black;">Modelo</th>
-                            <th  style="color: black;">Serial</th>
-                            <th  style="color: black;">Serial Activo</th>
-                            <th class="col-2" style="color: black; width: 100px; "><center>Acciones</center></th>
+                            <th  style="color: black;">Tipo del Periérico</th>
+                            <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($perifericos as $periferico)
+                        @foreach ($tipo_perifericos as $tipo_periferico)
                                 <tr>
-                                    <!-- <td style="color: black;">{{ $periferico->id}}</td> -->
-                                    <td style="color: black;">{{ $periferico->tipo_periferico->tipo }}</td>
-                                    <td style="color: black;">{{ $periferico->marca->nombre_marca }}</td>
-                                    <td style="color: black;">{{ $periferico->modelo->nombre_modelo }}</td>
-                                    <td style="color: black;">{{ $periferico->serial}}</td>
-                                    <td style="color: black;">{{ $periferico->serialA }}</td>
+                                    <!-- <td style="color: black;">{{ $tipo_periferico->id}}</td> -->
+                                    <td class="col-10" style="color: black;">{{ $tipo_periferico->tipo }}</td>
 
                                     <td> 
-                                        @can('editar-periferico')
-                                            <a class="btn btn-warning" style="margin-left: 15%;" href="{{ url('/periferico/'.$periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                        @can('editar-tipoperif')
+                                        <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/tipoperif/'.$tipo_periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
-
-                                        @can('borrar-periferico')
-                                            <form action="{{ url('/periferico/'.$periferico->id) }}" method="POST" class="sweetalert" style="display: inline; ">
+                                        
+                                        @can('borrar-tipoperif')
+                                            <form action="{{ url('/tipoperif/'.$tipo_periferico->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        @endcan 
+                                            </form> 
+                                        @endcan
                                     </td>
                                 </tr>
                         @endforeach
@@ -75,7 +66,7 @@
                 
         <script>
             $(document).ready(function () {
-                $('#perifericos').DataTable({
+                $('#tipoperif').DataTable({
                     
                     responsive: true,
                     autoWidth: false,
