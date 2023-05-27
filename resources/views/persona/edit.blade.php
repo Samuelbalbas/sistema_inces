@@ -50,26 +50,21 @@
                             <div class="col-3">
                                 <label for="sede" style="color: black;">Sede</label>
                                 <select class="form-select" id="id_sede" name="id_sede" onchange="fetchDivisiones(this)">
-                                    <option value="0">Seleccione una sede</option>
-                                    @foreach ($sedes as $sede)
-                                        <option value="{{ $sede->id }}" data-url="{{ route('divisiones.by.sede', $sede->id) }}" {{ $sede->id === $id_sede ? 'selected' : '' }}>{{ $sede->nombre_sede }}</option>
-                                    @endforeach
+                                @foreach($sedes as $sede)
+                                    <option value="{{ $sede->id }}" data-url="/persona/by-sede/{{ $sede->id }}">{{ $sede->nombre_sede }}</option>
+                                @endforeach
                                 </select>
                             </div>
-
                             <div class="col-3">
-                                <label for="division" style="color: black;">División de la Persona</label>
-
-                                <select class="form-select" id="id_division" name="id_division" onchange="setDivisionSedeId()">
-    @foreach ($divisiones as $id => $nombre)
-        <option value="{{ $id }}" {{ $id_division == $id ? 'selected' : '' }} data-division-sede-id="{{ $persona->divisionesSedes->first()->division_sede_id ?? '' }}">
-            {{ $nombre }}
-        </option>
-    @endforeach
-</select>
-
-
-                            </div>
+                            <label for="division" style="color: black;">División de la Persona</label>
+                            <select class="form-select" id="id_division" name="id_division" onchange="setDivisionSedeId()">
+                            @foreach ($divisiones as $id => $nombre)
+                                <option value="{{ $id }}" {{ $id_division == $id ? 'selected' : '' }} data-division-sede-id="{{ $persona->divisionesSedes->first()->division_sede_id ?? '' }}">
+                                    {{ $nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                        </div>
                         </div>
                         <input type="text" id="id_division_sede" name="id_division_sede" value="{{ $persona->divisionesSedes->first()->id_division_sede ?? '' }}">
                         <br>
@@ -80,9 +75,11 @@
                     </form>
 
                     <script>
-    function fetchDivisiones(selectElement) {
-        var sedeId = document.getElementById('id_sede').value;
-        var url = selectElement.options[selectElement.selectedIndex].getAttribute('data-url');
+   function fetchDivisiones(selectElement) {
+    var sedeId = document.getElementById('id_sede').value;
+    var url = selectElement.options[selectElement.selectedIndex].getAttribute('data-url');
+
+    
 
         if (sedeId === '0') {
             // Si no se ha seleccionado ninguna sede, se vacía el select de divisiones
@@ -104,36 +101,33 @@
                 return response.json();
             })
             .then(function(data) {
-                var divisiones = data;
+        var divisiones = data;
+        divisionSelect.innerHTML = '';
+        for (var divisionId in divisiones) {
+            var divisionNombre = divisiones[divisionId].nombre;
+            var option = new Option(divisionNombre, divisionId);
+            option.setAttribute('data-id', divisionId); // Aquí asumimos que divisionId es el correcto division_sede.id
+            divisionSelect.add(option);
+        }
+        // Obtener el nuevo ID de la tabla division_sede seleccionado
+        var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
+        var nuevoIdDivisionSede = selectedOption.getAttribute('data-id');
 
-                // Limpiar el select de divisiones
-                divisionSelect.innerHTML = '';
-
-                // Agregar las opciones al select de divisiones
-                for (var divisionId in divisiones) {
-                    var divisionNombre = divisiones[divisionId];
-                    var option = new Option(divisionNombre, divisionId);
-                    divisionSelect.add(option);
-                }
-
-                // Obtener el nuevo ID de la tabla division_sede seleccionado
-                var nuevoIdDivisionSede = divisionSelect.value;
-
-                // Actualizar el valor del campo oculto con el nuevo ID de division_sede
-                document.getElementById('id_division_sede').value = nuevoIdDivisionSede;
-            })
+        // Actualizar el valor del campo oculto con el nuevo ID de division_sede
+        document.getElementById('id_division_sede').value = nuevoIdDivisionSede;
+    })
             .catch(function(error) {
                 console.log(error);
                 divisionSelect.innerHTML = '<option value="0">Error al cargar las divisiones</option>';
             });
     }
 
-    function setDivisionSedeId() {
-    var divisionSelect = document.getElementById('id_division');
-    var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
-    var divisionSedeId = selectedOption.getAttribute('data-division-sede-id');
-    document.getElementById('id_division_sede').value = divisionSedeId;
-}
+    function setDivisionId() {
+                        var divisionSelect = document.getElementById('id_division');
+                        var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
+                        var divisionSedeId = selectedOption.getAttribute('data-division-sede-id');
+                        document.getElementById('id_division_sede').value = divisionSedeId;
+                        }
 
 
     // Escuchar el evento de cambio de sede

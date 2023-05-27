@@ -39,7 +39,6 @@ class PersonaController extends Controller
      */
     public function create()
     {
-
         
         $cargos = Cargo::all(); // Obtener todos los registros de la tabla "cargo"
         $sedes = Sede::all(); // Obtener todos los registros de la tabla "sede"
@@ -59,8 +58,6 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-
-    
         $datosPersona = $request->except('_token');
         $persona = Persona::create($datosPersona);
 
@@ -104,6 +101,12 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
+        // $persona=Persona::find($id);
+        // $cargos = Cargo::all(); // Obtener todos los registros de la tabla "cargo"
+
+        // return view('persona.edit',compact('persona','cargos'));
+
+        /* //////////////////////////////////////////////////////////////////// */
 
         $persona = Persona::findOrFail($id);
             $cargos = Cargo::all();
@@ -138,37 +141,34 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        // Obtener y actualizar los datos de la persona
-        $persona = Persona::find($id);
-        $persona->nombre = $request->input('nombre');
-        $persona->apellido = $request->input('apellido');
-        $persona->cedula = $request->input('cedula');
-        $persona->id_usuario = $request->input('id_usuario');
-        $persona->id_cargo = $request->input('id_cargo');
-        $persona->telefono = $request->input('telefono');
-
+       // Luego puedes continuar con el código de actualización de la persona
+       $persona = Persona::find($id);
+       $persona->nombre = $request->input('nombre');
+       $persona->apellido = $request->input('apellido');
+       $persona->cedula = $request->input('cedula');
+       $persona->id_usuario = $request->input('id_usuario');
+       $persona->id_cargo = $request->input('id_cargo');
+       $persona->telefono = $request->input('telefono');
+    
        // Obtener el ID de la relación persona_division_sede correspondiente a la persona
        $id_division_sede = $request->input('id_division_sede');
 
-       // Obtener el nuevo ID de la tabla division_sede
-       $nuevo_id_division_sede = $request->input('division_sede');
+    // Buscar y actualizar la relación persona_division_sede
+    $relacion = PersonaDivisionSede::where('id_persona', $id)->first();
+    if ($relacion) {
+        $relacion->id_division_sede = $id_division_sede;
+        $relacion->save();
+    } else {
+        // Si no existe ninguna relación previa, debes crear una nueva
+        $relacion = new PersonaDivisionSede;
+        $relacion->id_persona = $id;
+        $relacion->id_division_sede = $id_division_sede;
+        $relacion->save();
+    }
+       
+    $persona->save();
 
-       // Actualizar la relación persona_division_sede si existe
-       if ($id_division_sede) {
-           $relacion = PersonaDivisionSede::find($id_division_sede);
-           if ($relacion) {
-               $relacion->id_division_sede = $nuevo_id_division_sede;
-               // Actualizar otros campos de la relación según corresponda
-               $relacion->save();
-           }
-       }
-
-       // Guardar los cambios
-       $persona->save();
-
-       // Redireccionar a la vista de detalle o a donde corresponda
-       return redirect()->route('persona.index', $id)->with('success', 'La persona ha sido actualizada exitosamente.');
+    return redirect('persona');
     }
 
     /**
@@ -179,6 +179,10 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
+        // persona::destroy($id);
+        // return redirect('persona');
+
+        /* //////////////////////////////////////////////////////////////////// */
 
         // Obtener la persona a eliminar
         $persona = persona::findOrFail($id);
