@@ -101,12 +101,6 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-        // $persona=Persona::find($id);
-        // $cargos = Cargo::all(); // Obtener todos los registros de la tabla "cargo"
-
-        // return view('persona.edit',compact('persona','cargos'));
-
-        /* //////////////////////////////////////////////////////////////////// */
 
         $persona = Persona::findOrFail($id);
             $cargos = Cargo::all();
