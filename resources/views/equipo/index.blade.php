@@ -35,7 +35,8 @@
                             <th  style="color: black;">Velocidad del CPU(Mhz)</th>
                             <th  style="color: black;">Memoria Ram(Gb)</th>
                             <th  style="color: black;">Disco Duro(Gb)</th>
-                            <th class="col-2" style="color: black;"><center>Acciones</center></th>
+                            <th  style="color: black;">Tipo S.O.</th>
+                            <th class="col-2" style="color: black; width: 107px;"><center>Acciones</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,10 +52,11 @@
                                     <td style="color: black;">{{ $equipo->velocidad }}</td>
                                     <td style="color: black;">{{ $equipo->ram}}</td>
                                     <td style="color: black;">{{ $equipo->disco}}</td>
+                                    <td style="color: black;">{{ $equipo->sistema->nombre}}</td>
 
                                     <td> 
                                         @can('editar-equipo')
-                                            <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-equipo')
