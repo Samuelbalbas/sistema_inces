@@ -88,6 +88,10 @@
                                 <a href= "{{ url('modelo') }}"  class="dropdown-item">Modelo</a>
                             @endcan
                             
+                            @can('ver-tipoperif')
+                                <a href="{{ url('tipoperif') }}" class="dropdown-item">Tipos de Periféricos</a>
+                            @endcan
+
                             @can('ver-periferico')
                                 <a href="{{ url('periferico') }}" class="dropdown-item">Periféricos</a>
                             @endcan
@@ -95,7 +99,7 @@
                             @can('ver-equipo')
                                 <a href="{{ url('equipo') }}" class="dropdown-item">Equipos Informáticos</a>
                             @endcan
-                            
+                                                        
                             @can('ver-sistema')
                                 <a href="{{ url('sistema') }}" class="dropdown-item">Sistemas Operativos</a>
                             @endcan

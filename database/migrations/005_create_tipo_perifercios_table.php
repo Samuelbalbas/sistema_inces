@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sistemas', function (Blueprint $table) {
+        Schema::create('tipo_perifericos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
-            $table->string('nombre');
-            $table->string('version');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sistemas');
+        Schema::dropIfExists('tipo_perifericos');
     }
 };

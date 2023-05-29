@@ -20,6 +20,7 @@ use App\Http\Controllers\PerifericosController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\EquiposController;
+use App\Http\Controllers\TipoPerifericoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,15 @@ Route::get('/modelo/create',[ModeloController::class,'create'])->name('create')-
 Route::post('/modelo/saveModal', [ModeloController::class, 'saveModal'])->name('modelo.saveModal')->middleware('auth');//ruta para procesar la solicitud AJAX
 
 Route::resource('modelo', ModeloController::class)->middleware('auth');
+
+
+/* Ruta Tipo de Periféricos*/
+Route::get('/tipoperiferico',  [TipoPerifericoController::class,'index'])->name('tipoperiferico')->middleware('auth');
+
+Route::get('/tipoperif/create',[TipoPerifericoController::class,'create'])->name('create')->middleware('auth');
+
+Route::resource('tipoperif', TipoPerifericoController::class)->middleware('auth');
+
 
 /* Ruta Periferico*/
 Route::get('/periferico',  [PerifericosController::class,'index'])->name('periferico')->middleware('auth');
