@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('perifericos', function (Blueprint $table) {
             $table->id();
-            $table->string('periferic');
+            $table->unsignedBigInteger('id_tipo'); // Agregar columna de clave foránea
             $table->unsignedBigInteger('id_marca'); // Agregar columna de clave foránea
             $table->unsignedBigInteger('id_modelo'); // Agregar columna de clave foránea
             $table->string('serial');
@@ -26,6 +26,8 @@ return new class extends Migration
             $table->foreign('id_marca')->references('id')->on('marcas');
             // Establecer relación con la tabla de modelo
             $table->foreign('id_modelo')->references('id')->on('modelos');
+            // Establecer relación con la tabla de tipo de periféricos
+            $table->foreign('id_tipo')->references('id')->on('tipo_perifericos');
         });
     }
 

@@ -73,8 +73,13 @@ $(document).ready(function() {
                         <div class="row">
 
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Periférico</label>
-                                <input type="text" class="form-control" name="periferic" id="periferic" value="{{  isset($periferico->periferic)?$periferico->periferic:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
+                                <label for="tipo" style="color: black;">Tipo del Periférico</label>
+                                <select class="form-select" id="id_tipo" name="id_tipo">
+                                    <option value="0">Seleccione un Tipo</option>
+                                    @foreach($tipo_perifericos as $tipo_periferico)
+                                        <option value="{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</option>
+                                    @endforeach
+                                </select>                            
                             </div>
 
                             <div class="col-3">

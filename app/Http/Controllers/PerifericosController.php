@@ -6,6 +6,7 @@ use App\Models\perifericos;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
+use App\Models\TipoPeriferico;
 
 class PerifericosController extends Controller
 {
@@ -26,6 +27,7 @@ class PerifericosController extends Controller
     {
         $perifericos = Perifericos::with('marca')->get(); // Cargar la relación con "marca"
         $perifericos = Perifericos::with('modelo')->get(); // Cargar la relación con "modelo"
+        $perifericos = Perifericos::with('tipo_periferico')->get(); // Cargar la relación con "tipo de periférico"
         return view('periferico.index', compact('perifericos'));
 
         
@@ -40,7 +42,8 @@ class PerifericosController extends Controller
     {
         $marcas = marca::all(); // Obtener todos los registros de la tabla "marca"
         $modelos = modelo::all(); // Obtener todos los registros de la tabla "modelo"
-        return view('periferico.create', compact('marcas','modelos')); // Pasar los cargos a la vista "form.blade.php"
+        $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo de periférico"
+        return view('periferico.create', compact('marcas','modelos', 'tipo_perifericos')); // Pasar los registros a la vista "create.blade.php"
     }
 
     /**
@@ -79,8 +82,9 @@ class PerifericosController extends Controller
         $periferico=Perifericos::find($id);
         $marcas = Marca::all(); // Obtener todos los registros de la tabla "marca"
         $modelos = Modelo::all(); // Obtener todos los registros de la tabla "modelo"
+        $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo de periférico"
 
-        return view('periferico.edit',compact('periferico','marcas','modelos'));
+        return view('periferico.edit',compact('periferico','marcas','modelos', 'tipo_perifericos'));
     }
 
     /**
@@ -98,10 +102,11 @@ class PerifericosController extends Controller
          // Obtén el periferico actualizado
          $periferico = Perifericos::findOrFail($id);
          
-         // Obtén la lista de las marcas y modelos
+         // Obtén la lista de las marcas modelos y Tipos de Périfericos
          $marcas = Marca::all();
          $modelos = Modelo::all();
- 
+         $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo de periférico"
+         
          return redirect ('periferico');
          
     }

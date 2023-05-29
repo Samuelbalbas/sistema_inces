@@ -83,7 +83,13 @@ class SeederTablaPermisos extends Seeder
             'ver-sistema',
             'crear-sistema',
             'editar-sistema',
-            'borrar-sistema'
+            'borrar-sistema',
+
+             //Operaciones sobre tabla Tipo de Sistemas Operativos
+             'ver-tipoperif',
+             'crear-tipoperif',
+             'editar-tipoperif',
+             'borrar-tipoperif'
         ];
 
         foreach($permisos as $permiso) {
