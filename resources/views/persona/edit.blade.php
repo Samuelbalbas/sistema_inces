@@ -60,13 +60,14 @@
                             <div class="col-3">
                             <label for="division" style="color: black;">División de la Persona</label>
                             <select class="form-select" id="id_division" name="id_division">
-                                @foreach ($divisiones as $id => $nombre_division)
-                                    <option value="{{ $id }}" {{ $id == $id_division ? 'selected' : '' }}>{{ $nombre_division }}</option>
-                                @endforeach
+                            @foreach ($divisiones as $id => $nombre_division)
+                                <option value="{{ $id }}" {{ $id == $id_division_sede ? 'selected' : '' }}>{{ $nombre_division }}</option>
+                            @endforeach
                             </select>
                         </div>
                         </div>
-                        <input type="hidden" id="id_division_sede" name="id_division_sede" value="{{ $persona->divisionesSedes->first()->id_division_sede ?? '' }}">
+                        <input type="hidden" id="id_division_sede" name="id_division_sede" value="{{ $id_division_sede }}">
+
                         <br>
                         <center>
                             <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>
@@ -75,85 +76,61 @@
                     </form>
 
                     <script>
-   function fetchDivisiones(selectElement) {
-    var sedeId = document.getElementById('id_sede').value;
-    var url = selectElement.options[selectElement.selectedIndex].getAttribute('data-url');
+    function fetchDivisiones(selectElement) {
+        var url = selectElement.options[selectElement.selectedIndex].dataset.url;
 
-    
-
-        if (sedeId === '0') {
-            // Si no se ha seleccionado ninguna sede, se vacía el select de divisiones
-            var divisionSelect = document.getElementById('id_division');
-            divisionSelect.innerHTML = '<option value="0">Seleccione una división</option>';
-            document.getElementById('id_division_sede').value = ""; // Actualizamos el valor del campo oculto a vacío
-            return;
-        }
-
-        var divisionSelect = document.getElementById('id_division');
-        divisionSelect.innerHTML = '<option value="0">Cargando divisiones...</option>';
-
-        // Realizar una petición AJAX utilizando fetch
         fetch(url)
-    .then(function(response) {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud');
-        }
-        return response.json();
-    })
-    .then(function(data) {
-    var divisiones = data;
-    divisionSelect.innerHTML = '';
-    for (var divisionId in divisiones) {
-        var divisionNombre = divisiones[divisionId];
-        var option = new Option(divisionNombre, divisionId);
-        divisionSelect.add(option);
-    }
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                var divisionSelect = document.getElementById('id_division');
+                divisionSelect.innerHTML = '';
+                for (var divisionSedeId in data) {
+                    var divisionNombre = data[divisionSedeId];
+                    var option = new Option(divisionNombre, divisionSedeId);
+                    divisionSelect.add(option);
+                }
+                
+                // Seleccionar la opción que corresponde a la división actual de la persona
+                var idDivisionSedeActual = document.getElementById('id_division_sede').value;
+divisionSelect.value = idDivisionSedeActual;
 
-    // Seleccionar la opción que corresponde a la división actual de la persona
-    var idDivisionSedeActual = document.getElementById('id_division_sede').value;
-    for (var i = 0; i < divisionSelect.options.length; i++) {
-        if (divisionSelect.options[i].value === idDivisionSedeActual) {
-            divisionSelect.selectedIndex = i;
-            break;
-        }
-    }
-
-    setDivisionSedeId();
-})
-
-
+                setDivisionSedeId();
+            })
             .catch(function(error) {
                 console.log(error);
                 divisionSelect.innerHTML = '<option value="0">Error al cargar las divisiones</option>';
             });
     }
+    
     function setDivisionSedeId() {
-    var divisionSelect = document.getElementById('id_division');
-    var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
-    var nuevoIdDivisionSede = selectedOption.value;
-    document.getElementById('id_division_sede').value = nuevoIdDivisionSede;
-}
+        var divisionSelect = document.getElementById('id_division');
+        var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
+        var nuevoIdDivisionSede = selectedOption.value;
+        document.getElementById('id_division_sede').value = nuevoIdDivisionSede;
+    }
 
-document.addEventListener('DOMContentLoaded', function(event) {
-    var selectElement = document.getElementById('id_sede');
-    fetchDivisiones(selectElement);
-});
-
-
+    document.addEventListener('DOMContentLoaded', function(event) {
+        var selectElement = document.getElementById('id_sede');
+        fetchDivisiones(selectElement);
+    });
 
     // Escuchar el evento de cambio de sede
     document.getElementById('id_sede').addEventListener('change', function(event) {
         fetchDivisiones(this);
-        setDivisionSedeId();
     });
 
     // Escuchar el evento de cambio de división
-    document.getElementById('id_division').addEventListener('change', function(event) {
-    setDivisionSedeId();
-});
-
+    document.getElementById('id_division').addEventListener('change', setDivisionSedeId);
+    console.log('ID division_sede actual:', idDivisionSedeActual);
+console.log('Opciones de select de divisiones:', divisionSelect.options);
 
 </script>
+
 
 
 

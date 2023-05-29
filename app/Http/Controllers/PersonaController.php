@@ -101,30 +101,32 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-
         $persona = Persona::findOrFail($id);
-            $cargos = Cargo::all();
-            $sedes = Sede::all();
-        // Obtener las divisiones asociadas a la sede de la persona
-        $divisiones = Division::join('division_sede', 'divisions.id', '=', 'division_sede.id_division')
-        ->where('division_sede.id_sede', $persona->divisionesSedes[0]->id_sede) // Obtener el ID de la sede asociada a la persona
-        ->pluck('divisions.nombre_division', 'divisions.id')
-        ->toArray();
-
+        $cargos = Cargo::all();
+        $sedes = Sede::all();
+    
         // Obtener el registro de persona_division_sede para la persona seleccionada
         $personaDivisionSede = PersonaDivisionSede::where('id_persona', $id)->first();
     
         // Obtener los IDs de la sede y la división asociados a la persona
         $id_sede = null;
-        $id_division = null;
-    
+        $id_division_sede = null;
+        
         if ($personaDivisionSede) {
             $id_sede = $personaDivisionSede->divisionSede->sede->id;
-            $id_division = $personaDivisionSede->divisionSede->division->id;
+            $id_division_sede = $personaDivisionSede->id_division_sede;
         }
+
+        
+        // Obtener las divisiones asociadas a la sede de la persona
+        $divisiones = Division::join('division_sede', 'divisions.id', '=', 'division_sede.id_division')
+            ->where('division_sede.id_sede', $id_sede) // Obtener el ID de la sede asociada a la persona
+            ->pluck('divisions.nombre_division', 'divisions.id')
+            ->toArray();
     
-        return view('persona.edit', compact('persona', 'cargos', 'sedes', 'divisiones', 'id_sede', 'id_division'));
+        return view('persona.edit', compact('persona', 'cargos', 'sedes', 'divisiones', 'id_sede', 'id_division_sede'));
     }
+    
 
     /**
      * Update the specified resource in storage.
