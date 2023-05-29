@@ -61,13 +61,12 @@
                             <label for="division" style="color: black;">División de la Persona</label>
                             <select class="form-select" id="id_division" name="id_division">
                             @foreach ($divisiones as $id => $nombre_division)
-    <option value="{{ $id }}" {{ $id == $id_division_sede ? 'selected' : '' }}>{{ $nombre_division }}</option>
-@endforeach
-
+                                <option value="{{ $id }}" {{ $id == $id_division_sede ? 'selected' : '' }}>{{ $nombre_division }}</option>
+                            @endforeach
                             </select>
                         </div>
                         </div>
-                        <input type="text" id="id_division_sede" name="id_division_sede" value="{{ $id_division_sede }}">
+                        <input type="hidden" id="id_division_sede" name="id_division_sede" value="{{ $id_division_sede }}">
 
 
                         <br>
