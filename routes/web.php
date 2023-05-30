@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AsignarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
@@ -145,3 +146,10 @@ Route::get('/equipo/create',[EquiposController::class,'create'])->name('create')
 Route::resource('equipo', EquiposController::class)->middleware('auth');
 
 Route::post('/equipo/marca', [EquiposController::class,'modal'])->middleware('auth');
+
+/* Ruta Asignar*/
+Route::get('/asignar',  [AsignarController::class,'index'])->name('asignar')->middleware('auth');
+
+Route::get('/asignar/create',  [AsignarController::class,'create'])->name('create')->middleware('auth');
+
+Route::resource('asignar', AsignarController::class)->middleware('auth');

@@ -105,7 +105,7 @@
                             @endcan
                         </div>
                     </div>
-                    <a href="asigna.html" class="nav-item nav-link"><i class="bi bi-box-arrow-right me-2"></i>Asignar</a>
+                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-right me-2"></i>Asignar</a>
                     <a href="desincorpora.html" class="nav-item nav-link"><i class="bi bi-box-arrow-left me-1 "></i>Desincorporar</a>
                     <a href="inventario.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
                     <a href="reportes.html" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
