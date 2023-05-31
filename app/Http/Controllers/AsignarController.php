@@ -53,6 +53,7 @@ class AsignarController extends Controller
         $id_persona = $request->id_persona;
         $id_equipo = $request->id_equipo;
         $id_perifericos = $request->id_periferico;
+        $id_perifericos = array_filter($id_perifericos); // Remover todos los valores '0' o vacíos
     
         foreach($id_perifericos as $id_periferico) {
             Asignar::create([
@@ -64,6 +65,7 @@ class AsignarController extends Controller
     
         return redirect('asignar');
     }
+    
 
     /**
      * Display the specified resource.
