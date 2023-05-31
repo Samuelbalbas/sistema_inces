@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 <title>@yield('title') Asignar Équipos</title>
+<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 @section('content')
 
@@ -39,23 +40,21 @@
                             
                             <div class="col-3">
                                 <label for="periferico" style="color: black;">Periféricos</label>
-                                <select class="form-select" id="periferico" name="id_periferico">
-                                    <option value="0">Seleccione un Periférico</option>
-                                    @foreach($perifericos as $periferico)
-                                        <option value="{{ $periferico->id }}">{{ $periferico->tipo_periferico->tipo }} {{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }} {{ $equipo->serial }} {{ $equipo->serialA }}</option>
-                                    @endforeach
-                                </select>                            
+                                @foreach($tipo_perifericos as $tipo_periferico)
+                                    <div>
+                                        <input type="checkbox" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" onchange="togglePeriferico({{ $tipo_periferico->id }})">
+                                        <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
+                                        <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" style="display: none;">
+                                            <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
+                                            @foreach($perifericos as $periferico)
+                                                @if ($periferico->id_tipo == $tipo_periferico->id)
+                                                    <option value="{{ $periferico->id }}">{{ $periferico->marca->nombre_marca }} {{ $periferico->modelo->nombre_modelo }} {{ $periferico->serial }} {{ $periferico->serialA }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endforeach
                             </div>
-                            
-                            {{-- <div class="form-check col-2">
-                                <label class="form-check-label" style="color: black; margin-top: 2.5px ; margin-left: 6%;" for="activo">Activo</label>
-                                <input class="form-check-input" style="border-color: black; margin-left: 34%; margin-top: 10px;" type="radio" name="estatus" id="activo" value="Activo">
-                            </div>
-
-                            <div class="form-check col-2">
-                                <label class="form-check-label" style="color: black; margin-left: 14% ; margin-top: 2.5px ;" for="inactivo">Inactivo</label>
-                                <input class="form-check-input" style="border-color: black; margin-left: 36%; margin-top: 10px;" type="radio" name="estatus" id="inactivo" value="Inactivo">
-                            </div> --}}
 
                         </div>
 
@@ -67,6 +66,19 @@
                         </center>
                         
                     </form>
+                    <script>
+                    function togglePeriferico(id) {
+                        var checkbox = document.getElementById('periferico-' + id);
+                        var select = document.getElementById('select-periferico-' + id);
+                        if (checkbox.checked) {
+                            select.style.display = 'block';
+                        } else {
+                            select.style.display = 'none';
+                            select.value = '0';
+                        }
+                    }
+                    </script>
+
                 </div>
             </div> 
         </div>

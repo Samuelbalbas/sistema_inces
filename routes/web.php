@@ -151,5 +151,6 @@ Route::post('/equipo/marca', [EquiposController::class,'modal'])->middleware('au
 Route::get('/asignar',  [AsignarController::class,'index'])->name('asignar')->middleware('auth');
 
 Route::get('/asignar/create',  [AsignarController::class,'create'])->name('create')->middleware('auth');
+Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson'])->name('asignar.updateByPerson')->middleware('auth');
 
 Route::resource('asignar', AsignarController::class)->middleware('auth');

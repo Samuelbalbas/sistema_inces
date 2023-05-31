@@ -60,17 +60,17 @@
                                     <td class="" style="color: black;">{{ $asignacion->periferico->serialA }}</td>
 
                                     <td> 
-                                        {{-- @can('editar-cargo') --}}
-                                        {{-- <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacion->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a> --}}
-                                        {{-- @endcan --}}
+                                         @can('editar-cargo') 
+                                         <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacion->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a> 
+                                         @endcan 
                                         
-                                        {{-- @can('borrar-cargo') --}}
-                                            {{-- <form action="{{ url('/asignar/'.$asignacion->id) }}" method="POST" class="sweetalert" style="display:inline;">
+                                         @can('borrar-cargo') 
+                                             <form action="{{ url('/asignar/'.$asignacion->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-                                            </form>  --}}
-                                        {{-- @endcan --}}
+                                            </form>  
+                                         @endcan 
                                     </td>
                                 </tr>
                         @endforeach
