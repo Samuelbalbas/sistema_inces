@@ -43,37 +43,81 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($asignaciones as $asignacion)
-                                <tr>
-                                    <!-- <td style="color: black;">{{ $asignacion->id}}</td> -->
-                                    <td class="" style="color: black;">{{ $asignacion->persona->cedula }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->persona->nombre }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->persona->apellido }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->equipo->cpu }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->equipo->serial }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->equipo->serialA }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->equipo->sistema->tipo }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->periferico->tipo_periferico->tipo }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->periferico->marca->nombre_marca }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->periferico->modelo->nombre_modelo }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->periferico->serial }}</td>
-                                    <td class="" style="color: black;">{{ $asignacion->periferico->serialA }}</td>
-
-                                    <td> 
-                                         @can('editar-cargo') 
-                                         <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacion->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a> 
-                                         @endcan 
-                                        
-                                         @can('borrar-cargo') 
-                                             <form action="{{ url('/asignar/'.$asignacion->id) }}" method="POST" class="sweetalert" style="display:inline;">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-                                            </form>  
-                                         @endcan 
-                                    </td>
-                                </tr>
+                  <!--  @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
+                        <tr>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->apellido }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->cpu }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
+                            <td class="" style="color: black;">
+                                @foreach ($asignacionesGrupo as $asignacion)
+                                    {{ $asignacion->periferico->tipo_periferico->tipo }} ({{ $asignacion->periferico->marca->nombre_marca }}, {{ $asignacion->periferico->modelo->nombre_modelo }}, {{ $asignacion->periferico->serial }}, {{ $asignacion->periferico->serialA }})
+                                    <br>
+                                @endforeach
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                @can('borrar-cargo') 
+                                    <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                    </form>
+                                @endcan
+                            </td>
+                        </tr>
+                    @endforeach-->
+                    @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
+                            <tr>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->apellido }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->cpu }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
+                                <td class="" style="color: black;">
+                                    @foreach ($asignacionesGrupo as $asignacion)
+                                        {{ $asignacion->periferico->tipo_periferico->tipo }}<br>
+                                    @endforeach
+                                </td>
+                                <td class="" style="color: black;">
+                                    @foreach ($asignacionesGrupo as $asignacion)
+                                        {{ $asignacion->periferico->marca->nombre_marca }}<br>
+                                    @endforeach
+                                </td>
+                                <td class="" style="color: black;">
+                                    @foreach ($asignacionesGrupo as $asignacion)
+                                        {{ $asignacion->periferico->modelo->nombre_modelo }}<br>
+                                    @endforeach
+                                </td>
+                                <td class="" style="color: black;">
+                                    @foreach ($asignacionesGrupo as $asignacion)
+                                        {{ $asignacion->periferico->serial }}<br>
+                                    @endforeach
+                                </td>
+                                <td class="" style="color: black;">
+                                    @foreach ($asignacionesGrupo as $asignacion)
+                                        {{ $asignacion->periferico->serialA }}<br>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                    @can('borrar-cargo') 
+                                        <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    @endcan
+                                </td>
+                            </tr>
                         @endforeach
+
+
                     </tbody>
                 </table>
             </div>

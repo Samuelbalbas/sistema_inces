@@ -44,16 +44,20 @@
                                 <label for="periferico" style="color: black;">Periféricos</label>
                                 @foreach($tipo_perifericos as $tipo_periferico)
                                     <div>
-                                        <input type="checkbox" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(in_array($tipo_periferico->id, $ids_perifericos)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
+                                    <input type="checkbox" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
+
 
                                         <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
-                                        <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!in_array($tipo_periferico->id, $ids_perifericos)) style="display: none;" @endif>
+                                        <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) style="display: none;" @endif>
+
+
                                             <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
                                             @foreach($perifericos as $periferico)
-                                                @if ($periferico->id_tipo == $tipo_periferico->id)
-                                                    <option value="{{ $periferico->id }}" @if(in_array($periferico->id, $ids_perifericos)) selected @endif>{{ $periferico->marca->nombre_marca }} {{ $periferico->modelo->nombre_modelo }} {{ $periferico->serial }} {{ $periferico->serialA }}</option>
-                                                @endif
-                                            @endforeach
+    @if ($periferico->id_tipo == $tipo_periferico->id)
+        <option value="{{ $periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo) && $ids_perifericos_por_tipo[$tipo_periferico->id] == $periferico->id) selected @endif>{{ $periferico->marca->nombre_marca }} {{ $periferico->modelo->nombre_modelo }} {{ $periferico->serial }} {{ $periferico->serialA }}</option>
+    @endif
+@endforeach
+
                                         </select>
                                     </div>
                                 @endforeach
@@ -62,6 +66,7 @@
 
                         </div>
                         <input type="hidden" name="asignacion_index[]" value="{{ $asignacion->id }}">
+
 
                         <br>
                         <center>

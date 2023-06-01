@@ -19,13 +19,16 @@ class AsignarController extends Controller
      */
     public function index()
     {
-        $asignaciones = Asignar::with('persona')->get(); // Cargar la relación con "persona"
-        $asignaciones = Asignar::with('equipo')->get(); // Cargar la relación con "équipo"
-        // $asignaciones = Asignar::with('periferico')->get(); // Cargar la relación con "periférico"
-        return view('asignar.index', compact('asignaciones'));
-        // return view('asignar.index');
-
+        $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
+    
+        $asignacionesAgrupadas = $asignaciones->groupBy(function($asignacion) {
+            // Agrupa por la identificación de la persona y del equipo.
+            return $asignacion->id_persona . '-' . $asignacion->id_equipo;
+        });
+    
+        return view('asignar.index', compact('asignacionesAgrupadas'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -102,10 +105,17 @@ class AsignarController extends Controller
             $asignacion->id_equipo = 0;
         }
     
-        // Creamos una matriz con los ids de los periféricos de todas las asignaciones
-        $ids_perifericos = $asignaciones->pluck('id_periferico')->toArray();
+        // Creamos una matriz con los ids de los tipos de periféricos de todas las asignaciones
+        $ids_perifericos_por_tipo = [];
+foreach($asignaciones as $asignacion) {
+    $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
+    $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
+}
+
     
-        return view('asignar.edit', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos'));
+    return view('asignar.edit', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
+
+
     }
     
     
@@ -121,7 +131,49 @@ class AsignarController extends Controller
     {
 //
     }
+    public function updateByPerson(Request $request, $id)
+    {
+        // Obtén los periféricos de la solicitud
+        $perifericos_seleccionados = $request->id_periferico;
+    
+        // Encuentra todas las asignaciones para la persona específica
+        $asignaciones = Asignar::where('id_persona', $id)->get();
+    
+        // Primero, manejemos las asignaciones existentes
+        foreach ($asignaciones as $asignacion) {
+            // Si este periférico no está en la solicitud, eliminamos la asignación
+            if (!in_array($asignacion->id_periferico, $perifericos_seleccionados)) {
+                $asignacion->delete();
+            } else {
+                // Si este periférico está en la solicitud, actualizamos la asignación
+                $asignacion->id_equipo = $request->id_equipo;
+    
+                $key = array_search($asignacion->id_periferico, $perifericos_seleccionados);
+                if ($key !== false) {
+                    $asignacion->id_periferico = $request->id_periferico[$key];
+                    $asignacion->save();
+                }
+                // Una vez manejado, lo eliminamos del array
+                unset($perifericos_seleccionados[$key]);
+            }
+        }
+    
+        // Ahora, manejamos cualquier periférico nuevo seleccionado en la solicitud
+        foreach ($perifericos_seleccionados as $key => $id_periferico) {
+            if ($id_periferico != 0) {
+                $asignacion = new Asignar;
+                $asignacion->id_persona = $id;
+                $asignacion->id_equipo = $request->id_equipo;
+                $asignacion->id_periferico = $id_periferico;
+                $asignacion->save();
+            }
+        }
+    
+        return redirect('asignar');
+    }
+    
 
+    
   
     
     
