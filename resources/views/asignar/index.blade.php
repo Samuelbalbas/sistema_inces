@@ -107,11 +107,11 @@
                                 <td>
                                     <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                     @can('borrar-cargo') 
-                                        <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
+                                       <!-- <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-                                        </form>
+                                        </form>-->
                                     @endcan
                                 </td>
                             </tr>
