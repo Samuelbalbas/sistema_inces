@@ -156,6 +156,6 @@ Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson']
 
 Route::resource('asignar', AsignarController::class)->middleware('auth');
 
-Route::get('/desincorporar', function () {
+/* Route::get('/desincorporar', function () {
     return view('desincorporar.index');
-})->name('desincorporar');
+})->name('desincorporar'); */
