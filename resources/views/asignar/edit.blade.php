@@ -8,13 +8,12 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-                <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+                <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 10vh; border-radius: 20px;">
 
                     <center>
                         <h3 class="mb-4" style="color: black;">Editar Asignación</h3>
                     </center>
                     <form method="post" action="{{ route('asignar.updateByPerson', ['id' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
-
 
                         @csrf   
                         @method('PUT')
@@ -44,24 +43,34 @@
                                 <label for="periferico" style="color: black;">Periféricos</label>
                                 @foreach($tipo_perifericos as $tipo_periferico)
                                     <div>
-                                    <input type="checkbox" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
-
-
-                                        <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
-                                        <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) style="display: none;" @endif>
-
-
-                                            <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
-                                            @foreach($perifericos as $periferico)
-    @if ($periferico->id_tipo == $tipo_periferico->id)
-        <option value="{{ $periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo) && $ids_perifericos_por_tipo[$tipo_periferico->id] == $periferico->id) selected @endif>{{ $periferico->marca->nombre_marca }} {{ $periferico->modelo->nombre_modelo }} {{ $periferico->serial }} {{ $periferico->serialA }}</option>
-    @endif
-@endforeach
-
-                                        </select>
+                                        <input type="checkbox" class="form-check-input" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
+                                            <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
+                                            <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) style="display: none;" @endif>
+                                                <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
+                                                @foreach($perifericos as $periferico)
+                                                    @if ($periferico->id_tipo == $tipo_periferico->id)
+                                                        <option value="{{ $periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo) && $ids_perifericos_por_tipo[$tipo_periferico->id] == $periferico->id) selected @endif>{{ $periferico->marca->nombre_marca }} {{ $periferico->modelo->nombre_modelo }} {{ $periferico->serial }} {{ $periferico->serialA }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                     </div>
                                 @endforeach
+                            </div>
 
+                            <div class="col-3">
+                                <label for="" style="color: black;">Estatus</label>
+                                <div class="form-check">
+                                    <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
+                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="asignado" value="Asignado" {{ ($asignacion->estatus=="Asignado")? "checked" : ""}} >
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
+                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" {{ ($asignacion->estatus=="Desincorporado")? "checked" : ""}} >
+                                </div>
+                           
+                                <textarea class="form-control" name="observacion" placeholder="Observación" id="floatingTextarea" style="height: 220px; width: 270px; display:none;"></textarea>
+                                
                             </div>
 
                         </div>
@@ -85,6 +94,16 @@
                                 select.style.display = 'none';
                                 select.value = '0';
                             }
+                        }
+                    </script>
+
+                    <script>
+                        document.getElementById('desincorporado').onclick = function() {
+                        if (this.checked) {
+                            document.getElementById('floatingTextarea').style.display = 'block';
+                        } else {
+                            document.getElementById('floatingTextarea').style.display = 'none';
+                        }
                         }
                     </script>
 

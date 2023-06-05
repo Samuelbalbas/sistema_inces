@@ -10,7 +10,7 @@ class Asignar extends Model
     protected $table = 'asignar';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['id_persona', 'id_equipo', 'id_periferico'];
+    protected $fillable = ['id_persona', 'id_equipo', 'id_periferico', 'estatus', 'observacion'];
 
     public function persona()
     {

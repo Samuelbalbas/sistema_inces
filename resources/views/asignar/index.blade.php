@@ -38,6 +38,7 @@
                             <th  style="color: black;">Periférico (Modelo)</th>
                             <th  style="color: black;">Periférico (Serial)</th>
                             <th  style="color: black;">Periférico (Serial)</th>
+                            <th  style="color: black;">Estatus</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
                     </thead>
@@ -79,6 +80,7 @@
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
+
                                 <td class="" style="color: black;">
                                     @foreach ($asignacionesGrupo as $asignacion)
                                         {{ $asignacion->periferico->tipo_periferico->tipo }}<br>
@@ -104,6 +106,9 @@
                                         {{ $asignacion->periferico->serialA }}<br>
                                     @endforeach
                                 </td>
+
+                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
+
                                 <td>
                                     <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                     @can('borrar-cargo') 

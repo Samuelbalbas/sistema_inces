@@ -57,12 +57,14 @@ class AsignarController extends Controller
         $id_equipo = $request->id_equipo;
         $id_perifericos = $request->id_periferico;
         $id_perifericos = array_filter($id_perifericos); // Remover todos los valores '0' o vacíos
+        $estatus = $request->estatus;
     
         foreach($id_perifericos as $id_periferico) {
             Asignar::create([
                 'id_persona' => $id_persona,
                 'id_equipo' => $id_equipo,
-                'id_periferico' => $id_periferico
+                'id_periferico' => $id_periferico,
+                'estatus' => $estatus
             ]);
         }
     
@@ -107,10 +109,10 @@ class AsignarController extends Controller
     
         // Creamos una matriz con los ids de los tipos de periféricos de todas las asignaciones
         $ids_perifericos_por_tipo = [];
-foreach($asignaciones as $asignacion) {
-    $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
-    $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
-}
+        foreach($asignaciones as $asignacion) {
+            $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
+            $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
+        }
 
     
     return view('asignar.edit', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
@@ -151,6 +153,8 @@ foreach($asignaciones as $asignacion) {
                 $key = array_search($asignacion->id_periferico, $perifericos_seleccionados);
                 if ($key !== false) {
                     $asignacion->id_periferico = $request->id_periferico[$key];
+                    $asignacion->estatus = $request->estatus;
+                    $asignacion->observacion = $request->observacion;
                     $asignacion->save();
                 }
                 // Una vez manejado, lo eliminamos del array
@@ -165,6 +169,7 @@ foreach($asignaciones as $asignacion) {
                 $asignacion->id_persona = $id;
                 $asignacion->id_equipo = $request->id_equipo;
                 $asignacion->id_periferico = $id_periferico;
+                
                 $asignacion->save();
             }
         }

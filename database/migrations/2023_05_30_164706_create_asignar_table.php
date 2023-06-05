@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_persona'); // Agregar columna de clave foránea
             $table->unsignedBigInteger('id_equipo'); // Agregar columna de clave foránea
             $table->unsignedBigInteger('id_periferico'); // Agregar columna de clave foránea
+            $table->string('estatus');
+            $table->string('observacion')->nullable();
             $table->timestamps();
 
             // Establecer relación con la tabla de marca

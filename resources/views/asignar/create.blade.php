@@ -8,7 +8,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 10vh; border-radius: 20px;">
                     
                     <center>
                         <h3 class="mb-4" style="color: black;">Asignación</h3>
@@ -42,7 +42,7 @@
                                 <label for="periferico" style="color: black;">Periféricos</label>
                                 @foreach($tipo_perifericos as $tipo_periferico)
                                     <div>
-                                        <input type="checkbox" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" onchange="togglePeriferico({{ $tipo_periferico->id }})">
+                                        <input type="checkbox" class="form-check-input" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" onchange="togglePeriferico({{ $tipo_periferico->id }})">
                                         <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
                                         <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" style="display: none;">
                                             <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
@@ -54,6 +54,19 @@
                                         </select>
                                     </div>
                                 @endforeach
+                            </div>
+
+                            <div class="col-3">
+                                <label for="" style="color: black;">Estatus</label>
+                                <div class="form-check">
+                                    <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
+                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="asignado" value="Asignado" checked>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
+                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" disabled>
+                                </div>
                             </div>
 
                         </div>
