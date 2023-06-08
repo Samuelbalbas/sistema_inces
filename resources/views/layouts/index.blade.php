@@ -64,13 +64,13 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registros</a>
                         <div class="dropdown-menu bg-transparent border-0">
 
-                            @can('ver-sede')
-                            <a href="{{ url('sede') }}" class="dropdown-item">Sede</a>
-                            @endcan
-
                             @can('ver-division')
                                 <a href="{{ url('division') }}" class="dropdown-item">División</a>
                             @endcan
+                            
+                            @can('ver-sede')
+                            <a href="{{ url('sede') }}" class="dropdown-item">Sede</a>
+                            @endcan                            
                             
                             @can('ver-cargo')
                                 <a href="{{ url('cargo') }}" class="dropdown-item">Cargo</a>
@@ -96,18 +96,17 @@
                                 <a href="{{ url('periferico') }}" class="dropdown-item">Periféricos</a>
                             @endcan
                             
+                            @can('ver-sistema')
+                                <a href="{{ url('sistema') }}" class="dropdown-item">Sistemas Operativos</a>
+                            @endcan
+
                             @can('ver-equipo')
                                 <a href="{{ url('equipo') }}" class="dropdown-item">Equipos Informáticos</a>
                             @endcan
                                                         
-                            @can('ver-sistema')
-                                <a href="{{ url('sistema') }}" class="dropdown-item">Sistemas Operativos</a>
-                            @endcan
                         </div>
                     </div>
-                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-right me-2"></i>Asignar</a>
-                    <a href="desincorpora.html" class="nav-item nav-link"><i class="bi bi-box-arrow-left me-1 "></i>Desincorporar</a>
-                    <a href="inventario.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
+                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
                     <a href="reportes.html" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
                     <a href="manual.html" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
