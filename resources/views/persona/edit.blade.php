@@ -5,10 +5,10 @@
 
 @section('content')
 
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     
                     <center>
                         <h3 class="mb-4" style="color: black;">Editar Persona</h3>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <input type="text" id="id_division_sede" name="id_division_sede" value="{{ $persona->divisionesSedes->first()->id_division_sede ?? '' }}">
-                        <br>
+                        <br><br>
                         <center>
                             <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>
                             <a class="btn btn-primary" style="width: 10%; color: black; background: white;" href="{{ url('persona/') }}"> Regresar </a>

@@ -9,8 +9,8 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 2%">
-        <div class="p-3" style="background: rgb(250, 246, 246); border-radius: 20px;">
+    <div class="container-fluid" style="margin-top: 18%">
+        <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
                 <h2 style="color: black; margin-left: 30%;">Gestión de Inventario de los Équipos</h2>
@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                
                    @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
                         <tr>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
@@ -72,9 +72,10 @@
                                     </form>
                                 @endcan
                             </td>
-                        </tr>
-                    @endforeach
-                   <!-- @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
+                        </tr> 
+                     @endforeach
+
+                    {{-- @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
                             <tr>
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }}</td>
@@ -108,23 +109,23 @@
                                     @foreach ($asignacionesGrupo as $asignacion)
                                         {{ $asignacion->periferico->serialA }}<br>
                                     @endforeach
-                                </td>
+                                </td> 
 
                                 <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
                                 <td>
                                     <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                     @can('borrar-cargo') 
-                                       <!-- <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
+                                         <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-                                        </form>-->
+                                        </form>
                                     @endcan
                                 </td>
                             </tr>
-                        @endforeach
-
+                        @endforeach --}}
+                            
 
                     </tbody>
                 </table>

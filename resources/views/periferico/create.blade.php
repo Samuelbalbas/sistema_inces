@@ -59,10 +59,10 @@ $(document).ready(function() {
 
 @section('content')
 
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     
                     <center>
                         <h3 class="mb-4" style="color: black;">Crear Periférico</h3>
