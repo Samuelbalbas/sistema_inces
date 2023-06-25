@@ -13,7 +13,8 @@
                     <center>
                         <h3 class="mb-4" style="color: black;">Desincorporar</h3>
                     </center>
-                    <form method="post" action="{{ route('asignar.updateByPerson', ['id' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
+                    <form method="post" action="{{ route('asignar.update', ['asignar' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
+
 
                         @csrf   
                         @method('PUT')

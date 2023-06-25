@@ -153,6 +153,7 @@ Route::get('/asignar',  [AsignarController::class,'index'])->name('asignar')->mi
 Route::get('/asignar/create',  [AsignarController::class,'create'])->name('create')->middleware('auth');
 
 Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson'])->name('asignar.updateByPerson')->middleware('auth');
+Route::put('/asignar/{asignar}', 'AsignarController@update')->name('asignar.update');
 
 Route::resource('asignar', AsignarController::class)->middleware('auth');
 

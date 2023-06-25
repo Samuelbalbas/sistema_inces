@@ -153,10 +153,27 @@ class AsignarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $asignar)
     {
-//
+        // Obtén el estatus y la observación de la solicitud
+        $estatus = $request->estatus;
+        $observacion = $request->observacion;
+    
+        // Encuentra todas las asignaciones para la persona específica
+        $asignaciones = Asignar::where('id_persona', $asignar)->get();
+    
+        // Actualiza el estatus y la observación de todas las asignaciones
+        foreach ($asignaciones as $asignacion) {
+            $asignacion->estatus = $estatus;
+            $asignacion->observacion = $observacion;
+            $asignacion->save();
+        }
+    
+        return redirect('asignar');
     }
+    
+
+    
     public function updateByPerson(Request $request, $id)
     {
         // Obtén los periféricos de la solicitud

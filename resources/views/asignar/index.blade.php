@@ -67,7 +67,7 @@
                                 {{-- @can('')  --}}
                                     <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/desincorporar') }}" method="GET" class="" style="display:inline;">
                                         {{-- @csrf --}}
-                                        {{-- {{ method_field('DELETE') }} --}}
+                                        
                                         <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
                                     </form>
                                {{--  @endcan --}}
