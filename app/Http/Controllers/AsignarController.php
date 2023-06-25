@@ -78,9 +78,33 @@ class AsignarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function desincorporar($id)
     {
-        //
+        $asignaciones = Asignar::where('id_persona', $id)->get();
+        $personas = Persona::all();
+        $equipos = Equipos::all();
+        $tipo_perifericos = TipoPeriferico::all();
+        $perifericos = Perifericos::all();
+    
+        // Si hay asignaciones para esta persona, usamos la primera para obtener los datos de la persona y el equipo
+        if (!$asignaciones->isEmpty()) {
+            $asignacion = $asignaciones->first();
+        } else {
+            // Si no hay asignaciones para esta persona, creamos un nuevo objeto Asignar con los valores predeterminados
+            $asignacion = new Asignar;
+            $asignacion->id_persona = 0;
+            $asignacion->id_equipo = 0;
+        }
+    
+        // Creamos una matriz con los ids de los tipos de periféricos de todas las asignaciones
+        $ids_perifericos_por_tipo = [];
+        foreach($asignaciones as $asignacion) {
+            $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
+            $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
+        }
+
+    
+    return view('asignar.desincorporar', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
     }
 
     /**

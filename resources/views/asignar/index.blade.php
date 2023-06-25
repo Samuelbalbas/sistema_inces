@@ -17,7 +17,7 @@
                 
                 {{-- @can('crear-cargo') --}}
                     <form action="{{ url('asignar/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-chevron-right"></i></button>
+                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-box-arrow-right"></i></button>
                     </form>
                 {{-- @endcan --}}
 
@@ -64,13 +64,13 @@
 
                             <td>
                                 <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
-                                @can('borrar-cargo') 
-                                    <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger" type="submit" value=""><i class="bi bi-chevron-left"></i></button>
+                                {{-- @can('')  --}}
+                                    <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/desincorporar') }}" method="GET" class="" style="display:inline;">
+                                        {{-- @csrf --}}
+                                        {{-- {{ method_field('DELETE') }} --}}
+                                        <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
                                     </form>
-                                @endcan
+                               {{--  @endcan --}}
                             </td>
                         </tr> 
                      @endforeach

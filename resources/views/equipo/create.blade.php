@@ -147,9 +147,9 @@ $(document).ready(function() {
                                     <option value="0" selected>Seleccione un Sistema</option>
                                     @foreach($sistemas as $sistema)
                                         @if ($sistema->tipo == 'Privativo')
-                                            <option value="{{ $sistema->id }}" data-tipo="Privativo">{{ $sistema->nombre }}</option>
+                                            <option value="{{ $sistema->id }}" data-tipo="Privativo">{{ $sistema->nombre }} {{ $sistema->version }}</option>
                                         @elseif ($sistema->tipo == 'Libre')
-                                            <option value="{{ $sistema->id }}" data-tipo="Libre">{{ $sistema->nombre }}</option>
+                                            <option value="{{ $sistema->id }}" data-tipo="Libre">{{ $sistema->nombre }} {{ $sistema->version }}</option>
                                         @endif
                                     @endforeach
                                 </select>

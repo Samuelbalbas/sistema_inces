@@ -16,9 +16,9 @@
                 <h2 style="color: black; margin-left: 33%;">Gestión de los Usuarios</h2>
                 
                 <div>
-                    @can('ver-rol')
+                    {{-- @can('ver-rol')
                         <a href="/roles" style="height: 35px; margin-right: 43px; " class="btn btn-sm btn-success"><i class=" fas fa-user-lock me-2"></i><span>Roles</span></a>
-                    @endcan
+                    @endcan --}}
 
                     @can('crear-usuario')
                         <form action="{{ route('usuarios.create') }}" method="get" style="display:inline;">

@@ -28,14 +28,77 @@
                                 </select>                            
                             </div>
 
+                            <div class="row" id="datosPersona" style="display:none;">
+                                {{-- <div class=""> --}}
+                                    <div class="col-3">
+                                        <label for="id_cargo" style="color: black;">Cargo</label>
+                                        <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
+                                    </div>    
+
+                                    <div class="col-3">
+                                        <label for="telefono" style="color: black;">Telefono</label>
+                                        <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label for="sede" style="color: black;">Sede</label>
+                                        <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label for="division" style="color: black;">Division</label>
+                                        <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
+                                    </div>
+                                {{-- </div> --}}
+                            </div>
+
                             <div class="col-3">
                                 <label for="equipo" style="color: black;">Equipo</label>
                                 <select class="form-select" id="equipo" name="id_equipo">
                                     <option value="0">Seleccione un Équipo</option>
                                     @foreach($equipos as $equipo)
-                                        <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }} {{ $equipo->serial }} {{ $equipo->serialA }} {{ $equipo->cpu }} {{ $equipo->velocidad }} {{ $equipo->ram }} {{ $equipo->disco }} {{ $equipo->sistema->tipo }}</option>
+                                        <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
                                     @endforeach
                                 </select>                            
+                            </div>
+
+                            <div class="row" id="datosEquipo" style="display:none;">
+                                {{-- <div class=""> --}}
+                                    <div class="col-3">
+                                        <label for="serial" style="color: black;">Serial</label>
+                                        <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
+                                    </div>    
+
+                                    <div class="col-3">
+                                        <label for="serialA" style="color: black;">Serial Activo</label>
+                                        <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label for="cpu" style="color: black;">Modelo del CPU</label>
+                                        <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
+                                        <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label style="color: black;">Memoria Ram (GB)</label>
+                                        <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
+                                    </div>
+        
+                                    <div class="col-3">
+                                        <label style="color: black;">Disco Duro (GB)</label>
+                                        <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <label style="color: black;">Sistema Operativo</label>
+                                        <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
+                                    </div>
+                                {{-- </div> --}}
                             </div>
                             
                             <div class="col-3">
@@ -56,7 +119,7 @@
                                 @endforeach
                             </div>
 
-                            <div class="col-3">
+                            {{-- <div class="col-3">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
                                     <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
@@ -67,6 +130,11 @@
                                     <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
                                     <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" disabled>
                                 </div>
+                            </div> --}}
+
+                            <div class="col-3">
+                                <label style="color: black;">Estatus</label>
+                                <input type="text" class="form-control" name="estatus" id="" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
 
                         </div>
@@ -80,18 +148,75 @@
                         
                     </form>
                     <script>
-                    function togglePeriferico(id) {
-                        var checkbox = document.getElementById('periferico-' + id);
-                        var select = document.getElementById('select-periferico-' + id);
-                        if (checkbox.checked) {
-                            select.style.display = 'block';
-                        } else {
-                            select.style.display = 'none';
-                            select.value = '0';
+                        function togglePeriferico(id) {
+                            var checkbox = document.getElementById('periferico-' + id);
+                            var select = document.getElementById('select-periferico-' + id);
+                            if (checkbox.checked) {
+                                select.style.display = 'block';
+                            } else {
+                                select.style.display = 'none';
+                                select.value = '0';
+                            }
                         }
-                    }
                     </script>
 
+                    <script>
+                        $(document).ready(function(){
+                            $('#persona').on('change', function(){
+                                var persona_id = $(this).val();
+                                if(persona_id){
+                                    var data = {!! json_encode($personas->toArray()) !!};
+                                    $.each(data, function(i, v){
+                                        if(v.id == persona_id){
+                                            $('#id_cargo').val(v.id_cargo);
+                                            $('#telefono').val(v.telefono);
+                                            $('#sede').val(v.sede);
+                                            $('#division').val(v.division);
+                                        }
+                                    })
+                                        $('#datosPersona').show();
+                                }else{
+                                    $('#id_cargo').val('');
+                                    $('#telefono').val('');
+                                    $('#sede').val('');
+                                    $('#division').val('');
+                                    $('#datosPersona').hide();
+                                }
+                            });
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function(){
+                            $('#equipo').on('change', function(){
+                                var equipo_id = $(this).val();
+                                if(equipo_id){
+                                    var data = {!! json_encode($equipos->toArray()) !!};
+                                    $.each(data, function(i, v){
+                                        if(v.id == equipo_id){
+                                            $('#serial').val(v.serial);
+                                            $('#serialA').val(v.serialA);
+                                            $('#cpu').val(v.cpu);
+                                            $('#velocidad').val(v.velocidad);
+                                            $('#ram').val(v.ram);
+                                            $('#disco').val(v.disco);
+                                            $('#id_so').val(v.id_so);
+                                        }
+                                    })
+                                        $('#datosEquipo').show();
+                                }else{
+                                    $('#serial').val('');
+                                    $('#serialA').val('');
+                                    $('#cpu').val('');
+                                    $('#velocidad').val('');
+                                    $('#ram').val('');
+                                    $('#disco').val('');
+                                    $('#id_so').val('');
+                                    $('#datosEquipo').hide();
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div> 
         </div>

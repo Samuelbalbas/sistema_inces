@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Editar Asignación</title>
+<title>@yield('title') Desincorporar</title>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
 
                     <center>
-                        <h3 class="mb-4" style="color: black;">Editar Asignación</h3>
+                        <h3 class="mb-4" style="color: black;">Desincorporar</h3>
                     </center>
                     <form method="post" action="{{ route('asignar.updateByPerson', ['id' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
 
@@ -21,7 +21,7 @@
 
                             <div class="col-3">
                                 <label for="persona" style="color: black;">Persona</label>
-                                <select class="form-select" id="persona" name="id_persona">
+                                <select class="form-select" id="persona" name="id_persona" disabled>
                                     <option value="0">Seleccione una Persona</option>
                                     @foreach($personas as $persona)
                                         <option value="{{ $persona->id }}" @if($persona->id == $asignacion->id_persona) selected @endif>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
@@ -31,7 +31,7 @@
 
                             <div class="col-3">
                                 <label for="equipo" style="color: black;">Equipo</label>
-                                <select class="form-select" id="equipo" name="id_equipo">
+                                <select class="form-select" id="equipo" name="id_equipo" disabled>
                                     <option value="0">Seleccione un Équipo</option>
                                     @foreach($equipos as $equipo)
                                         <option value="{{ $equipo->id }}" @if($equipo->id == $asignacion->id_equipo) selected @endif>{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }} {{ $equipo->serial }} {{ $equipo->serialA }} {{ $equipo->cpu }} {{ $equipo->velocidad }} {{ $equipo->ram }} {{ $equipo->disco }} {{ $equipo->sistema->tipo }}</option>
@@ -43,9 +43,9 @@
                                 <label for="periferico" style="color: black;">Periféricos</label>
                                 @foreach($tipo_perifericos as $tipo_periferico)
                                     <div>
-                                        <input type="checkbox" class="form-check-input" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
+                                        <input disabled type="checkbox" class="form-check-input" id="periferico-{{ $tipo_periferico->id }}" name="tipo_periferico[]" value="{{ $tipo_periferico->id }}" @if(array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) checked @endif onchange="togglePeriferico({{ $tipo_periferico->id }})">
                                             <label for="periferico-{{ $tipo_periferico->id }}">{{ $tipo_periferico->tipo }}</label>
-                                            <select class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) style="display: none;" @endif>
+                                            <select disabled class="form-select periferico-select" id="select-periferico-{{ $tipo_periferico->id }}" name="id_periferico[]" @if(!array_key_exists($tipo_periferico->id, $ids_perifericos_por_tipo)) style="display: none;" @endif>
                                                 <option value="0">Seleccione un {{ $tipo_periferico->tipo }}</option>
                                                 @foreach($perifericos as $periferico)
                                                     @if ($periferico->id_tipo == $tipo_periferico->id)
@@ -57,7 +57,7 @@
                                 @endforeach
                             </div>
 
-                            {{-- <div class="col-3">
+                            <div class="col-3">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
                                     <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
@@ -71,11 +71,6 @@
                            
                                 <textarea class="form-control" name="observacion" placeholder="Observación" id="floatingTextarea" style="height: 220px; width: 270px; display:none;"></textarea>
                                 
-                            </div> --}}
-
-                            <div class="col-3" style="display:none;">
-                                <label style="color: black; display:none;">Estatus</label>
-                                <input type="hidden" class="form-control" name="estatus" id="" value="{{ isset($asignacion->estatus)?$asignacion->estatus:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
 
                         </div>

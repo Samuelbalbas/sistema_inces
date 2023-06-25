@@ -142,6 +142,9 @@
                         @can('ver-usuario')
                             <a href="/usuarios" class="dropdown-item" style="color: white;">Usuarios</a>
                         @endcan
+                        @can('ver-rol')
+                            <a href="/roles" class="dropdown-item" style="color: white;">Roles</a>
+                        @endcan
                          <a href="{{ route('Perfil') }}" class="dropdown-item" style="color: white;">Mi Perfil</a>
                         <a href="/logout" class="dropdown-item" style="color: white;">Cerrar Sesión</a>
                     </div>
