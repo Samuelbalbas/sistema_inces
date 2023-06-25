@@ -161,6 +161,7 @@ class AsignarController extends Controller
     {
         // Obtén los periféricos de la solicitud
         $perifericos_seleccionados = $request->id_periferico;
+        $nuevo_id_persona = $request->id_persona; // Asume que el nuevo ID de persona viene en la solicitud
     
         // Encuentra todas las asignaciones para la persona específica
         $asignaciones = Asignar::where('id_persona', $id)->get();
@@ -172,7 +173,8 @@ class AsignarController extends Controller
                 $asignacion->delete();
             } else {
                 // Si este periférico está en la solicitud, actualizamos la asignación
-                $asignacion->id_equipo = $request->id_equipo;
+                $asignacion->id_persona = $nuevo_id_persona; // Actualiza el ID de la persona
+                $asignacion->id_equipo = $request->id_equipo;// Actualiza el ID del equipo
     
                 $key = array_search($asignacion->id_periferico, $perifericos_seleccionados);
                 if ($key !== false) {
@@ -190,10 +192,11 @@ class AsignarController extends Controller
         foreach ($perifericos_seleccionados as $key => $id_periferico) {
             if ($id_periferico != 0) {
                 $asignacion = new Asignar;
-                $asignacion->id_persona = $id;
+                $asignacion->id_persona = $nuevo_id_persona; // Usa el nuevo ID de la persona
                 $asignacion->id_equipo = $request->id_equipo;
                 $asignacion->id_periferico = $id_periferico;
-                
+                $asignacion->estatus = 'Asignado'; // Agregamos un valor por defecto al estado
+                $asignacion->observacion = null; // No se observa ninguna desincorporación aquí
                 $asignacion->save();
             }
         }

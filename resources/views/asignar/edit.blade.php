@@ -57,29 +57,13 @@
                                 @endforeach
                             </div>
 
-                            {{-- <div class="col-3">
-                                <label for="" style="color: black;">Estatus</label>
-                                <div class="form-check">
-                                    <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
-                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="asignado" value="Asignado" {{ ($asignacion->estatus=="Asignado")? "checked" : ""}} >
-                                </div>
-
-                                <div class="form-check">
-                                    <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
-                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" {{ ($asignacion->estatus=="Desincorporado")? "checked" : ""}} >
-                                </div>
-                           
-                                <textarea class="form-control" name="observacion" placeholder="Observación" id="floatingTextarea" style="height: 220px; width: 270px; display:none;"></textarea>
-                                
-                            </div> --}}
-
-                            <div class="col-3" style="display:none;">
+                            <div class="col-3" >
                                 <label style="color: black; display:none;">Estatus</label>
-                                <input type="hidden" class="form-control" name="estatus" id="" value="{{ isset($asignacion->estatus)?$asignacion->estatus:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
+                                <input type="text" class="form-control" name="estatus" id="estatus" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
 
                         </div>
-                        <input type="hidden" name="asignacion_index[]" value="{{ $asignacion->id }}">
+
 
 
                         <br>
