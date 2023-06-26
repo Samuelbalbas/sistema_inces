@@ -61,12 +61,12 @@
                                 <label for="division" style="color: black;">División de la Persona</label>
 
                                 <select class="form-select" id="id_division" name="id_division" onchange="setDivisionSedeId()">
-    @foreach ($divisiones as $id => $nombre)
-        <option value="{{ $id }}" {{ $id_division == $id ? 'selected' : '' }} data-division-sede-id="{{ $persona->divisionesSedes->first()->division_sede_id ?? '' }}">
-            {{ $nombre }}
-        </option>
-    @endforeach
-</select>
+                                    @foreach ($divisiones as $id => $nombre)
+                                        <option value="{{ $id }}" {{ $id_division == $id ? 'selected' : '' }} data-division-sede-id="{{ $persona->divisionesSedes->first()->division_sede_id ?? '' }}">
+                                            {{ $nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
 
                             </div>

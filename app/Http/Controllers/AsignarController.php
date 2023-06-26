@@ -116,7 +116,7 @@ class AsignarController extends Controller
     public function edit($id)
     {
         $asignaciones = Asignar::where('id_persona', $id)->get();
-        $personas = Persona::all();
+        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')->get();
         $equipos = Equipos::all();
         $tipo_perifericos = TipoPeriferico::all();
         $perifericos = Perifericos::all();

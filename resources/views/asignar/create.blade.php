@@ -8,72 +8,71 @@
     <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
-                    
+                <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
+
                     <center>
                         <h3 class="mb-4" style="color: black;">Asignación</h3>
                     </center>
-                    
+
                     <form method="post" action="{{ url('/asignar') }}" enctype="multipart/form-data" onsubmit="">
                         @csrf
                         <div class="row">
+                            <div class="col-3">
+                                <label for="persona" style="color: black;">Persona</label>
+                                <select class="form-select" id="persona" name="id_persona">
+                                    <option value="0">Seleccione una Persona</option>
+                                    @foreach($personas as $persona)
+                                        <option value="{{ $persona->id }}">{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
+                                    @endforeach
+                                </select> 
 
-                        <div class="col-3">
-    <label for="persona" style="color: black;">Persona</label>
-    <select class="form-select" id="persona" name="id_persona">
-        <option value="0">Seleccione una Persona</option>
-        @foreach($personas as $persona)
-            <option value="{{ $persona->id }}">{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
-        @endforeach
-    </select> 
+                                <div id="datosPersona" style="display:none;">                       
+                                    <label for="id_cargo" style="color: black;">Cargo</label>
+                                    <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
 
-    <div id="datosPersona" style="display:none;">                       
-        <label for="id_cargo" style="color: black;">Cargo</label>
-        <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
+                                    <label for="telefono" style="color: black;">Telefono</label>
+                                    <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
 
-        <label for="telefono" style="color: black;">Telefono</label>
-        <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
+                                    <label for="sede" style="color: black;">Sede</label>
+                                    <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
 
-        <label for="sede" style="color: black;">Sede</label>
-        <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
+                                    <label for="division" style="color: black;">Division</label>
+                                    <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
+                                </div>                           
+                            </div>
 
-        <label for="division" style="color: black;">Division</label>
-        <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
-    </div>                           
-</div>
+                            <div class="col-3">
+                                <label for="equipo" style="color: black;">Equipo</label>
+                                <select class="form-select" id="equipo" name="id_equipo">
+                                    <option value="0">Seleccione un Équipo</option>
+                                    @foreach($equipos as $equipo)
+                                        <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
+                                    @endforeach
+                                </select>  
 
-<div class="col-3">
-    <label for="equipo" style="color: black;">Equipo</label>
-    <select class="form-select" id="equipo" name="id_equipo">
-        <option value="0">Seleccione un Équipo</option>
-        @foreach($equipos as $equipo)
-            <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
-        @endforeach
-    </select>  
+                                <div id="datosEquipo" style="display:none;">      
+                                    <label for="serial" style="color: black;">Serial</label>
+                                    <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
 
-    <div id="datosEquipo" style="display:none;">      
-        <label for="serial" style="color: black;">Serial</label>
-        <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
+                                    <label for="serialA" style="color: black;">Serial Activo</label>
+                                    <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
 
-        <label for="serialA" style="color: black;">Serial Activo</label>
-        <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
+                                    <label for="cpu" style="color: black;">Modelo del CPU</label>
+                                    <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
 
-        <label for="cpu" style="color: black;">Modelo del CPU</label>
-        <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
+                                    <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
+                                    <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
 
-        <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
-        <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
+                                    <label style="color: black;">Memoria Ram (GB)</label>
+                                    <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
 
-        <label style="color: black;">Memoria Ram (GB)</label>
-        <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
+                                    <label style="color: black;">Disco Duro (GB)</label>
+                                    <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
 
-        <label style="color: black;">Disco Duro (GB)</label>
-        <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
-
-        <label style="color: black;">Sistema Operativo</label>
-        <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
-    </div>                             
-</div>
+                                    <label style="color: black;">Sistema Operativo</label>
+                                    <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
+                                </div>                             
+                            </div>
 
                             
                             <div class="col-3">
