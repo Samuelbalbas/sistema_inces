@@ -37,8 +37,8 @@ class AsignarController extends Controller
      */
     public function create()
     {
-        $personas = Persona::all();
-        $equipos = Equipos::all();
+        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')->get();
+        $equipos = Equipos::with('sistema')->get();
         $perifericos = Perifericos::all();
         $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo_perifericos"
         return view('asignar.create', compact('personas','equipos', 'perifericos', 'tipo_perifericos'));

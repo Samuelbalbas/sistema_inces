@@ -71,7 +71,7 @@
 
                             </div>
                         </div>
-                        <input type="text" id="id_division_sede" name="id_division_sede" value="{{ $persona->divisionesSedes->first()->id_division_sede ?? '' }}">
+                        <input type="hidden" id="id_division_sede" name="id_division_sede" value="{{ $persona->divisionesSedes->first()->id_division_sede ?? '' }}">
                         <br><br>
                         <center>
                             <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>

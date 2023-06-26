@@ -168,13 +168,13 @@
                                     var data = {!! json_encode($personas->toArray()) !!};
                                     $.each(data, function(i, v){
                                         if(v.id == persona_id){
-                                            $('#id_cargo').val(v.id_cargo);
+                                            $('#id_cargo').val(v.cargo.nombre_cargo);
                                             $('#telefono').val(v.telefono);
-                                            $('#sede').val(v.sede);
-                                            $('#division').val(v.division);
+                                            $('#sede').val(v.divisiones_sedes[0].sede.nombre_sede);
+                                            $('#division').val(v.divisiones_sedes[0].division.nombre_division);
                                         }
                                     })
-                                        $('#datosPersona').show();
+                                    $('#datosPersona').show();
                                 }else{
                                     $('#id_cargo').val('');
                                     $('#telefono').val('');
@@ -200,10 +200,10 @@
                                             $('#velocidad').val(v.velocidad);
                                             $('#ram').val(v.ram);
                                             $('#disco').val(v.disco);
-                                            $('#id_so').val(v.id_so);
+                                            $('#id_so').val(v.sistema.nombre); // Aquí es donde se ha realizado el cambio
                                         }
                                     })
-                                        $('#datosEquipo').show();
+                                    $('#datosEquipo').show();
                                 }else{
                                     $('#serial').val('');
                                     $('#serialA').val('');
@@ -217,6 +217,7 @@
                             });
                         });
                     </script>
+
                 </div>
             </div> 
         </div>
