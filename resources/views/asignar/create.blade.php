@@ -18,88 +18,63 @@
                         @csrf
                         <div class="row">
 
-                            <div class="col-3">
-                                <label for="persona" style="color: black;">Persona</label>
-                                <select class="form-select" id="persona" name="id_persona">
-                                    <option value="0">Seleccione una Persona</option>
-                                    @foreach($personas as $persona)
-                                        <option value="{{ $persona->id }}">{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
-                                    @endforeach
-                                </select>                            
-                            </div>
+                        <div class="col-3">
+    <label for="persona" style="color: black;">Persona</label>
+    <select class="form-select" id="persona" name="id_persona">
+        <option value="0">Seleccione una Persona</option>
+        @foreach($personas as $persona)
+            <option value="{{ $persona->id }}">{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
+        @endforeach
+    </select> 
 
-                            <div class="row" id="datosPersona" style="display:none;">
-                                {{-- <div class=""> --}}
-                                    <div class="col-3">
-                                        <label for="id_cargo" style="color: black;">Cargo</label>
-                                        <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
-                                    </div>    
+    <div id="datosPersona" style="display:none;">                       
+        <label for="id_cargo" style="color: black;">Cargo</label>
+        <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
 
-                                    <div class="col-3">
-                                        <label for="telefono" style="color: black;">Telefono</label>
-                                        <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
-                                    </div>
+        <label for="telefono" style="color: black;">Telefono</label>
+        <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
 
-                                    <div class="col-3">
-                                        <label for="sede" style="color: black;">Sede</label>
-                                        <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
-                                    </div>
+        <label for="sede" style="color: black;">Sede</label>
+        <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
 
-                                    <div class="col-3">
-                                        <label for="division" style="color: black;">Division</label>
-                                        <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
-                                    </div>
-                                {{-- </div> --}}
-                            </div>
+        <label for="division" style="color: black;">Division</label>
+        <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
+    </div>                           
+</div>
 
-                            <div class="col-3">
-                                <label for="equipo" style="color: black;">Equipo</label>
-                                <select class="form-select" id="equipo" name="id_equipo">
-                                    <option value="0">Seleccione un Équipo</option>
-                                    @foreach($equipos as $equipo)
-                                        <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
-                                    @endforeach
-                                </select>                            
-                            </div>
+<div class="col-3">
+    <label for="equipo" style="color: black;">Equipo</label>
+    <select class="form-select" id="equipo" name="id_equipo">
+        <option value="0">Seleccione un Équipo</option>
+        @foreach($equipos as $equipo)
+            <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
+        @endforeach
+    </select>  
 
-                            <div class="row" id="datosEquipo" style="display:none;">
-                                {{-- <div class=""> --}}
-                                    <div class="col-3">
-                                        <label for="serial" style="color: black;">Serial</label>
-                                        <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
-                                    </div>    
+    <div id="datosEquipo" style="display:none;">      
+        <label for="serial" style="color: black;">Serial</label>
+        <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
 
-                                    <div class="col-3">
-                                        <label for="serialA" style="color: black;">Serial Activo</label>
-                                        <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
-                                    </div>
+        <label for="serialA" style="color: black;">Serial Activo</label>
+        <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
 
-                                    <div class="col-3">
-                                        <label for="cpu" style="color: black;">Modelo del CPU</label>
-                                        <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
-                                    </div>
+        <label for="cpu" style="color: black;">Modelo del CPU</label>
+        <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
 
-                                    <div class="col-3">
-                                        <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
-                                        <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
-                                    </div>
+        <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
+        <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
 
-                                    <div class="col-3">
-                                        <label style="color: black;">Memoria Ram (GB)</label>
-                                        <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
-                                    </div>
-        
-                                    <div class="col-3">
-                                        <label style="color: black;">Disco Duro (GB)</label>
-                                        <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
-                                    </div>
+        <label style="color: black;">Memoria Ram (GB)</label>
+        <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
 
-                                    <div class="col-3">
-                                        <label style="color: black;">Sistema Operativo</label>
-                                        <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
-                                    </div>
-                                {{-- </div> --}}
-                            </div>
+        <label style="color: black;">Disco Duro (GB)</label>
+        <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
+
+        <label style="color: black;">Sistema Operativo</label>
+        <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
+    </div>                             
+</div>
+
                             
                             <div class="col-3">
                                 <label for="periferico" style="color: black;">Periféricos</label>
