@@ -132,7 +132,7 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-3">
+                            <div class="col-3" style="display:none;">
                                 <label style="color: black;">Estatus</label>
                                 <input type="text" class="form-control" name="estatus" id="" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>

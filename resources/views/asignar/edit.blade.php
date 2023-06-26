@@ -57,9 +57,9 @@
                                 @endforeach
                             </div>
 
-                            <div class="col-3" >
+                            <div class="col-3" style="display:none;">
                                 <label style="color: black; display:none;">Estatus</label>
-                                <input type="text" class="form-control" name="estatus" id="estatus" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
+                                <input type="hidden" class="form-control" name="estatus" id="estatus" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
 
                         </div>
@@ -83,16 +83,6 @@
                                 select.style.display = 'none';
                                 select.value = '0';
                             }
-                        }
-                    </script>
-
-                    <script>
-                        document.getElementById('desincorporado').onclick = function() {
-                        if (this.checked) {
-                            document.getElementById('floatingTextarea').style.display = 'block';
-                        } else {
-                            document.getElementById('floatingTextarea').style.display = 'none';
-                        }
                         }
                     </script>
 
