@@ -66,7 +66,7 @@
                             </div>
                             <input type="hidden" id="id_division_sede" name="id_division_sede" value="">
   
-                        <br><br>
+                        <br>
                         <center>
                             <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>
                             <a class="btn btn-primary" style="width: 10%; color: black; background: white;" href="{{ url('persona/') }}"> Regresar </a>
