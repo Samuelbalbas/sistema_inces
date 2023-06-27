@@ -153,5 +153,12 @@
 
             
             </script>
+
+@if ($errors->any())
+    <script>
+        var errorMessage = @json($errors->first());
+        alert(errorMessage);
+    </script>
+@endif
     
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
 use App\Models\DivisionSede;
+use Illuminate\Database\QueryException;
 // use Illuminate\Pagination\LengthAwarePaginator;
 
 class SedeController extends Controller
@@ -84,15 +85,21 @@ class SedeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Actualiza los datos de la sede con los datos del formulario
-        $sede = Sede::findOrFail($id);
-        $sede->nombre_sede = $request->nombre_sede;
-        $sede->save();
-    
-        // Actualiza las divisiones de la sede en la tabla puente
-        $sede->division()->sync($request->input('division', []));
-    
-        return redirect('sede');  
+        try {
+            // Actualiza los datos de la sede con los datos del formulario
+            $sede = Sede::findOrFail($id);
+            $sede->nombre_sede = $request->nombre_sede;
+            $sede->save();
+        
+            // Actualiza las divisiones de la sede en la tabla puente
+            $sede->division()->sync($request->input('division', []));
+        
+            return redirect('sede');  
+
+        } catch (QueryException $exception) {
+            $errorMessageEdit = 'Error: No se puede quitar la division a la sede ya que hay personas asociadas a esta division .';
+            return redirect()->back()->withErrors($errorMessageEdit);
+        }
     }
 
     /**
@@ -103,15 +110,20 @@ class SedeController extends Controller
      */
     public function destroy($id)
     {
-        // Obtener la sede a eliminar
-        $sede = Sede::findOrFail($id);
-    
-        // Eliminar los registros relacionados en la tabla puente
-        $sede->division()->detach();
-    
-        // Eliminar la sede
-        $sede->delete();
+        try {
+            // Obtener la sede a eliminar
+            $sede = Sede::findOrFail($id);
+        
+            // Eliminar los registros relacionados en la tabla puente
+            $sede->division()->detach();
+        
+            // Eliminar la sede
+            $sede->delete();
 
-        return redirect('sede')->with('eliminar', 'ok');
+            return redirect('sede')->with('eliminar', 'ok');   
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar la sede debido a que tiene divisiones asignadas.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

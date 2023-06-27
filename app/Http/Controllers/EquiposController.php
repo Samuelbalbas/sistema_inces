@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Sistema;
-
+use Illuminate\Database\QueryException;
 class EquiposController extends Controller
 {
     function __construct()
@@ -142,7 +142,12 @@ class EquiposController extends Controller
      */
     public function destroy(equipos $equipos, $id)
     {
-        Equipos::destroy($id);
-        return redirect('equipo')->with('eliminar', 'ok');
+        try {
+            Equipos::destroy($id);
+            return redirect('equipo')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el equipo debido a que esta asignado a una persona.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

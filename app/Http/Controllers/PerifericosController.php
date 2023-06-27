@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\TipoPeriferico;
-
+use Illuminate\Database\QueryException;
 class PerifericosController extends Controller
 {
     function __construct()
@@ -119,7 +119,13 @@ class PerifericosController extends Controller
      */
     public function destroy(perifericos $perifericos, $id)
     {
-        Perifericos::destroy($id);
-        return redirect('periferico')->with('eliminar', 'ok');
+        try {
+            Perifericos::destroy($id);
+            return redirect('periferico')->with('eliminar', 'ok');
+
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el periferico debido a que tiene este perifericos asignado a una persona.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

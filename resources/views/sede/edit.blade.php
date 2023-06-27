@@ -65,7 +65,12 @@
         </div> 
     </div>
 </div>
-                                                
+@if ($errors->any())
+    <script>
+        var errorMessageEdit = @json($errors->first());
+        alert(errorMessageEdit);
+    </script>
+@endif                                                
 <!-- Form End -->
 
 @endsection

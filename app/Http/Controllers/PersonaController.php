@@ -9,6 +9,7 @@ use App\Models\Division;
 use App\Models\DivisionSede;
 use App\Models\Sede;
 use App\Models\PersonaDivisionSede;
+use Illuminate\Database\QueryException;
 
 
 class PersonaController extends Controller
@@ -175,20 +176,23 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        // persona::destroy($id);
-        // return redirect('persona');
-
-        /* //////////////////////////////////////////////////////////////////// */
-
-        // Obtener la persona a eliminar
-        $persona = persona::findOrFail($id);
-    
-        // Eliminar los registros relacionados en la tabla puente
-        $persona->PersonaDivisionSede()->detach();
-    
-        // Eliminar la persona
-        $persona->delete();
-    
-        return redirect('persona')->with('eliminar', 'ok');
+        try {
+            // Obtener la persona a eliminar
+            $persona = persona::findOrFail($id);
+        
+            // Eliminar los registros relacionados en la tabla puente
+            $persona->PersonaDivisionSede()->detach();
+        
+            // Eliminar la persona
+            $persona->delete();
+            
+        
+            return redirect('persona')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar la persona debido a que tiene un equipo y perifericos asignados.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
+        
     }
+    
 }

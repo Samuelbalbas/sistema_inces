@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 class DivisionController extends Controller
 {
@@ -102,14 +103,20 @@ class DivisionController extends Controller
      */
     public function destroy($id)
     {
-        $division = Division::findOrFail($id);
-    
-        // Elimina las relaciones en la tabla puente
-        $division->sedes()->detach();
-    
-        // Elimina el registro de la tabla division
-        $division->delete();
+        try {
+            $division = Division::findOrFail($id);
+        
+            // Elimina las relaciones en la tabla puente
+            $division->sedes()->detach();
+        
+            // Elimina el registro de la tabla division
+            $division->delete();
 
-        return redirect('division')->with('eliminar', 'ok');
+            return redirect('division')->with('eliminar', 'ok');
+
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar la division debido a que tiene personas asignadas a esta division en una o varias sedes.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

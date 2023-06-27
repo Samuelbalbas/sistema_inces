@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sistema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\QueryException;
 class SistemaController extends Controller
 {
     function __construct()
@@ -99,7 +99,13 @@ class SistemaController extends Controller
      */
     public function destroy($id)
     {
-        sistema::destroy($id);
-        return redirect('sistema')->with('eliminar', 'ok');
+        try {
+            sistema::destroy($id);
+            return redirect('sistema')->with('eliminar', 'ok');
+
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el sistema operativo debido a que tiene equipos usando este sistema.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

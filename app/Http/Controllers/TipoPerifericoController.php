@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\TipoPeriferico;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\QueryException;
 class TipoPerifericoController extends Controller
 {
     function __construct()
@@ -101,8 +101,12 @@ class TipoPerifericoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        TipoPeriferico::destroy($id);
-        return redirect('tipoperiferico')->with('eliminar', 'ok');
+        try {
+            TipoPeriferico::destroy($id);
+            return redirect('tipoperiferico')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el tipo de periferico debido a que tiene perifericos registrados en esta categoria.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

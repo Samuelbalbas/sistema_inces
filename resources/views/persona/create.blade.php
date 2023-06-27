@@ -37,8 +37,8 @@
                             </div>
                             <div class="col-3">
                                 <label for="cargo" style="color: black;">Cargo de la Persona</label>
-                                <select class="form-select" id="cargo" name="id_cargo">
-                                    <option value="0">Seleccione un cargo</option>
+                                <select class="form-select" id="cargo" required name="id_cargo">
+                                    <option value="">Seleccione un cargo</option>
                                     @foreach($cargos as $cargo)
                                         <option value="{{ $cargo->id }}">{{ $cargo->nombre_cargo }}</option>
                                     @endforeach
@@ -50,8 +50,8 @@
                             </div>
                             <div class="col-3">
                                     <label for="sede" style="color: black;">Sede</label>
-                                    <select class="form-select" id="id_sede" name="id_sede" onchange="fetchDivisiones(this)">
-                                        <option value="0">Seleccione una sede</option>
+                                    <select class="form-select" id="id_sede" name="id_sede" required onchange="fetchDivisiones(this)">
+                                        <option value="">Seleccione una sede</option>
                                         @foreach ($sedes as $sede)
                                             <option value="{{ $sede->id }}" data-url="{{ route('divisiones.by.sede', $sede->id) }}">{{ $sede->nombre_sede }}</option>
                                         @endforeach
@@ -59,8 +59,8 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="division" style="color: black;">División de la Persona</label>
-                                    <select class="form-select" id="id_division" name="id_division">
-                                        <option value="0">Seleccione una división</option>
+                                    <select class="form-select" id="id_division" required name="id_division">
+                                        <option value="">Seleccione una división</option>
                                     </select>
                                 </div>
                             </div>
