@@ -147,13 +147,14 @@ Route::resource('equipo', EquiposController::class)->middleware('auth');
 
 Route::post('/equipo/marca', [EquiposController::class,'modal'])->middleware('auth');
 
-/* Ruta Asignar*/
+/* Ruta Asignar */
 Route::get('/asignar', [AsignarController::class, 'index'])->name('asignar')->middleware('auth');
 Route::get('/asignar/create', [AsignarController::class, 'create'])->name('asignar.create')->middleware('auth');
 Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson'])->name('asignar.updateByPerson')->middleware('auth');
-Route::put('/asignar/{asignar}', [AsignarController::class, 'update'])->name('asignar.update')->middleware('auth');
 Route::get('/asignar/{asignar}/desincorporar', [AsignarController::class, 'desincorporar'])->name('asignar.desincorporar')->middleware('auth');
 Route::resource('asignar', AsignarController::class)->middleware('auth');
+
+
 
 
 
