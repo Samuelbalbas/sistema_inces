@@ -56,10 +56,38 @@ class AsignarController extends Controller
         $id_persona = $request->id_persona;
         $id_equipo = $request->id_equipo;
         $id_perifericos = $request->id_periferico;
-        $id_perifericos = array_filter($id_perifericos); // Remover todos los valores '0' o vacíos
+        $id_perifericos = array_filter($id_perifericos);
+    
+        // Verificar si la persona ya tiene asignado un equipo
+        $existingAssignment = Asignar::where('id_persona', $id_persona)
+                                     ->exists();
+    
+        if ($existingAssignment) {
+            // Mostrar mensaje de error o realizar la acción correspondiente
+            return redirect()->back()->with('error', 'La persona ya tiene asignado un equipo.');
+        }
+    
+        // Verificar si el equipo ya está asignado a otra persona
+        $existingTeamAssignment = Asignar::where('id_equipo', $id_equipo)
+                                         ->exists();
+    
+        if ($existingTeamAssignment) {
+            // Mostrar mensaje de error o realizar la acción correspondiente
+            return redirect()->back()->with('error', 'El equipo ya está asignado a otra persona.');
+        }
+    
+        // Verificar si los periféricos ya están asignados a otra combinación de persona y equipo
+        $existingPeripherals = Asignar::whereIn('id_periferico', $id_perifericos)
+                                      ->exists();
+    
+        if ($existingPeripherals) {
+            // Mostrar mensaje de error o realizar la acción correspondiente
+            return redirect()->back()->with('error', 'Algunos periféricos ya están asignados a otra persona.');
+        }
+    
         $estatus = $request->estatus;
     
-        foreach($id_perifericos as $id_periferico) {
+        foreach ($id_perifericos as $id_periferico) {
             Asignar::create([
                 'id_persona' => $id_persona,
                 'id_equipo' => $id_equipo,
@@ -70,6 +98,13 @@ class AsignarController extends Controller
     
         return redirect('asignar');
     }
+    
+    
+    
+    
+    
+    
+    
     
 
     /**

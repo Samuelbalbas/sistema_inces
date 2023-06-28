@@ -121,6 +121,12 @@
                         </center>
                         
                     </form>
+                    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
                     <script>
                         function togglePeriferico(id) {
                             var checkbox = document.getElementById('periferico-' + id);
