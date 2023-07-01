@@ -14,13 +14,13 @@
                         <h3 class="mb-4" style="color: black;">Crear Tipo de Periérico</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/tipoperif') }}" enctype="multipart/form-data" onsubmit="">
+                    <form method="post" action="{{ url('/tipoperif') }}" enctype="multipart/form-data" onsubmit="return TipoPeriferico(this)">
                         @csrf
                         
                         <center>
                             <div class="col-3">
                                 <label style="color: black;">Tipo de Periérico</label>
-                                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Ingrese el Tipo de Periérico" value="{{ isset($tipo_periferico->tipo)?$tipo_periferico->tipo:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
+                                <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Ingrese el Tipo de Periérico" maxLength="15" value="{{ isset($tipo_periferico->tipo)?$tipo_periferico->tipo:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
                         </center>
                         

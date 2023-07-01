@@ -14,13 +14,13 @@
                         <h3 class="mb-4" style="color: black;">Crear Marca</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/marca') }}" enctype="multipart/form-data" onsubmit="return marca(this)">
+                    <form method="post" action="{{ url('/marca') }}" enctype="multipart/form-data" onsubmit="return Marca(this)">
                         @csrf
                         
                         <center>
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Marca</label>
-                                <input type="text" class="form-control" name="nombre_marca" id="nombre_marca" value="{{ isset($marca->nombre_marca)?$marca->nombre_marca:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
+                                <label style="color: black;">Nombre del Marca:</label>
+                                <input type="text" class="form-control" placeholder="Ingrese Una Marca" name="nombre_marca" id="nombre_marca" maxLength="15" value="{{ isset($marca->nombre_marca)?$marca->nombre_marca:'' }}" onkeypress="" style="background: white;">
                             </div>
                         </center>
                         

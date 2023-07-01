@@ -2,12 +2,18 @@
 
 <title>@yield('title') Registrar Periférico</title>
 
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 <script>
 $(document).ready(function() {
   $('#guardarMarca').click(function(event) { // al hacer clic en el botón con id 'guardarMarca'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_marca').val())) { // Validamos que no pueda guardar con carecteres repetidos
+    alert("El campo Marca no debe contener solo Caracteres Repetidos");
+    obj.nombre_marca.focus();
+    return false;
+    }
     $.ajax({
       url: '/marca/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -34,6 +40,11 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#guardarModelo').click(function(event) { // al hacer clic en el botón con id 'guardarModelo'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_modelo').val())) { // Validamos que no pueda guardar con carecteres repetidos
+    alert("El campo Modelo no debe contener solo Caracteres Repetidos");
+    obj.nombre_modelo.focus();
+    return false;
+    }
     $.ajax({
       url: '/modelo/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -59,6 +70,17 @@ $(document).ready(function() {
 
 @section('content')
 
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
     <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
@@ -68,7 +90,7 @@ $(document).ready(function() {
                         <h3 class="mb-4" style="color: black;">Crear Periférico</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/periferico') }}" enctype="multipart/form-data" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/periferico') }}" enctype="multipart/form-data" onsubmit="return Periferico(this)">
                         @csrf
                         <div class="row">
 
@@ -108,12 +130,12 @@ $(document).ready(function() {
 
                             <div class="col-3">
                                 <label style="color: black;">Serial</label>
-                                <input type="text" class="form-control" name="serial" id="serial" value="{{ isset($periferico->serial)?$periferico->serial:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
+                                <input type="text" class="form-control" placeholder="Ingrese el Serial" name="serial" id="serial" maxLength="15" value="{{ isset($periferico->serial)?$periferico->serial:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
                             
                             <div class="col-3">
                                 <label style="color: black;">Serial Activo</label>
-                                <input type="text" class="form-control" name="serialA" id="serialA" value="{{ isset($periferico->serialA)?$periferico->serialA:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" placeholder="Ingrese el Serial Activo" name="serialA" id="serialA" maxLength="15" value="{{ isset($periferico->serialA)?$periferico->serialA:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
 
                         </div>
@@ -135,7 +157,7 @@ $(document).ready(function() {
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="marcaForm" method="POST" action="{{ route('marca.saveModal') }}">
+                    <form id="marcaForm" method="POST" action="{{ route('marca.saveModal') }}" onsubmit="return Marca(this)">
                         @csrf   
                         <div class="modal-header">
                         <h3 class="modal-title" id="staticBackdropLabel" style="color: black;">Nuevo Registro de la Marca</h3>
@@ -144,7 +166,7 @@ $(document).ready(function() {
                         <div class="modal-body">
                             <div class="col-5">
                                 <label style="color: black;">Nueva Marca</label>
-                                <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" onkeypress="return sinespacios(event);" style="background: white;">
+                                <input type="text" class="form-control" placeholder="Ingrese Una Marca" id="nombre_marca" name="nombre_marca" onkeypress="" style="background: white;" maxLength="15">
 
                             </div>
                         </div>
@@ -161,16 +183,16 @@ $(document).ready(function() {
         <div class="modal fade" id="staticBackdropModelo" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="modeloForm" method="POST" action="{{ route('modelo.saveModal') }}">
+                    <form id="modeloForm" method="POST" action="{{ route('modelo.saveModal') }}" onsubmit="return Modelo(this)">
                     @csrf  
                         <div class="modal-header">
                             <h3 class="modal-title" id="staticBackdropModeloLabel" style="color: black;">Nuevo Registro del Modelo</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="col-4">
+                            <div class="col-5">
                             <label style="color: black;">Nuevo Modelo</label>
-                            <input type="text" class="form-control" id="nombre_modelo" name="nombre_modelo" onkeypress="return sinespacios(event);" style="background: white;">
+                            <input type="text" class="form-control" placeholder="Ingrese Un Modelo" id="nombre_modelo" name="nombre_modelo" onkeypress="" style="background: white;" maxLength="15">
                             </div>
                         </div>
                         <div class="modal-footer">
