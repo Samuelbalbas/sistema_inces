@@ -37,10 +37,10 @@
 		@include('partials.messages')
 		<div class="loginbox">
 			<img src="img/yaracuy.png" alt="" class="avatar">
-			<h1>Iniciar Sensión</h1>
+			<h1>Iniciar Sesión</h1>
 			<br>
 
-			<!--*Formulario de Iniciar Sensiòn-->
+			<!--*Formulario de Iniciar Sesiòn-->
 			<form action="/login" method="POST">
 				@csrf
 				<p>Usuario/Email</p>
@@ -49,7 +49,7 @@
 				<input type="password" placeholder="Contraseña" name="password">
 				<input type="submit" value="Entrar">
 
-				<a href="#">Recuparar tu Contraseña</a><br>
+				<!-- <a href="#">Recuparar tu Contraseña</a><br> -->
 				{{-- <a href="register">¿No tienes una cuenta?</a> --}}
 				<a href="/validacion">¿No tienes una cuenta?</a>
 

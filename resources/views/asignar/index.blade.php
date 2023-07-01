@@ -33,11 +33,11 @@
                             <th  style="color: black;">Equipo (Serial)</th>
                             <th  style="color: black;">Equipo (SerialA)</th>
                             <th  style="color: black;">Equipo (S.O)</th>
-                            <th  style="color: black;">Periférico (Tipo),(Marca),(Modelo),(Serial),(SerialA)</th>
-                            {{-- <th  style="color: black;">Periférico (Marca)</th>
+                            <th  style="color: black;">Periférico</th>
+                            <th  style="color: black;">Periférico (Marca)</th>
                             <th  style="color: black;">Periférico (Modelo)</th>
                             <th  style="color: black;">Periférico (Serial)</th>
-                            <th  style="color: black;">Periférico (Serial)</th> --}}
+                            <th  style="color: black;">Periférico (Serial)</th> 
                             <th  style="color: black;">Estatus</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
@@ -53,12 +53,15 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
-                            <td class="" style="color: black;">
-                                @foreach ($asignacionesGrupo as $asignacion)
-                                    {{ $asignacion->periferico->tipo_periferico->tipo }} ({{ $asignacion->periferico->marca->nombre_marca }}, {{ $asignacion->periferico->modelo->nombre_modelo }}, {{ $asignacion->periferico->serial }}, {{ $asignacion->periferico->serialA }}) 
-                                    <br>
-                                @endforeach
-                            </td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->serial }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->serialA }}</td>
+                                 
+                                
+                
+                        
                             
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
@@ -69,6 +72,10 @@
                                         {{-- @csrf --}}
                                         
                                         <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
+                                        <button type="button" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Ver Detalles
+                                        </button>
+                                   
                                     </form>
                                {{--  @endcan --}}
                             </td>
@@ -120,6 +127,12 @@
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Ver Detalles
+                                            </button>
+
+                                            
                                         </form>
                                     @endcan
                                 </td>
@@ -132,7 +145,36 @@
             </div>
         </div>
     </div>
-
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <label for="">Sistema operativo:</label>
+                                                    <label for="" id='1'></label><br>
+                                                    <label for="">Pereferico</label>
+                                                    <label for="" id='2'></label><br>
+                                                    <label for="Marca"></label>
+                                                    <label for="" id='3'></label><br>
+                                                    <label for="">Modelo</label>
+                                                    <label for="" id='4'></label><br>
+                                                    <label for="">Serial</label>
+                                                    <label for="" id='5'></label><br>
+                                                    <label for="">Serial</label>
+                                                    <label for="" id='6'></label>
+                                                   
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div> 
      @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
@@ -180,6 +222,7 @@
 @section('sweetalert')
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 
         @if (session('eliminar') == 'ok')
 
@@ -216,6 +259,34 @@
                 });
 
             
+            </script>
+
+            <script>
+                  $(document).ready(function(){  
+
+$("#asignar").on('click', '#BtnSelector', function () {
+
+     var currentRow = $(this).closest("tr");
+     var $d = $(this).parent("td");
+     var a = col1 = currentRow.find("td:eq(6)").text();
+     var b = col1 = currentRow.find("td:eq(7)").text();
+     var c = col1 = currentRow.find("td:eq(8)").text();
+     var d = col1 = currentRow.find("td:eq(9)").text();
+     var e = col1 = currentRow.find("td:eq(10)").text();
+     var f = col1 = currentRow.find("td:eq(11)").text();
+    
+      
+     $("#1").text(a); 
+     $("#2").text(b);
+     $("#3").text(c); 
+     $("#4").text(d); 
+     $("#5").text(e);
+     $("#6").text(f);       
+         
+
+   });
+
+});  
             </script>
     
 @endsection
