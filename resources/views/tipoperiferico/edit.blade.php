@@ -14,14 +14,14 @@
                         <h3 class="mb-4" style="color: black;">Editar Tipo de Periérico</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/tipoperif/'.$tipo_periferico->id )}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('/tipoperif/'.$tipo_periferico->id )}}" enctype="multipart/form-data" onsubmit="return TipoPeriferico(this)">
                         @csrf
                         {{ method_field('PATCH')}}
                         
                         <center>
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Tipo de Periérico</label>
-                                <input type="text" class="form-control" name="tipo" id="tipo" value="{{ isset($tipo_periferico->tipo)?$tipo_periferico->tipo:'' }}" style="background: white;">
+                                <label style="color: black;">Tipo de Periérico:</label>
+                                <input type="text" class="form-control" name="tipo" id="tipo" value="{{ isset($tipo_periferico->tipo)?$tipo_periferico->tipo:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
                         </center>
                         

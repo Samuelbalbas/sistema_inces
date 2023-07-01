@@ -54,6 +54,16 @@ class PerifericosController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:perifericos,serial',
+            'serialA' => 'unique:perifericos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
         $datosPeriferico = request()->except('_token');
         Perifericos::create($datosPeriferico);
 

@@ -213,33 +213,197 @@ function persona(obj) {
         return (false);
     }
 }
+
+//Validar Marca
 function Marca(obj) {
-var marca = obj.marca.value;
-    if (!marca) {
-        alert("Debe de ingresar una marca");
-        obj.marca.focus();
+var nombre_marca = obj.nombre_marca.value;
+    if (!nombre_marca) {
+        alert("Debe de ingresar una Marca.");
+        obj.nombre_marca.focus();
         return false;
     }
-    if (marca.length < 2){
-        alert("Faltan dígitos en la marca");
-        obj.marca.focus();
+    if (nombre_marca.length < 2){
+        alert("Faltan dígitos en la Marca.");
+        obj.nombre_marca.focus();
         return (false);
+    }
+    if (nombre_marca.trim() == "") {
+        alert("El Campo Marca No debe contener solo Espacios en Blancos.");
+        obj.nombre_marca.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre_marca)) {
+        alert("El campo Marca no debe contener solo Caracteres Repetidos.");
+        obj.nombre_marca.focus();
+        return false;
     }
 }
 
+//Validar Modelo
 function Modelo(obj) {
-    var modelo = obj.modelo.value;
-        if (!modelo) {
-            alert("Debe de ingresar un modelo");
-            obj.modelo.focus();
-            return false;
-        }
-        if (modelo.length < 2){
-            alert("Faltan dígitos en el modelo");
-            obj.modelo.focus();
-            return (false);
-        }
+var nombre_modelo = obj.nombre_modelo.value;
+    if (!nombre_modelo) {
+        alert("Debe de ingresar un Modelo.");
+        obj.nombre_modelo.focus();
+        return false;
     }
+    if (nombre_modelo.length < 2){
+        alert("Faltan dígitos en el Modelo.");
+        obj.nombre_modelo.focus();
+        return (false);
+    }
+    if (nombre_modelo.trim() == "") {
+        alert("El Campo Modelo No debe contener solo Espacios en Blancos.");
+        obj.nombre_modelo.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre_modelo)) {
+        alert("El Campo Modelo no debe contener solo Caracteres Repetidos.");
+        obj.nombre_modelo.focus();
+        return false;
+    }
+}
+
+//Validar Tipo Periferico
+function TipoPeriferico(obj) {
+var tipo = obj.tipo.value;
+    if (!tipo) {
+        alert("Debe de ingresar un Tipo de Periferico.");
+        obj.tipo.focus();
+        return false;
+    }
+    if (tipo.length < 2){
+        alert("Faltan dígitos en el Tipo de Periferico.");
+        obj.tipo.focus();
+        return (false);
+    }
+    if (tipo.trim() == "") {
+        alert("El Campo Tipo de Periferico No debe contener solo Espacios en Blancos.");
+        obj.tipo.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(tipo)) {
+        alert("El Campo Tipo de Periferico no debe contener solo Caracteres Repetidos.");
+        obj.tipo.focus();
+        return false;
+    }
+}
+
+//Validar Periferico
+function Periferico(obj) {
+    var id_tipo = obj.id_tipo.value;
+    if (id_tipo==0) {
+        alert("Debe de ingresar el Periférico");
+        obj.id_tipo.focus();
+        return false;
+    }
+    var id_marca = obj.id_marca.value;
+    if (id_marca==0){
+        alert("Debe de seleccionar la Marca");
+        obj.id_marca.focus();
+        return (false);
+    }
+    var id_modelo = obj.id_modelo.value;
+    if (id_modelo==0){
+        alert("Debe de seleccionar el Modelo");
+        obj.id_modelo.focus();
+        return (false);
+    }
+    var serial = obj.serial.value;
+    if (!serial) {
+        alert("Debe de ingresar el Serial");
+        obj.serial.focus();
+        return false;
+    }
+    if (serial.length < 2){
+		alert("Faltan dígitos en el Serial");
+		obj.serial.focus();
+		return (false);
+	}
+    if (serial.trim() == "") {
+        alert("El Campo Serial No debe contener solo Espacios en Blancos.");
+        obj.serial.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(serial)) {
+        alert("El Campo Serial no debe contener solo Caracteres Repetidos.");
+        obj.serial.focus();
+        return false;
+    }
+    var serialA = obj.serialA.value;
+    if (!serialA) {
+        alert("Debe de ingresar el Serial Activo");
+        obj.serialA.focus();
+        return false;
+    }
+    if (serialA.length < 2){
+		alert("Faltan dígitos en el Serial Activo");
+		obj.serialA.focus();
+		return (false);
+	}
+    if (serialA.trim() == "") {
+        alert("El Campo Serial Activo No debe contener solo Espacios en Blancos.");
+        obj.serialA.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(serialA)) {
+        alert("El Campo Serial Activo no debe contener solo Caracteres Repetidos.");
+        obj.serialA.focus();
+        return false;
+    }
+}
+
+//Validar Sistemas Operatvos
+function sistemas_operatvos(obj) {
+    var tipo = obj.tipo.value;
+    if (!tipo) {
+        alert("Debe de seleccionar un Tipo de Sistema Operatvio");
+        return false;
+    }
+    var nombre = obj.nombre.value;
+    if (!nombre) {
+        alert("Debe de ingresar el Nombre del Sistema Opetativo");
+        obj.nombre.focus();
+        return false;
+    }
+    if (nombre.length < 2){
+		alert("Faltan dígitos en el Nombre del Sistema Opetativo");
+		obj.nombre.focus();
+		return (false);
+	}
+    if (nombre.trim() == "") {
+        alert("El Campo Serial Activo No debe contener solo Espacios en Blancos.");
+        obj.nombre.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre)) {
+        alert("El Campo Serial Activo no debe contener solo Caracteres Repetidos.");
+        obj.nombre.focus();
+        return false;
+    }
+    var version = obj.version.value;
+    if (!version) {
+        alert("Debe de ingresar la Versión del Sistema Operativo");
+        obj.version.focus();
+        return false;
+    }
+    if (version.length < 2){
+		alert("Faltan dígitos en la Versón del Sistema Operativo");
+		obj.version.focus();
+		return (false);
+	}
+    if (version.trim() == "") {
+        alert("El Campo Serial Activo No debe contener solo Espacios en Blancos.");
+        obj.version.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(version)) {
+        alert("El Campo Serial Activo no debe contener solo Caracteres Repetidos.");
+        obj.version.focus();
+        return false;
+    }
+}
+
 //Validar Equipo
 function equipo(obj) {
     var marca = obj.marca.value;
@@ -315,87 +479,6 @@ function equipo(obj) {
         return (false);
     }
 }
-
-
-//Validar Periferico
-function periferico(obj) {
-    var periferic = obj.periferic.value;
-    if (!periferic) {
-        alert("Debe de ingresar el Periférico");
-        obj.periferic.focus();
-        return false;
-    }
-    if (periferic.length < 2){
-        alert("Faltan dígitos en el Periférico");
-        obj.periferic.focus();
-        return (false);
-    }
-    var marca = obj.marca.value;
-    if (marca==0){
-        alert("Debe de seleccionar la Marca");
-        return (false);
-    }var modelo = obj.modelo.value;
-    if (modelo==0){
-        alert("Debe de seleccionar el Modelo");
-        return (false);
-    }
-    var serial = obj.serial.value;
-    if (!serial) {
-        alert("Debe de ingresar el serial");
-        obj.serial.focus();
-        return false;
-    }
-    if (serial.length < 5){
-		alert("Faltan dígitos en el serial");
-		obj.serial.focus();
-		return (false);
-	}
-    var serialA = obj.serialA.value;
-    if (!serialA) {
-        alert("Debe de ingresar el Serial Activo");
-        obj.serialA.focus();
-        return false;
-    }
-    if (serialA.length < 5){
-		alert("Faltan dígitos en el Serial Activo");
-		obj.serialA.focus();
-		return (false);
-	}
-    
-}
-//Validar Periferico
-function sistemas_operatvos(obj) {
-    var tiposoft = obj.tiposoft.value;
-    if (!tiposoft) {
-        alert("Debe de seleccionar un Tipo de Sistema Operatvio");
-        return false;
-    }
-    var sistemaO = obj.sistemaO.value;
-    if (!sistemaO) {
-        alert("Debe de ingresar el Nombre del Sistema Opetativo");
-        obj.sistemaO.focus();
-        return false;
-    }
-    if (sistemaO.length < 5){
-		alert("Faltan dígitos en el Nombre del Sistema Opetativo");
-		obj.sistemaO.focus();
-		return (false);
-	}
-    var version = obj.version.value;
-    if (!version) {
-        alert("Debe de ingresar la Versión del Sistema Operativo");
-        obj.version.focus();
-        return false;
-    }
-    if (version.length < 5){
-		alert("Faltan dígitos en la Versón del Sistema Operativo");
-		obj.version.focus();
-		return (false);
-	}
-    
-}
-
-
 
 //Validacion de no permitir numeros en los campos de texto de solo letras
 

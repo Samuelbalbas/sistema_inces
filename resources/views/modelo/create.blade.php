@@ -14,13 +14,13 @@
                         <h3 class="mb-4" style="color: black;">Crear Modelo</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/modelo') }}" enctype="multipart/form-data" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/modelo') }}" enctype="multipart/form-data" onsubmit="return Modelo(this)">
                         @csrf
                         
                         <center>
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Modelo</label>
-                                <input type="text" class="form-control" name="nombre_modelo" id="nombre_modelo" value="{{ isset($modelo->nombre_modelo)?$modelo->nombre_modelo:'' }}" style="background: white;">
+                                <label style="color: black;">Nombre del Modelo:</label>
+                                <input type="text" class="form-control" placeholder="Ingrese Un Modelo" name="nombre_modelo" id="nombre_modelo" maxLength="15" value="{{ isset($modelo->nombre_modelo)?$modelo->nombre_modelo:'' }}" onkeypress="" style="background: white;">
                             </div>
                         </center>
                         
