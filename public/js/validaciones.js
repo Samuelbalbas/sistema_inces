@@ -523,7 +523,7 @@ function sinespacios(e){
         return true;
     }
     // Patron de entrada, en este caso solo acepta numeros
-    patron =/[a-zA-ZÑñáéíóú0-9/*.-_@#$%&()]/;
+    patron =/[a-zA-ZÑñáéíóú0-9/*._@#$%&()-]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
