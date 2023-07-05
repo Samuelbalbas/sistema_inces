@@ -1,6 +1,8 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registar División</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
+
 
 
 @section('content')

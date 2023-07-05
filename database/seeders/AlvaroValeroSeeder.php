@@ -9,7 +9,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class LizmarTovarSeeder extends Seeder
+class AlvaroValeroSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -44,10 +44,10 @@ class LizmarTovarSeeder extends Seeder
         /* Descomentar para cuando se vaya a crear todo desde cero */
 
         $usuario = User::create([
-            'name' => 'Lizmar Beatriz Tovar Gomes',
-            'email' => 'lizmargomes2003@gmail.com',
-            'username' => 'liztg',
-            'password' => ('liz123'),
+            'name' => 'Alvaro Raul Valero Mendoza',
+            'email' => 'alvaleromendoza@gmail.com',
+            'username' => 'alvarovm22',
+            'password' => ('Valero22'),
         ]);
 
         $rol = Role::create(['name'=>'Administrador']);

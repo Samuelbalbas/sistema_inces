@@ -118,21 +118,43 @@ function sede(obj) {
         alert("Debe de seleccionar la División");
         return false;
     }
+    if (nombre_sede.trim() == "") {
+        alert("El Campo de Sede No debe contener Espacios en Blancos.");
+        obj.nombre_sede.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre_sede)) {
+        alert("El campo de Sede No debe contener solo Caracteres Repetidos.");
+        obj.nombre_sede.focus();
+        return false;
+    }
+    
 }
 
 // Validar DIVISiÓN
 function division(obj) {
     var division1 = obj.division1.value;
     if (!division1) {
-        alert("Debe de ingresar el nombre del lugar de la divisón");
+        alert("Debe de ingresar el nombre del lugar de la división");
         obj.division1.focus();
         return false;
     }
     if (division1.length < 2){
-        alert("Faltan dígitos en el lugar de la divisón");
+        alert("Faltan dígitos en el lugar de la división");
         obj.division1.focus();
         return (false);
     }
+    if (division1.trim() == "") {
+        alert("El Campo de la división No debe contener Espacios en Blancos.");
+        obj.division1.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(division1)) {
+        alert("El campo de la división No debe contener solo Caracteres Repetidos.");
+        obj.division1.focus();
+        return false;
+    }
+    
 }
 //Validar Cargo
 function cargo(obj) {
@@ -146,6 +168,16 @@ function cargo(obj) {
         alert("Faltan dígitos el cargo");
         obj.nombre_cargo.focus();
         return (false);
+    }
+    if (nombre_cargo.trim() == "") {
+        alert("El Campo de Cargo No debe contener Espacios en Blancos.");
+        obj.nombre_cargo.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre_cargo)) {
+        alert("El campo de Cargo No debe contener solo Caracteres Repetidos.");
+        obj.nombre_cargo.focus();
+        return false;
     }
     
 }

@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Sede</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
 
 
 @section('content')
