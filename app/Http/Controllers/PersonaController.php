@@ -59,6 +59,16 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+            'cedula' => 'unique:personas,cedula',
+            'id_usuario' => 'unique:personas,id_usuario',
+            ],
+            [
+            'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
+            'id_usuario.unique' => 'El valor del campo Id de Usuario ya existe en la base de datos.'
+            ]
+        );
         $datosPersona = $request->except('_token');
         $persona = Persona::create($datosPersona);
 
@@ -102,6 +112,7 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
+        
         $persona = Persona::findOrFail($id);
         $cargos = Cargo::all();
         $sedes = Sede::all();
@@ -126,6 +137,7 @@ class PersonaController extends Controller
             ->toArray();
     
         return view('persona.edit', compact('persona', 'cargos', 'sedes', 'divisiones', 'id_sede', 'id_division_sede'));
+        
     }
     
 

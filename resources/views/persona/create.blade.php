@@ -1,9 +1,21 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Persona</title>
-<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+
+<script src="{{ asset('js/validaciones.js') }}"></script>
 
 @section('content')
+
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
 
     <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
@@ -14,7 +26,7 @@
                         <h3 class="mb-4" style="color: black;">Crear Persona</h3>
                     </center>
 
-                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return Persona(this)">
                     
                         @csrf
                         <div class="row">

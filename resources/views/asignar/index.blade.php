@@ -33,11 +33,11 @@
                             <th  style="color: black;">Equipo (Serial)</th>
                             <th  style="color: black;">Equipo (SerialA)</th>
                             <th  style="color: black;">Equipo (S.O)</th>
-                            <th  style="color: black;">Periférico</th>
-                            <th  style="color: black;">Periférico (Marca)</th>
-                            <th  style="color: black;">Periférico (Modelo)</th>
-                            <th  style="color: black;">Periférico (Serial)</th>
-                            <th  style="color: black;">Periférico (Serial)</th> 
+                            <th  style="display:none; color: black;">Periférico</th>
+                            <th  style="display:none; color: black;">Periférico (Marca)</th>
+                            <th  style="display:none; color: black;">Periférico (Modelo)</th>
+                            <th  style="display:none; color: black;">Periférico (Serial)</th>
+                            <th  style="display:none; color: black;">Periférico (Serial)</th> 
                             <th  style="color: black;">Estatus</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
@@ -53,11 +53,11 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->serial }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->serialA }}</td>
+                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}</td>
+                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}</td>
+                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}</td>
+                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->serial }}</td>
+                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->serialA }}</td>
                                  
                                 
                 
@@ -72,7 +72,8 @@
                                         {{-- @csrf --}}
                                         
                                         <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
-                                        <button type="button" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <br>
+                                        <button type="button" style="margin-left: 23%; margin-top:4%;" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Ver Detalles
                                         </button>
                                    
@@ -150,32 +151,28 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Título del modal</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Datos del Perifericos</h5>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <label for="">Sistema operativo:</label>
-                                                    <label for="" id='1'></label><br>
-                                                    <label for="">Pereferico</label>
+                                                    <label for="">Pereferico</label>:
                                                     <label for="" id='2'></label><br>
-                                                    <label for="Marca"></label>
+                                                    <label for="">Marca</label>:
                                                     <label for="" id='3'></label><br>
-                                                    <label for="">Modelo</label>
+                                                    <label for="">Modelo</label>:
                                                     <label for="" id='4'></label><br>
-                                                    <label for="">Serial</label>
+                                                    <label for="">Serial</label>:
                                                     <label for="" id='5'></label><br>
-                                                    <label for="">Serial</label>
+                                                    <label for="">Serial</label>:
                                                     <label for="" id='6'></label>
                                                    
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
                                                 </div>
                                                 </div>
                                             </div>
                                             </div> 
-     @section('js-datatable')
+     {{-- @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
@@ -215,7 +212,7 @@
                 });
             });
         </script>
-    @endsection 
+    @endsection   --}}
 
 @endsection
 
@@ -287,6 +284,6 @@ $("#asignar").on('click', '#BtnSelector', function () {
    });
 
 });  
-            </script>
+        </script>
     
 @endsection
