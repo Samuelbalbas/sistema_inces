@@ -2,12 +2,17 @@
 
 <title>@yield('title') Registrar Equipo</title>
 
-<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+<script src="{{ asset('js/validaciones.js') }}"></script>
 
 <script>
 $(document).ready(function() {
   $('#guardarMarca').click(function(event) { // al hacer clic en el botón con id 'guardarMarca'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_marca').val())) { // Validamos que no pueda guardar con carecteres repetidos
+    alert("El campo Marca no debe contener solo Caracteres Repetidos");
+    obj.nombre_marca.focus();
+    return false;
+    } 
     $.ajax({
       url: '/marca/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -34,6 +39,11 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#guardarModelo').click(function(event) { // al hacer clic en el botón con id 'guardarModelo'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_modelo').val())) { // Validamos que no pueda guardar con carecteres repetidos
+    alert("El campo Modelo no debe contener solo Caracteres Repetidos");
+    obj.nombre_modelo.focus();
+    return false;
+    }
     $.ajax({
       url: '/modelo/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -59,6 +69,17 @@ $(document).ready(function() {
 
 @section('content')
 
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
     <div class="container-fluid" style="margin-top: 18%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
@@ -68,7 +89,7 @@ $(document).ready(function() {
                         <h3 class="mb-4" style="color: black;">Crear Equipo</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/equipo') }}" enctype="multipart/form-data" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/equipo') }}" enctype="multipart/form-data" onsubmit="return Equipo(this)">
                         @csrf
                         <div class="row">
                             <div class="col-3">
@@ -102,7 +123,7 @@ $(document).ready(function() {
                             
                             <div class="col-3">
                                 <label style="color: black;">Serial Activo</label>
-                                <input type="text" class="form-control" name="serialA" id="serialA" value="{{ isset($equipo->serialA)?$equipo->serialA:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" name="serialA" id="serialA" value="{{ isset($equipo->serialA)?$equipo->serialA:'' }}" onkeypress="return sinespancios(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
@@ -112,17 +133,17 @@ $(document).ready(function() {
 
                             <div class="col-3">
                                 <label style="color: black;">Velocidad del CPU (GHz)</label>
-                                <input type="text" class="form-control" name="velocidad" id="velocidad" value="{{ isset($equipo->velocidad)?$equipo->velocidad:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
+                                <input type="text" class="form-control" name="velocidad" id="velocidad" value="{{ isset($equipo->velocidad)?$equipo->velocidad:'' }}" onkeypress="return solonum(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
                                 <label style="color: black;">Memoria Ram (GB)</label>
-                                <input type="text" class="form-control" name="ram" id="ram" value="{{ isset($equipo->ram)?$equipo->ram:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
+                                <input type="text" class="form-control" name="ram" id="ram" value="{{ isset($equipo->ram)?$equipo->ram:'' }}" onkeypress="return solonum(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
                                 <label style="color: black;">Disco Duro (GB)</label>
-                                <input type="text" class="form-control" name="disco" id="disco" value="{{ isset($equipo->disco)?$equipo->disco:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
+                                <input type="text" class="form-control" name="disco" id="disco" value="{{ isset($equipo->disco)?$equipo->disco:'' }}" onkeypress="return solonum(event);" style="background: white;">
                             </div>
                             
                             <div class="col-3">

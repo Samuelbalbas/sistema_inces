@@ -405,38 +405,59 @@ function sistemas_operatvos(obj) {
 }
 
 //Validar Equipo
-function equipo(obj) {
+function Equipo(obj) {
     var marca = obj.marca.value;
     if (marca==0){
         alert("Debe de seleccionar la Marca");
         return (false);
-    }var modelo = obj.modelo.value;
+    }
+    var modelo = obj.modelo.value;
     if (modelo==0){
         alert("Debe de seleccionar el Modelo");
         return (false);
     }
     var serial = obj.serial.value;
     if (!serial) {
-        alert("Debe de ingresar el serial");
+        alert("Debe de ingresar el Serial");
         obj.serial.focus();
         return false;
     }
-    if (serial.length < 5){
-		alert("Faltan dígitos en el serial");
+    if (serial.length < 2){
+		alert("Faltan dígitos en el Serial");
 		obj.serial.focus();
 		return (false);
 	}
+    if (serial.trim() == "") {
+        alert("El Campo Serial No debe contener solo Espacios en Blancos.");
+        obj.serial.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(serial)) {
+        alert("El Campo Serial no debe contener solo Caracteres Repetidos.");
+        obj.serial.focus();
+        return false;
+    }
     var serialA = obj.serialA.value;
     if (!serialA) {
         alert("Debe de ingresar el Serial Activo");
         obj.serialA.focus();
         return false;
     }
-    if (serialA.length < 5){
+    if (serialA.length < 2){
 		alert("Faltan dígitos en el Serial Activo");
 		obj.serialA.focus();
 		return (false);
 	}
+    if (serialA.trim() == "") {
+        alert("El Campo Serial Activo No debe contener solo Espacios en Blancos.");
+        obj.serialA.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(serialA)) {
+        alert("El Campo Serial Activo no debe contener solo Caracteres Repetidos.");
+        obj.serialA.focus();
+        return false;
+    }
     var cpu = obj.cpu.value;
     if (!cpu) {
         alert("Debe de ingresar el Modelo del Procesador");
@@ -447,17 +468,39 @@ function equipo(obj) {
         alert("Faltan dígitos en el Modelo del Procesador");
         obj.cpu.focus();
         return (false);
-    }var velocidad = obj.velocidad.value;
+    }
+    if (cpu.trim() == "") {
+        alert("El Campo Modelo del CPU No debe contener solo Espacios en Blancos.");
+        obj.cpu.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(cpu)) {
+        alert("El Campo CPU no debe contener solo Caracteres Repetidos.");
+        obj.cpu.focus();
+        return false;
+    }
+    var velocidad = obj.velocidad.value;
     if (!velocidad) {
         alert("Debe de ingresar la Velocidad del Procesador");
         obj.velocidad.focus();
         return false;
     }
-    if (velocidad.length < 2){
-        alert("Faltan dígitos en la Velocidad del Procesador");
+    if (velocidad.length < 2 ){
+        alert("El campo debe contener solo 2 digitos");
         obj.velocidad.focus();
         return (false);
-    }var ram = obj.ram.value;
+    }
+    if (velocidad.trim() == "") {
+        alert("El Campo Velocidad No debe contener solo Espacios en Blancos.");
+        obj.velocidad.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9-.])\1+$/.test(velocidad)) {
+        alert("El Campo Velocidad no debe contener solo Caracteres Repetidos.");
+        obj.velocidad.focus();
+        return false;
+    }
+    var ram = obj.ram.value;
     if (!ram) {
         alert("Debe de ingresar La Memoria RAM");
         obj.ram.focus();
@@ -467,17 +510,49 @@ function equipo(obj) {
         alert("Faltan dígitos en La Memoria RAM");
         obj.ram.focus();
         return (false);
-    }var discoDuro = obj.discoDuro.value;
-    if (!discoDuro) {
-        alert("Debe de ingresar el Disco Duro");
-        obj.discoDuro.focus();
+    }
+    if (ram.trim() == "") {
+        alert("El Campo Modelo del CPU No debe contener solo Espacios en Blancos.");
+        obj.cpu.focus();
         return false;
     }
-    if (discoDuro.length < 2){
+    if (/^([a-zA-Z0-9-.])\1+$/.test(ram)) {
+        alert("El Campo ram no debe contener solo Caracteres Repetidos.");
+        obj.ram.focus();
+        return false;
+    }
+    var disco = obj.disco.value;
+    if (!disco) {
+        alert("Debe de ingresar el Disco Duro ");
+        obj.disco.focus();
+        return false;
+    }
+    if (disco.length < 2){
         alert("Faltan dígitos en el Disco Duro");
-        obj.discoDuro.focus();
+        obj.disco.focus();
         return (false);
     }
+    if (disco.trim() == "") {
+        alert("El Campo del Disco Duro No debe contener solo Espacios en Blancos.");
+        obj.disco.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(disco)) {
+        alert("El Campo Disco Duro no debe contener solo Caracteres Repetidos.");
+        obj.disco.focus();
+        return false;
+    }
+    var tipo = obj.tipo.value;
+    if (!tipo) {
+        alert("Debe de seleccionar un Tipo de Sistema Operatvio");
+        return false;
+    }
+    var id_so = obj.id_so.value;
+    if (id_so==0){
+        alert("Debe de seleccionar el Sistema Operativo");
+        return (false);
+    }
+
 }
 
 //Validacion de no permitir numeros en los campos de texto de solo letras
@@ -510,7 +585,7 @@ function solonum(e){
     return true;
     }
     // Patron de entrada, en este caso solo acepta numeros
-    patron =/[0-9]/;
+    patron =/[0-9/*.]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
