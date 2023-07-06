@@ -128,6 +128,16 @@ class EquiposController extends Controller
      */
     public function update(Request $request, Equipos $equipos, $id)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:equipos,serial',
+            'serialA' => 'unique:equipos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
         // Excluir el campo "tipo" al actualizar los datos del equipo con los datos del formulario
         $data = $request->except(['_token', '_method', 'id', 'tipo']);
         Equipos::where('id', $id)->update($data);

@@ -1,11 +1,22 @@
 @extends('layouts.index')
 
 <title>@yield('title') Editar Equipo</title>
-<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <div class="container-fluid" style="margin-top: 13%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
             <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
@@ -14,7 +25,7 @@
                         <h3 class="mb-4" style="color: black;">Editar Equipo</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/equipo/'.$equipo->id )}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('/equipo/'.$equipo->id )}}" enctype="multipart/form-data" onsubmit="return Equipo(this)">
                         @csrf
                         {{ method_field('PATCH')}}
                         <div class="row">

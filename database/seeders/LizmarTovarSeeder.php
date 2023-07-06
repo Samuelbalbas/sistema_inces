@@ -9,7 +9,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class AlvaroValeroSeeder extends Seeder
+class LizmarTovarSeeder extends Seeder
 {
     /**
      * Run the database seeds.
