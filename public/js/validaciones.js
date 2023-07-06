@@ -101,7 +101,7 @@ function registrousuario(obj) {
 }
 
 // Validar SEDE
-function sede(obj) {
+function Sede(obj) {
     var nombre_sede = obj.nombre_sede.value;
     if (!nombre_sede) {
         alert("Debe de ingresar el nombre del lugar de la sede");
@@ -123,7 +123,6 @@ function sede(obj) {
         obj.nombre_sede.focus();
         return false;
     }
-    function validateForm() {
         var checkboxes = document.getElementsByName("divisiones[]");
         var isChecked = false;
         for (var i = 0; i < checkboxes.length; i++) {
@@ -137,37 +136,37 @@ function sede(obj) {
             return false;
         }
         return true;
-    }
-    
 }
+    
+
 
 // Validar DIVISiÓN
 function division(obj) {
-    var division1 = obj.division1.value;
-    if (!division1) {
+    var nombre_division = obj.nombre_division.value;
+    if (!nombre_division) {
         alert("Debe de ingresar el nombre del lugar de la división");
-        obj.division1.focus();
+        obj.nombre_division.focus();
         return false;
     }
-    if (division1.length < 2){
+    if (nombre_division.length < 2){
         alert("Faltan dígitos en el lugar de la división");
-        obj.division1.focus();
+        obj.nombre_division.focus();
         return (false);
     }
-    if (division1.trim() == "") {
+    if (nombre_division.trim() == "") {
         alert("El Campo de la división No debe contener Espacios en Blancos.");
-        obj.division1.focus();
+        obj.nombre_division.focus();
         return false;
     }
-    if (/^([a-zA-Z0-9])\1+$/.test(division1)) {
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre_division)) {
         alert("El campo de la división No debe contener solo Caracteres Repetidos.");
-        obj.division1.focus();
+        obj.nombre_division.focus();
         return false;
     }
     
 }
 //Validar Cargo
-function cargo(obj) {
+function Cargo(obj) {
     var nombre_cargo = obj.nombre_cargo.value;
     if (!nombre_cargo) {
         alert("Debe de ingresar el cargo");
@@ -193,7 +192,7 @@ function cargo(obj) {
 }
 
 //Validar Persona
-function Persona(obj) {
+function persona(obj) {
     var nombre = obj.nombre.value;
     if (!nombre) {
         alert("Debe de ingresar un nombre");
@@ -236,46 +235,46 @@ function Persona(obj) {
         obj.apellido.focus();
         return false;
     }
-    var ci = obj.ci.value;
-    if (!ci) {
+    var cedula = obj.cedula.value;
+    if (!cedula) {
         alert("Debe de ingresar la cédula");
-        obj.ci.focus();
+        obj.cedula.focus();
         return false;
     }
-    if (ci.length < 7){
+    if (cedula.length < 7){
 		alert("Faltan dígitos en la cédula");
-		obj.ci.focus();
+		obj.cedula.focus();
 		return (false);
 	}
-    if (ci.trim() == "") {
+    if (cedula.trim() == "") {
         alert("El Campo Apellido No debe contener solo Espacios en Blancos.");
-        obj.ci.focus();
+        obj.cedula.focus();
         return false;
     }
-    if (/^([a-zA-Z0-9])\1+$/.test(ci)) {
+    if (/^([a-zA-Z0-9])\1+$/.test(cedula)) {
         alert("El Campo Apellido no debe contener solo Caracteres Repetidos.");
-        obj.ci.focus();
+        obj.cedula.focus();
         return false;
     }
-    var idusuario = obj.idusuario.value;
-    if (!idusuario) {
+    var id_usuario = obj.id_usuario.value;
+    if (!id_usuario) {
         alert("Debe de ingresar un Id de Usuario");
-        obj.idusuario.focus();
+        obj.id_usuario.focus();
         return false;
     }
-    if (idusuario.length < 2){
+    if (id_usuario.length < 2){
         alert("Faltan dígitos en el Id de Usuario");
-        obj.idusuario.focus();
+        obj.id_usuario.focus();
         return (false);
     }
-    if (idusuario.trim() == "") {
+    if (id_usuario.trim() == "") {
         alert("El Campo Id de Usuario No debe contener solo Espacios en Blancos.");
-        obj.idusuario.focus();
+        obj.id_usuario.focus();
         return false;
     }
-    if (/^([a-zA-Z0-9])\1+$/.test(idusuario)) {
+    if (/^([a-zA-Z0-9])\1+$/.test(id_usuario)) {
         alert("El Campo Id de Usuario no debe contener solo Caracteres Repetidos.");
-        obj.idusuario.focus();
+        obj.id_usuario.focus();
         return false;
     }
     var cargo = obj.cargo.value;

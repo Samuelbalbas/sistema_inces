@@ -7,7 +7,7 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 13%">
+    <div class="container-fluid" style="margin-top: 12%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
                 <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
@@ -16,7 +16,7 @@
                         <h3 class="mb-4" style="color: black;">Crear Cargo</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/cargo') }}" enctype="multipart/form-data" onsubmit="return cargo(this)">
+                    <form method="post" action="{{ url('/cargo') }}" enctype="multipart/form-data" onsubmit="return Cargo(this)">
                         @csrf
                         <div class="row">
                             <center>

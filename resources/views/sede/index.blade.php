@@ -18,7 +18,7 @@
                     <div class="d-flex align-items-center justify-content-between mb-2">
             
             
-                <h2 style="color: black; margin-left: 33%;">Gestión de la Sede</h2>
+                <h2 style="color: black; margin-left: 33%;">Sede</h2>
             
             
             @can('crear-sede')

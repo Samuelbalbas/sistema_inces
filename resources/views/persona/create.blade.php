@@ -26,7 +26,7 @@
                         <h3 class="mb-4" style="color: black;">Crear Persona</h3>
                     </center>
 
-                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return Persona(this)">
+                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return persona(this)">
                     
                         @csrf
                         <div class="row">

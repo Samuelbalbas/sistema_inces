@@ -5,10 +5,6 @@
 
 @section('content')
 
-<!-- Form Start -->
-
-                    <!-- ? Tabla o formulario con sus respectivos campos -->
-
 <div class="container-fluid" style="margin-top: 12%">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-13">
@@ -63,6 +59,5 @@
     </div>
 </div>
                                                 
-<!-- Form End -->
 
 @endsection
