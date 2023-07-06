@@ -183,7 +183,7 @@ function cargo(obj) {
 }
 
 //Validar Persona
-function persona(obj) {
+function Persona(obj) {
     var nombre = obj.nombre.value;
     if (!nombre) {
         alert("Debe de ingresar un nombre");
@@ -194,6 +194,16 @@ function persona(obj) {
         alert("Faltan dígitos en el nombre");
         obj.nombre.focus();
         return (false);
+    }
+    if (nombre.trim() == "") {
+        alert("El Campo Nombre No debe contener solo Espacios en Blancos.");
+        obj.nombre.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(nombre)) {
+        alert("El Campo Nombre no debe contener solo Caracteres Repetidos.");
+        obj.nombre.focus();
+        return false;
     }
     var apellido = obj.apellido.value;
     if (!apellido) {
@@ -206,6 +216,16 @@ function persona(obj) {
         obj.apellido.focus();
         return (false);
     }
+    if (apellido.trim() == "") {
+        alert("El Campo Apellido No debe contener solo Espacios en Blancos.");
+        obj.apellido.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(apellido)) {
+        alert("El Campo Apellido no debe contener solo Caracteres Repetidos.");
+        obj.apellido.focus();
+        return false;
+    }
     var ci = obj.ci.value;
     if (!ci) {
         alert("Debe de ingresar la cédula");
@@ -217,6 +237,16 @@ function persona(obj) {
 		obj.ci.focus();
 		return (false);
 	}
+    if (ci.trim() == "") {
+        alert("El Campo Apellido No debe contener solo Espacios en Blancos.");
+        obj.ci.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(ci)) {
+        alert("El Campo Apellido no debe contener solo Caracteres Repetidos.");
+        obj.ci.focus();
+        return false;
+    }
     var idusuario = obj.idusuario.value;
     if (!idusuario) {
         alert("Debe de ingresar un Id de Usuario");
@@ -227,6 +257,16 @@ function persona(obj) {
         alert("Faltan dígitos en el Id de Usuario");
         obj.idusuario.focus();
         return (false);
+    }
+    if (idusuario.trim() == "") {
+        alert("El Campo Id de Usuario No debe contener solo Espacios en Blancos.");
+        obj.idusuario.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(idusuario)) {
+        alert("El Campo Id de Usuario no debe contener solo Caracteres Repetidos.");
+        obj.idusuario.focus();
+        return false;
     }
     var cargo = obj.cargo.value;
     if (cargo==0){
