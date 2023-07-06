@@ -106,6 +106,16 @@ class PerifericosController extends Controller
      */
     public function update(Request $request, perifericos $perifericos, $id)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:perifericos,serial',
+            'serialA' => 'unique:perifericos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
          // Actualiza los datos del periferico con los datos del formulario
          Perifericos::where('id', $id)->update($request->except(['_token', '_method', 'id']));
         

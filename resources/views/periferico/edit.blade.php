@@ -5,7 +5,18 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <div class="container-fluid" style="margin-top: 13%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
             <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">

@@ -1,11 +1,22 @@
 @extends('layouts.index')
 
 <title>@yield('title') Editar Persona</title>
-<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <div class="container-fluid" style="margin-top: 13%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
             <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
@@ -14,25 +25,26 @@
                         <h3 class="mb-4" style="color: black;">Editar Persona</h3>
                     </center>
                     
-                    <form method="post" action="{{ route('persona.update', $persona->id) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('/persona/'.$persona->id )}}" enctype="multipart/form-data" onsubmit="return Persona(this)">
+
                         @csrf
-                        @method('PUT')
+                        {{ method_field('PATCH')}}
                         <div class="row">
                             <div class="col-3">
                                 <label style="color: black;">Nombre de la Persona</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $persona->nombre }}" style="background: white;">
+                                <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $persona->nombre }}" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
                             <div class="col-3">
                                 <label style="color: black;">Apellido de la Persona</label>
-                                <input type="text" class="form-control" name="apellido" id="apellido" value="{{ $persona->apellido }}" style="background: white;">
+                                <input type="text" class="form-control" name="apellido" id="apellido" value="{{ $persona->apellido }}" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
                             <div class="col-3">
                                 <label style="color: black;">Cédula de la Persona</label>
-                                <input type="text" class="form-control" name="cedula" id="cedula" value="{{ $persona->cedula }}" style="background: white;">
+                                <input type="text" class="form-control" name="cedula" id="cedula" value="{{ $persona->cedula }}" onkeypress="return solonum(event);" style="background: white;">
                             </div>
                             <div class="col-3">
                                 <label style="color: black;">Id.Usuario de la Persona</label>
-                                <input type="text" class="form-control" name="id_usuario" id="id_usuario" value="{{ $persona->id_usuario }}" style="background: white;">
+                                <input type="text" class="form-control" name="id_usuario" id="id_usuario" value="{{ $persona->id_usuario }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
                             <div class="col-3">
                                 <label for="cargo" style="color: black;">Cargo de la Persona</label>
