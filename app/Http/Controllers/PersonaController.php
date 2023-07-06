@@ -29,10 +29,10 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $personas = Persona::with('cargo')->get(); // Cargar la relación con "cargo"
+        $personas = Persona::with(['cargo', 'divisionesSedes.sede', 'divisionesSedes.division'])->get();
         return view('persona.index', compact('personas'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
