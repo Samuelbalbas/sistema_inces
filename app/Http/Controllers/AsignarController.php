@@ -37,10 +37,25 @@ class AsignarController extends Controller
      */
     public function create()
     {
-        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')->get();
-        $equipos = Equipos::with('sistema')->get();
-        $perifericos = Perifericos::all();
+        // Obteniendo los IDs de las personas, los equipos y los periféricos que ya están en uso.
+        $idsPersonasUsadas = Asignar::pluck('id_persona')->toArray();
+        $idsEquiposUsados = Asignar::pluck('id_equipo')->toArray();
+        $idsPerifericosUsados = Asignar::pluck('id_periferico')->toArray();
+    
+        // Excluir personas, equipos y periféricos que ya están en uso.
+        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')
+                    ->whereNotIn('id', $idsPersonasUsadas)
+                    ->get();
+    
+        $equipos = Equipos::with('sistema')
+                    ->whereNotIn('id', $idsEquiposUsados)
+                    ->get();
+    
+        $perifericos = Perifericos::whereNotIn('id', $idsPerifericosUsados)
+                    ->get();
+    
         $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo_perifericos"
+    
         return view('asignar.create', compact('personas','equipos', 'perifericos', 'tipo_perifericos'));
     }
     
@@ -100,13 +115,6 @@ class AsignarController extends Controller
     }
     
     
-    
-    
-    
-    
-    
-    
-
     /**
      * Display the specified resource.
      *
@@ -151,19 +159,43 @@ class AsignarController extends Controller
     public function edit($id)
     {
         $asignaciones = Asignar::where('id_persona', $id)->get();
-        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')->get();
-        $equipos = Equipos::all();
-        $tipo_perifericos = TipoPeriferico::all();
-        $perifericos = Perifericos::all();
     
-        // Si hay asignaciones para esta persona, usamos la primera para obtener los datos de la persona y el equipo
+        // Obteniendo los IDs de las personas, los equipos y los periféricos que ya están en uso.
+        $idsPersonasUsadas = Asignar::pluck('id_persona')->toArray();
+        $idsEquiposUsados = Asignar::pluck('id_equipo')->toArray();
+        $idsPerifericosUsados = Asignar::pluck('id_periferico')->toArray();
+    
+        // Excluir personas, equipos y periféricos que ya están en uso, pero incluir la persona, el equipo y el periférico que se está editando.
+        $personas = Persona::with('divisionesSedes.division', 'divisionesSedes.sede', 'cargo')
+                    ->whereNotIn('id', $idsPersonasUsadas)
+                    ->get();
+    
+        $equipos = Equipos::whereNotIn('id', $idsEquiposUsados)
+                    ->get();
+    
+        $perifericos = Perifericos::whereNotIn('id', $idsPerifericosUsados)
+                    ->get();
+    
+        $tipo_perifericos = TipoPeriferico::all();
+        
+        // Si hay asignaciones para esta persona, usamos la primera para obtener los datos de la persona, el equipo y el periférico
         if (!$asignaciones->isEmpty()) {
             $asignacion = $asignaciones->first();
+            // Agregamos la persona, el equipo y el periférico que se está editando a las listas
+            $personas->push($asignacion->persona);
+            $equipos->push($asignacion->equipo);
+            
+            // Agregamos todos los periféricos de las asignaciones a la lista de periféricos
+            foreach($asignaciones as $asignacion) {
+                $perifericos->push($asignacion->periferico);
+            }
+    
         } else {
             // Si no hay asignaciones para esta persona, creamos un nuevo objeto Asignar con los valores predeterminados
             $asignacion = new Asignar;
             $asignacion->id_persona = 0;
             $asignacion->id_equipo = 0;
+            $asignacion->id_periferico = 0;
         }
     
         // Creamos una matriz con los ids de los tipos de periféricos de todas las asignaciones
@@ -172,12 +204,12 @@ class AsignarController extends Controller
             $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
             $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
         }
-
     
-    return view('asignar.edit', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
-
-
+        return view('asignar.edit', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
     }
+    
+    
+    
     
     
 
