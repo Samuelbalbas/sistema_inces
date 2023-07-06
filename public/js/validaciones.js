@@ -113,20 +113,30 @@ function sede(obj) {
         obj.nombre_sede.focus();
         return (false);
     }
-    var division = obj.division.value;
-    if (division==0){
-        alert("Debe de seleccionar la División");
-        return false;
-    }
     if (nombre_sede.trim() == "") {
-        alert("El Campo de Sede No debe contener Espacios en Blancos.");
+        alert("El Campo de la Sede No debe contener Espacios en Blancos.");
         obj.nombre_sede.focus();
         return false;
     }
     if (/^([a-zA-Z0-9])\1+$/.test(nombre_sede)) {
-        alert("El campo de Sede No debe contener solo Caracteres Repetidos.");
+        alert("El campo de la Sede No debe contener solo Caracteres Repetidos.");
         obj.nombre_sede.focus();
         return false;
+    }
+    function validateForm() {
+        var checkboxes = document.getElementsByName("divisiones[]");
+        var isChecked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+        if (!isChecked) {
+            alert("Debe seleccionar al menos una división");
+            return false;
+        }
+        return true;
     }
     
 }

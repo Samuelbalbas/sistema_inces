@@ -9,12 +9,12 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    <div class="container-fluid" style="margin-top: 13%">
         <div class="p-3" style="background:rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
                 
-                <h2 style="color: black;  margin-left: 33%;">Gestión del Equipo</h2>
+                <h2 style="color: black;  margin-left: 33%;">Equipo</h2>
                 
                 @can('crear-equipo')
                     <form action="{{ url('equipo/create') }}" method="get">

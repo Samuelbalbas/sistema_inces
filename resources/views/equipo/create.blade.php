@@ -80,7 +80,7 @@ $(document).ready(function() {
     </div>
     @endif
 
-    <div class="container-fluid" style="margin-top: 18%">
+    <div class="container-fluid" style="margin-top: 13%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
             <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
