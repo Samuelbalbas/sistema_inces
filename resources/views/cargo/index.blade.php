@@ -13,7 +13,7 @@
         <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 33%;">Gestión del Cargo</h2>
+                <h2 style="color: black; margin-left: 33%;">Cargo</h2>
                 
                 @can('crear-cargo')
                     <form action="{{ url('cargo/create') }}" method="get">

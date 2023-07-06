@@ -13,7 +13,7 @@
 
                     <!-- ? Tabla o formulario con sus respectivos campos -->
 
-            <div class="container-fluid" style="margin-top: 18%">
+            <div class="container-fluid" style="margin-top: 12%">
                 <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
                     <div class="d-flex align-items-center justify-content-between mb-2">
             
