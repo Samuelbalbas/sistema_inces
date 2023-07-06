@@ -43,11 +43,27 @@ class AlvaroValeroSeeder extends Seeder
 
         /* Descomentar para cuando se vaya a crear todo desde cero */
 
+       // $usuario = User::create([
+         //   'name' => 'Alvaro Raul Valero Mendoza',
+         //   'email' => 'alvaleromendoza@gmail.com',
+         //   'username' => 'alvarovm22',
+          //  'password' => ('Valero22'),
+       // ]);
+
+       // $rol = Role::create(['name'=>'Administrador']);
+
+       // $permisos = Permission::pluck('id', 'id')->all();
+
+        //$rol->syncPermissions($permisos);
+
+       // $usuario->assignRole([$rol->id]);
+
+
         $usuario = User::create([
-            'name' => 'Alvaro Raul Valero Mendoza',
-            'email' => 'alvaleromendoza@gmail.com',
-            'username' => 'alvarovm22',
-            'password' => ('Valero22'),
+            'name' => 'Lizmar Beatriz Tovar Gomes',
+            'email' => 'lizmargomes2003@gmail.com',
+            'username' => 'liztg',
+            'password' => ('liz123'),
         ]);
 
         $rol = Role::create(['name'=>'Administrador']);
