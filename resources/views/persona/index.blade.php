@@ -32,10 +32,9 @@
                             <th  style="color: black;">Cédula</th>
                             <th  style="color: black;">Id.Usuario</th>
                             <th  style="color: black;">Cargo</th>
+                            <th  style="color: black;">Teléfono</th>
                             <th style="color: black;">Sede</th>
                             <th style="color: black;">División</th>
-
-                            <th  style="color: black;">Teléfono</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
                     </thead>
@@ -49,20 +48,19 @@
                                     <td style="color: black;">{{ $persona->cedula }}</td>
                                     <td style="color: black;">{{ $persona->id_usuario}}</td>
                                     <td style="color: black;">{{ $persona->cargo->nombre_cargo }}</td>
-                                    <td style="color: black;">
-    @foreach($persona->divisionesSedes as $divisionSede)
-        {{ $loop->first ? '' : ', ' }}
-        {{ $divisionSede->sede->nombre_sede }}
-    @endforeach
-</td>
-<td style="color: black;">
-    @foreach($persona->divisionesSedes as $divisionSede)
-        {{ $loop->first ? '' : ', ' }}
-        {{ $divisionSede->division->nombre_division }}
-    @endforeach
-</td>
-
                                     <td style="color: black;">{{ $persona->telefono }}</td>
+                                    <td style="color: black;">
+                                        @foreach($persona->divisionesSedes as $divisionSede)
+                                            {{ $loop->first ? '' : ', ' }}
+                                            {{ $divisionSede->sede->nombre_sede }}
+                                        @endforeach
+                                    </td>
+                                    <td style="color: black;">
+                                        @foreach($persona->divisionesSedes as $divisionSede)
+                                            {{ $loop->first ? '' : ', ' }}
+                                            {{ $divisionSede->division->nombre_division }}
+                                        @endforeach
+                                    </td>
 
                                     <td> 
                                         @can('editar-persona')

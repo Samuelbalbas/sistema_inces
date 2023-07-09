@@ -637,6 +637,135 @@ function Equipo(obj) {
 
 }
 
+//Validar Sistemas Operatvos
+function usuario(obj) {
+    var name = obj.name.value;
+    if (!name) {
+        alert("Debe de ingresar el Nombre del Usuario.");
+        obj.name.focus();
+        return false;
+    }
+    if (name.length < 2){
+		alert("Faltan dígitos en el Nombre del Usuario.");
+		obj.name.focus();
+		return (false);
+	}
+    if (name.trim() == "") {
+        alert("El Campo Usuario No debe contener solo Espacios en Blancos.");
+        obj.name.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(name)) {
+        alert("El Campo Usuario no debe contener solo Caracteres Repetidos.");
+        obj.name.focus();
+        return false;
+    }
+    var email = obj.email.value;
+    if (!email) {
+        alert("Debe de ingresar el E-Mail.");
+        obj.email.focus();
+        return false;
+    }
+    if (email.length < 2){
+		alert("Faltan dígitos en el E-Mail.");
+		obj.email.focus();
+		return (false);
+	}
+    if (email.trim() == "") {
+        alert("El Campo E-Mail No debe contener solo Espacios en Blancos.");
+        obj.email.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(email)) {
+        alert("El Campo E-Mail no debe contener solo Caracteres Repetidos.");
+        obj.version.focus();
+        return false;
+    }
+    var username = obj.username.value;
+    if (!username) {
+        alert("Debe de ingresar el Usuario.");
+        obj.username.focus();
+        return false;
+    }
+    if (username.length < 2){
+		alert("Faltan dígitos en el Usuario.");
+		obj.username.focus();
+		return (false);
+	}
+    if (username.trim() == "") {
+        alert("El Campo Usuario No debe contener solo Espacios en Blancos.");
+        obj.username.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(username)) {
+        alert("El Campo Usuario no debe contener solo Caracteres Repetidos.");
+        obj.username.focus();
+        return false;
+    }
+    var password = obj.password.value;
+    if (!password) {
+        alert("Debe de ingresar la Contraseña.");
+        obj.password.focus();
+        return false;
+    }
+    if (password.length < 4){
+		alert("Faltan dígitos en la Contraseña.");
+		obj.password.focus();
+		return (false);
+	}
+    if (password.trim() == "") {
+        alert("El Campo Contraseña No debe contener solo Espacios en Blancos.");
+        obj.password.focus();
+        return false;
+    }
+    // if (/^([a-zA-Z0-9])\1+$/.test(password)) {
+    //     alert("El Campo Contraseña no debe contener solo Caracteres Repetidos.");
+    //     obj.version.focus();
+    //     return false;
+    // }
+    var confirm_password = obj.confirm_password.value;
+    if (!confirm_password) {
+        alert("Debe de ingresar la Confirmación de la contraseña");
+        obj.confirm_password.focus();
+        return false;
+    }
+    if (confirm_password.length < 4){
+		alert("Faltan dígitos en la Confirmación de la contraseña");
+		obj.confirm_password.focus();
+		return (false);
+	}
+    if (confirm_password != password) {
+        alert("Las contraseñas No Coinciden");
+        obj.confirm_password.focus();
+        return false;
+    }
+}
+
+//Validar Sistemas Operatvos
+function roles(obj) {
+    var name = obj.name.value;
+    if (!name) {
+        alert("Debe de ingresar el Nombre del Rol.");
+        obj.name.focus();
+        return false;
+    }
+    if (name.length < 2){
+		alert("Faltan dígitos en el Nombre del Rol.");
+		obj.name.focus();
+		return (false);
+	}
+    if (name.trim() == "") {
+        alert("El Campo Rol No debe contener solo Espacios en Blancos.");
+        obj.name.focus();
+        return false;
+    }
+    if (/^([a-zA-Z0-9])\1+$/.test(name)) {
+        alert("El Campo Rol no debe contener solo Caracteres Repetidos.");
+        obj.name.focus();
+        return false;
+    }
+}
+
 //Validacion de no permitir numeros en los campos de texto de solo letras
 
 function soloLetras(e){

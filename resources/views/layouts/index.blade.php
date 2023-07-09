@@ -130,7 +130,7 @@
                 
                 
                 <div class="d-none d-md-flex ms-4" style="margin-top: 10px;">
-                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO EQUIPOS INFORMATICOS PARA LA DIVISION INFORMÁTICA DE LA SEDE REGIONAL INCES (S.I.E.I.D.I)</MARQUEE> </h6> 
+                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO DE EQUIPOS INFORMÁTICOS PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES (S.I.E.I.D.I)</MARQUEE> </h6> 
                 </div>
                 
                 <div class="navbar-nav align-items-center ms-auto">
