@@ -24,13 +24,14 @@
                         <h3 class="mb-4" style="color: black;">Ediar Usuario</h3>
                     </center>
                     
+                    {{-- {!! Form::model($user, ['method' => 'PATCH','route' => ['usuarios.update', $user->id], 'onsubmit' => 'return usuario(this)']) !!} --}}
                     {!! Form::model($user, ['method' => 'PATCH','route' => ['usuarios.update', $user->id]]) !!}
 
                         <div class="row">
 
                             <div class="col-3">
                                 <label style="color: black;">Nombre</label>
-                                {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                {!! Form::text('name', null, array('class' => 'form-control', 'onkeypress' => 'return soloLetras(event);')) !!}
                             </div>
 
                             <div class="col-3">

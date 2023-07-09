@@ -13,7 +13,7 @@
                                 <h3 class="mb-4" style="color: black;">Editar un Sistemas Operativos en los Equipos</h3>
                             </center>
                             
-                            <form method="post" action="{{ url('/sistema/'.$sistema->id )}}" enctype="multipart/form-data" onsubmit="return sistemas_operatvos(this)">
+                            <form method="post" action="{{ url('/sistema/'.$sistema->id )}}" enctype="multipart/form-data" onsubmit="return usuario(this)">
 
                                  @csrf
                                  {{ method_field('PATCH')}}

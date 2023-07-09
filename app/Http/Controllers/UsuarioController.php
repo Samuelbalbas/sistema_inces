@@ -59,7 +59,7 @@ class UsuarioController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'username' => 'required',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|same:confirm_password',
             'roles' => 'required'
         ]);
     
@@ -110,7 +110,7 @@ class UsuarioController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'password' => 'same:confirm_password',
             'roles' => 'required'
         ]);
     

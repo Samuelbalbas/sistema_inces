@@ -24,13 +24,13 @@
                         <h3 class="mb-4" style="color: black;">Editar Rol</h3>
                     </center>
                     
-                    {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+                    {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id], 'onsubmit' => 'return usuario(this)']) !!}
     
                         <div class="row">
 
                             <div class="col-3">
                                 <label style="color: black;">Nombre del Rol</label>
-                                {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                {!! Form::text('name', null, array('class' => 'form-control', 'onkeypress' => 'return soloLetras(event);')) !!}
                             </div>
 
                             <br><br><br><br>

@@ -24,14 +24,14 @@
                         <h3 class="mb-4" style="color: black;">Crear Rol</h3>
                     </center>
                     
-                    <form method="post" action="{{ route('roles.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('roles.store') }}" enctype="multipart/form-data" onsubmit="return roles(this)">
                             @csrf
 
                         <div class="row">
 
                             <div class="col-3">
                                 <label style="color: black;">Nombre del Rol</label>
-                                <input type="text" class="form-control" id="name" name="name" style="background: white;"  value="">
+                                <input type="text" class="form-control" id="name" name="name" style="background: white;"  value="" onkeypress="return soloLetras(event);">
                             </div>
 
                             <br><br><br><br>
