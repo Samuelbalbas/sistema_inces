@@ -62,11 +62,9 @@ class PersonaController extends Controller
         $request->validate(
             [
             'cedula' => 'unique:personas,cedula',
-            'id_usuario' => 'unique:personas,id_usuario',
             ],
             [
             'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
-            'id_usuario.unique' => 'El valor del campo Id de Usuario ya existe en la base de datos.'
             ]
         );
         $datosPersona = $request->except('_token');
@@ -148,18 +146,16 @@ class PersonaController extends Controller
      * @param  \App\Models\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Persona $personas, $id)
     {
-        // $request->validate(
-        //     [
-        //     'cedula' => 'unique:personas,cedula',
-        //     'id_usuario' => 'unique:personas,id_usuario',
-        //     ],
-        //     [
-        //     'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
-        //     'id_usuario.unique' => 'El valor del campo Id de Usuario ya existe en la base de datos.'
-        //     ]
-        // );
+        $request->validate(
+            [
+            'cedula' => 'unique:personas,cedula',
+            ],
+            [
+            'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
+            ]
+        );
        // Luego puedes continuar con el código de actualización de la persona
        $persona = Persona::find($id);
        $persona->nombre = $request->input('nombre');

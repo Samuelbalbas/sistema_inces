@@ -3,6 +3,7 @@
 <title>@yield('title') Registrar Equipo</title>
 
 <script src="{{ asset('js/validaciones.js') }}"></script>
+<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 <script>
 $(document).ready(function() {
@@ -133,17 +134,17 @@ $(document).ready(function() {
 
                             <div class="col-3">
                                 <label style="color: black;">Velocidad del CPU (GHz)</label>
-                                <input type="text" class="form-control" name="velocidad" id="velocidad" value="{{ isset($equipo->velocidad)?$equipo->velocidad:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" name="velocidad" id="velocidad" value="{{ isset($equipo->velocidad)?$equipo->velocidad:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
                                 <label style="color: black;">Memoria Ram (GB)</label>
-                                <input type="text" class="form-control" name="ram" id="ram" value="{{ isset($equipo->ram)?$equipo->ram:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" name="ram" id="ram" value="{{ isset($equipo->ram)?$equipo->ram:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
                                 <label style="color: black;">Disco Duro (GB)</label>
-                                <input type="text" class="form-control" name="disco" id="disco" value="{{ isset($equipo->disco)?$equipo->disco:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" name="disco" id="disco" value="{{ isset($equipo->disco)?$equipo->disco:'' }}" onkeypress="return sinespacios(event);" style="background: white;">
                             </div>
                             
                             <div class="col-3">

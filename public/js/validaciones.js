@@ -566,8 +566,8 @@ function Equipo(obj) {
         obj.velocidad.focus();
         return false;
     }
-    if (velocidad.length < 2 ){
-        alert("El campo debe contener solo 2 digitos");
+    if (velocidad.length < 5 ){
+        alert("El campo Velocidad debe contener solo 5 digitos");
         obj.velocidad.focus();
         return (false);
     }
@@ -587,7 +587,7 @@ function Equipo(obj) {
         obj.ram.focus();
         return false;
     }
-    if (ram.length < 2){
+    if (ram.length < 3){
         alert("Faltan dígitos en La Memoria RAM");
         obj.ram.focus();
         return (false);
