@@ -24,57 +24,80 @@
                                     @foreach($personas as $persona)
                                         <option value="{{ $persona->id }}">{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
                                     @endforeach
-                                </select> 
+                                </select>
+                            </div>     
 
-                                <div id="datosPersona" style="display:none;">                       
+                                <div class="col-2">
+                                    <div id="datosPersona">                       
                                     <label for="id_cargo" style="color: black;">Cargo</label>
                                     <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" disabled>
+                                    </div>
+                                </div>
 
+                                <div class="col-2" style="display:">
                                     <label for="telefono" style="color: black;">Telefono</label>
                                     <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="sede" style="color: black;">Sede</label>
                                     <input class="form-control" style="background: white;" type="text" id="sede" name="sede" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="division" style="color: black;">Division</label>
                                     <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
-                                </div>                           
-                            </div>
+                                </div>
 
-                            <div class="col-3">
-                                <label for="equipo" style="color: black;">Equipo</label>
-                                <select class="form-select" id="equipo" name="id_equipo">
-                                    <option value="0">Seleccione un Équipo</option>
-                                    @foreach($equipos as $equipo)
-                                        <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
-                                    @endforeach
-                                </select>  
+                                                    
+                                <div class="col-3">
+                                    <label for="equipo" style="color: black;">Equipo</label>
+                                    <select class="form-select" id="equipo" name="id_equipo">
+                                        <option value="0">Seleccione un Équipo</option>
+                                        @foreach($equipos as $equipo)
+                                            <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
+                                        @endforeach
+                                    </select>
+                                </div> 
 
-                                <div id="datosEquipo" style="display:none;">      
-                                    <label for="serial" style="color: black;">Serial</label>
-                                    <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
-
+                                <div class="col-2">
+                                    <div id="datosEquipo">      
+                                        <label for="serial" style="color: black;">Serial</label>
+                                        <input class="form-control" style="background: white;" type="text" id="serial" name="serial" disabled>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-2">
                                     <label for="serialA" style="color: black;">Serial Activo</label>
                                     <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="cpu" style="color: black;">Modelo del CPU</label>
                                     <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" disabled>
+                                </div>
 
-                                    <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
+                                <div class="col-2">
+                                    <label for="velocidad" style="color: black;">Velocidad del CPU</label>
                                     <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Memoria Ram (GB)</label>
                                     <input type="text" class="form-control" name="ram" id="ram" style="background: white;" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Disco Duro (GB)</label>
                                     <input type="text" class="form-control" name="disco" id="disco" style="background: white;" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Sistema Operativo</label>
                                     <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" disabled>
-                                </div>                             
-                            </div>
-
-                            
+                                </div>                              
+                        
+                    
                             <div class="col-3">
                                 <label for="periferico" style="color: black;">Periféricos</label>
                                 @foreach($tipo_perifericos as $tipo_periferico)
@@ -91,9 +114,9 @@
                                         </select>
                                     </div>
                                 @endforeach
-                            </div>
+                            </div> 
 
-                            {{-- <div class="col-3">
+                            <div class="col-3">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
                                     <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
@@ -104,12 +127,12 @@
                                     <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
                                     <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" disabled>
                                 </div>
-                            </div> --}}
+                            </div>  
 
                             <div class="col-3" style="display:none;">
                                 <label style="color: black;">Estatus</label>
                                 <input type="text" class="form-control" name="estatus" id="" value="Asignado" onkeypress="return soloLetras(event);" style="background: white;">
-                            </div>
+                            </div> 
 
                         </div>
 
