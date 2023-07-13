@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    <div class="container-fluid" style="margin-top: 12%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
                 <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-2" style="display:">
+                                <div class="col-2">
                                     <label for="telefono" style="color: black;">Telefono</label>
                                     <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" disabled>
                                 </div>
@@ -116,7 +116,7 @@
                                 @endforeach
                             </div> 
 
-                            <div class="col-3">
+                            {{-- <div class="col-3">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
                                     <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
@@ -127,7 +127,7 @@
                                     <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
                                     <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" disabled>
                                 </div>
-                            </div>  
+                            </div>   --}}
 
                             <div class="col-3" style="display:none;">
                                 <label style="color: black;">Estatus</label>

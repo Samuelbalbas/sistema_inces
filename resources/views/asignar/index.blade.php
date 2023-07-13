@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    <div class="container-fluid" style="margin-top: 12%">
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
@@ -33,11 +33,7 @@
                             <th  style="color: black;">Equipo (Serial)</th>
                             <th  style="color: black;">Equipo (SerialA)</th>
                             <th  style="color: black;">Equipo (S.O)</th>
-                            <th  style="display:none; color: black;">Periférico</th>
-                            <th  style="display:none; color: black;">Periférico (Marca)</th>
-                            <th  style="display:none; color: black;">Periférico (Modelo)</th>
-                            <th  style="display:none; color: black;">Periférico (Serial)</th>
-                            <th  style="display:none; color: black;">Periférico (Serial)</th> 
+                            <th  style="display:none; color: black;">Periférico (Marca),(Modelo),(Serial),(SerialA)</th>
                             <th  style="color: black;">Estatus</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
@@ -53,16 +49,9 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
-                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}</td>
-                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}</td>
-                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}</td>
-                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->serial }}</td>
-                            <td style="display:none; color: black;">{{ $asignacionesGrupo->first()->periferico->serialA }}</td>
-                                 
-                                
-                
-                        
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}, {{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}, {{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}, {{ $asignacionesGrupo->first()->periferico->serial }}, {{ $asignacionesGrupo->first()->periferico->serialA }}</td>
                             
+                                 
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
                             <td>
@@ -73,9 +62,9 @@
                                         
                                         <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
                                         <br>
-                                        <button type="button" style="margin-left: 23%; margin-top:4%;" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Ver Detalles
-                                        </button>
+                                        {{-- <button type="button" style="margin-left: 23%; margin-top:4%;" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Ver Detalle
+                                        </button>  --}}
                                    
                                     </form>
                                {{--  @endcan --}}
@@ -147,32 +136,40 @@
         </div>
     </div>
    <!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Datos del Perifericos</h5>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label for="">Pereferico</label>:
-                                                    <label for="" id='2'></label><br>
-                                                    <label for="">Marca</label>:
-                                                    <label for="" id='3'></label><br>
-                                                    <label for="">Modelo</label>:
-                                                    <label for="" id='4'></label><br>
-                                                    <label for="">Serial</label>:
-                                                    <label for="" id='5'></label><br>
-                                                    <label for="">Serial</label>:
-                                                    <label for="" id='6'></label>
-                                                   
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div> 
-     {{-- @section('js-datatable')
+   {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;">Datos de los Perifericos</h5>
+                </div>
+
+                    <div class="modal-body">
+                        <label for="">Pereferico</label>:
+                        <label for="" id='2'></label><br>
+                        <label for="">Marca</label>:
+                        <label for="" id='3'></label><br>
+                        <label for="">Modelo</label>:
+                        <label for="" id='4'></label><br>
+                        <label for="">Serial</label>:
+                        <label for="" id='5'></label><br>
+                        <label for="">Serial</label>:
+                        <label for="" id='6'></label>                                                    
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div> --}}
+
+      @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
@@ -212,11 +209,11 @@
                 });
             });
         </script>
-    @endsection   --}}
+    @endsection   
 
 @endsection
 
-@section('sweetalert')
+{{-- @section('sweetalert')
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
@@ -286,4 +283,4 @@ $("#asignar").on('click', '#BtnSelector', function () {
 });  
         </script>
     
-@endsection
+@endsection --}}
