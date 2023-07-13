@@ -36,12 +36,19 @@
 
                             <br><br><br><br>
 
-                            <div class="form-group">
+                            <div class="form-group d-flex flex-wrap">
                                 <label style="color: black;">Permisos para este Rol</label>
+                                
                                 <br/>
+                                <div class="form-check mr-3">
+                                     <input type="checkbox" id="select-all-permissions" class="form-check-input">
+                                     <label class="form-check-label" for="select-all-permissions">Seleccionar todo</label>
+                                </div>
                                 @foreach($permission as $value)
-                                    <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'form-check-input')) }}
+                                <div class="form-check mr-3">
+                                    <label class="form-check-label">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'form-check-input')) }}
                                     {{ $value->name }}</label>
+                                    </div>
                                 <br/>
                                 @endforeach                            
                             </div>
