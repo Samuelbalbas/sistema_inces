@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="col-2">
-                                    <label for="division" style="color: black;">Division</label>
+                                    <label for="division" style="color: black;">División</label>
                                     <input class="form-control" style="background: white;" type="text" id="division" name="division" disabled>
                                 </div>
 
@@ -53,7 +53,7 @@
                                 <div class="col-3">
                                     <label for="equipo" style="color: black;">Equipo</label>
                                     <select class="form-select" id="equipo" name="id_equipo">
-                                        <option value="0">Seleccione un Équipo</option>
+                                        <option value="0">Seleccione un Equipo</option>
                                         @foreach($equipos as $equipo)
                                             <option value="{{ $equipo->id }}">{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }}</option>
                                         @endforeach

@@ -1,17 +1,17 @@
 @extends('layouts.index')
 
-<title>@yield('title') Registrar Tipo de Periérico</title>
+<title>@yield('title') Registrar Tipo de Periférico</title>
 
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 13%">
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
                 <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     
                     <center>
-                        <h3 class="mb-4" style="color: black;">Crear Tipo de Periérico</h3>
+                        <h3 class="mb-4" style="color: black;">Crear Tipo de Periférico</h3>
                     </center>
                     
                     <form method="post" action="{{ url('/tipoperif') }}" enctype="multipart/form-data" onsubmit="return TipoPeriferico(this)">

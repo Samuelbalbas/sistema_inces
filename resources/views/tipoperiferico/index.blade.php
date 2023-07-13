@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Tipo Periérico</title>
+<title>@yield('title') Tipo Periférico</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -14,11 +14,11 @@
     @endif     
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 13%">
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 30%;">Tipos de Periéricos</h2>
+                <h2 style="color: black; margin-left: 40%;">Tipos de Periféricos</h2>
                 
                 @can('crear-tipoperif')
                     <form action="{{ url('tipoperif/create') }}" method="get">
