@@ -22,7 +22,7 @@
                 
                 @can('crear-tipoperif')
                     <form action="{{ url('tipoperif/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Tipo Periférico" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -44,14 +44,14 @@
 
                                     <td> 
                                         @can('editar-tipoperif')
-                                        <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/tipoperif/'.$tipo_periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-warning" title="Desea Editar el Tipo Periférico" style="margin-left: 30%;" href="{{ url('/tipoperif/'.$tipo_periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-tipoperif')
                                             <form action="{{ url('/tipoperif/'.$tipo_periferico->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Tipo Periférico" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

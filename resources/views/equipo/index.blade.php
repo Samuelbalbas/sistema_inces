@@ -18,7 +18,7 @@
                 
                 @can('crear-equipo')
                     <form action="{{ url('equipo/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Equipo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -56,14 +56,14 @@
 
                                     <td> 
                                         @can('editar-equipo')
-                                            <a class="btn btn-warning" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el Equipo" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-equipo')
                                             <form action="{{ url('/equipo/'.$equipo->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Equipo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form>
                                         @endcan 
                                     </td>

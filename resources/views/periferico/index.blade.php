@@ -18,7 +18,7 @@
                 
                 @can('crear-periferico')
                     <form action="{{ url('periferico/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Periférico" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -48,14 +48,14 @@
 
                                     <td> 
                                         @can('editar-periferico')
-                                            <a class="btn btn-warning" style="margin-left: 15%;" href="{{ url('/periferico/'.$periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el Periférico" style="margin-left: 15%;" href="{{ url('/periferico/'.$periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-periferico')
                                             <form action="{{ url('/periferico/'.$periferico->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Periférico" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form>
                                         @endcan 
                                     </td>

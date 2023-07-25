@@ -18,7 +18,7 @@
                 
                 
                 <form action="{{ url('modelo/create') }}" method="get">
-                    <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                    <button type="submit" title="Desea Registar un nuevo Modelo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                 </form>
 
             </div>
@@ -39,14 +39,14 @@
 
                                     <td>
                                         @can('editar-modelo')
-                                            <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/modelo/'.$modelo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el Modelo" style="margin-left: 30%;" href="{{ url('/modelo/'.$modelo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-modelo')
                                             <form action="{{ url('/modelo/'.$modelo->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Modelo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

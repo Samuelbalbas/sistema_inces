@@ -17,7 +17,7 @@
                 
                 {{-- @can('crear-cargo') --}}
                     <form action="{{ url('asignar/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-box-arrow-right"></i></button>
+                        <button type="submit" title="Desea Registrar" class="btn btn-sm btn-light"><i class="bi bi-box-arrow-right"></i></button>
                     </form>
                 {{-- @endcan --}}
 
@@ -27,13 +27,12 @@
                     <thead>
                         <tr class="text-white">
                             <th  style="color: black;">Persona (Cédula)</th>
-                            <th  style="color: black;">Persona (Nombre)</th>
-                            <th  style="color: black;">Persona (Apellido)</th>
+                            <th  style="color: black;">Persona (Nombre y Apellido)</th>
                             <th  style="color: black;">Equipo (CPU)</th>
                             <th  style="color: black;">Equipo (Serial)</th>
                             <th  style="color: black;">Equipo (SerialA)</th>
                             <th  style="color: black;">Equipo (S.O)</th>
-                            <th  style="display:none; color: black;">Periférico (Marca),(Modelo),(Serial),(SerialA)</th>
+                            <th  style="color: black;">(Periférico, Marca, Modelo, Serial SerialA)</th>
                             <th  style="color: black;">Estatus</th>
                             <th class="col-2" style="color: black;"><center>Acciones</center></th>
                         </tr>
@@ -43,8 +42,7 @@
                    @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
                         <tr>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->apellido }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }} {{ $asignacionesGrupo->first()->persona->apellido }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->cpu }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
@@ -55,12 +53,12 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
                             <td>
-                                <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                <a class="btn btn-warning" title="Desea Editar" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                 {{-- @can('')  --}}
                                     <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/desincorporar') }}" method="GET" class="" style="display:inline;">
                                         {{-- @csrf --}}
                                         
-                                        <button class="btn btn-danger" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
+                                        <button class="btn btn-danger" title="Desea Desiconpoarar" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
                                         <br>
                                         {{-- <button type="button" style="margin-left: 23%; margin-top:4%;" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Ver Detalle

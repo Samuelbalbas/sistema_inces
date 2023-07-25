@@ -18,7 +18,7 @@
                 
                 @can('crear-persona')
                     <form action="{{ url('persona/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar a la Persona" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -64,14 +64,14 @@
 
                                     <td> 
                                         @can('editar-persona')
-                                            <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/persona/'.$persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar a la Persona" style="margin-left: 30%;" href="{{ url('/persona/'.$persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-persona')
                                             <form action="{{ url('/persona/'.$persona->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar a la Persona" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

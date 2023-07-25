@@ -18,7 +18,7 @@
                
                 @can('crear-sistema')
                     <form action="{{ url('sistema/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Sistama Operativo " class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -44,14 +44,14 @@
 
                                     <td>
                                         @can('editar-sistema')
-                                            <a class="btn btn-warning" style="margin-left: 20%;" href="{{ url('/sistema/'.$sistema->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el S.O" style="margin-left: 20%;" href="{{ url('/sistema/'.$sistema->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-sistema')
                                             <form action="{{ url('/sistema/'.$sistema->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el S.O" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

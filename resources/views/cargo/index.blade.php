@@ -17,7 +17,7 @@
                 
                 @can('crear-cargo')
                     <form action="{{ url('cargo/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Cargo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -39,14 +39,14 @@
 
                                     <td> 
                                         @can('editar-cargo')
-                                        <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/cargo/'.$cargo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-warning" title="Desea Editar el Cargo" style="margin-left: 30%;" href="{{ url('/cargo/'.$cargo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-cargo')
                                             <form action="{{ url('/cargo/'.$cargo->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Cargo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

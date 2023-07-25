@@ -3,6 +3,7 @@
 <title>@yield('title') Registrar Persona</title>
 
 <script src="{{ asset('js/validaciones.js') }}"></script>
+<script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 @section('content')
 
