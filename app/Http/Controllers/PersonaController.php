@@ -148,18 +148,25 @@ class PersonaController extends Controller
      * @param  \App\Models\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Persona $personas, $id)
+    public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-            'cedula' => 'unique:personas,cedula',
-            'id_usuario' => 'unique:personas,id_usuario',  
-            ],
-            [
-            'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
-            'cedula.unique' => 'El valor del campo Id Usuario ya existe en la base de datos.',
-            ]
-        );
+        try {
+        //     // Obtener la persona a eliminar
+            $persona = Persona::findOrFail($id);
+        
+        //     // Eliminar los registros relacionados en la tabla puente
+            //$persona->PersonaDivisionSede()->detach();
+        
+        //     // Eliminar la persona
+            $persona->delete();
+            
+        
+           return redirect('persona')->with('editar', 'ok');
+        }   catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede registar la cedula debido que ya pertence a otra persona.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
+
        // Luego puedes continuar con el código de actualización de la persona
        $persona = Persona::find($id);
        $persona->nombre = $request->input('nombre');

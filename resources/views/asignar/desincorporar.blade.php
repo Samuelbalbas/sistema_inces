@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 18%">
+    <div class="container-fluid" style="margin-top: 12%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
                 <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
@@ -28,21 +28,28 @@
                                         <option value="{{ $persona->id }}" @if($persona->id == $asignacion->id_persona) selected @endif>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
                                     @endforeach
                                 </select>
+                            </div>
 
-                                <div id="" style="">                       
+                                <div class="col-2">                       
                                     <label for="id_cargo" style="color: black;">Cargo</label>
                                     <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" value="{{ isset($asignacion->persona->cargo->nombre_cargo)?$asignacion->persona->cargo->nombre_cargo:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="telefono" style="color: black;">Telefono</label>
                                     <input class="form-control" style="background: white;" type="text" id="telefono" name="telefono" value="{{ isset($asignacion->persona->telefono)?$asignacion->persona->telefono:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="sede" style="color: black;">Sede</label>
                                     <input class="form-control" style="background: white;" type="text" id="sede" name="sede" value="{{ isset($asignacion->persona->divisionesSedes[0]->sede->nombre_sede)?$asignacion->persona->divisionesSedes[0]->sede->nombre_sede:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="division" style="color: black;">Division</label>
                                     <input class="form-control" style="background: white;" type="text" id="division" name="division" value="{{ isset($asignacion->persona->divisionesSedes[0]->division->nombre_division)?$asignacion->persona->divisionesSedes[0]->division->nombre_division:'' }}" disabled>
                                 </div>
-                            </div>
+                            
 
                             <div class="col-3">
                                 <label for="equipo" style="color: black;">Equipo</label>
@@ -52,30 +59,43 @@
                                         <option value="{{ $equipo->id }}" @if($equipo->id == $asignacion->id_equipo) selected @endif>{{ $equipo->marca->nombre_marca }} {{ $equipo->modelo->nombre_modelo }} {{ $equipo->serial }} {{ $equipo->serialA }} {{ $equipo->cpu }} {{ $equipo->velocidad }} {{ $equipo->ram }} {{ $equipo->disco }} {{ $equipo->sistema->tipo }}</option>
                                     @endforeach
                                 </select>
+                            </div>
 
-                                <div id="" style="">      
+                                <div class="col-2">      
                                     <label for="serial" style="color: black;">Serial</label>
                                     <input class="form-control" style="background: white;" type="text" id="serial" name="serial" value="{{ isset($asignacion->equipo->serial)?$asignacion->equipo->serial:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="serialA" style="color: black;">Serial Activo</label>
                                     <input class="form-control" style="background: white;" type="text" id="serialA" name="serialA" value="{{ isset($asignacion->equipo->serialA)?$asignacion->equipo->serialA:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label for="cpu" style="color: black;">Modelo del CPU</label>
                                     <input class="form-control" style="background: white;" type="text" id="cpu" name="cpu" value="{{ isset($asignacion->equipo->cpu)?$asignacion->equipo->cpu:'' }}" disabled>
+                                </div>
 
-                                    <label for="velocidad" style="color: black;">Velocidad del CPU (GHz)</label>
+                                <div class="col-2">
+                                    <label for="velocidad" style="color: black;">Velocidad del CPU</label>
                                     <input class="form-control" style="background: white;" type="text" id="velocidad" name="velocidad" value="{{ isset($asignacion->equipo->velocidad)?$asignacion->equipo->velocidad:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Memoria Ram (GB)</label>
                                     <input type="text" class="form-control" name="ram" id="ram" style="background: white;" value="{{ isset($asignacion->equipo->ram)?$asignacion->equipo->ram:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Disco Duro (GB)</label>
                                     <input type="text" class="form-control" name="disco" id="disco" style="background: white;" value="{{ isset($asignacion->equipo->disco)?$asignacion->equipo->disco:'' }}" disabled>
+                                </div>
 
+                                <div class="col-2">
                                     <label style="color: black;">Sistema Operativo</label>
                                     <input type="text" class="form-control" name="id_so" id="id_so" style="background: white;" value="{{ isset($asignacion->equipo->sistema->nombre)?$asignacion->equipo->sistema->nombre:'' }}" disabled>
                                 </div> 
-                            </div>
+                    
 
                             <div class="col-3">
                                 <label for="periferico" style="color: black;">Periféricos</label>
@@ -95,7 +115,7 @@
                                 @endforeach
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-2">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
                                     <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>

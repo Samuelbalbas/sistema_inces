@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('cedula');
+            $table->string('cedula')->unique();
             $table->string('id_usuario');
             $table->unsignedBigInteger('id_cargo'); // Agregar columna de clave foránea
             $table->string('telefono');

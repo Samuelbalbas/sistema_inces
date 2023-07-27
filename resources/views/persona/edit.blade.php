@@ -5,7 +5,7 @@
 
 @section('content')
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
     <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
         <ul>
             @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
         </ul>
         <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
     </div>
-    @endif
+    @endif --}}
 
     <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
@@ -147,4 +147,11 @@
         </div>
     </div>
 
+    @if ($errors->any())
+    <script>
+        var errorMessageEdit = @json($errors->first());
+        alert(errorMessageEdit);
+    </script>
+    @endif 
+    
 @endsection

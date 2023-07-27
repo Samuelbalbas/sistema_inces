@@ -43,19 +43,19 @@ class JoseFernandoSeeder extends Seeder
 
         /* Descomentar para cuando se vaya a crear todo desde cero */
 
-       // $usuario = User::create([
-         //   'name' => 'Jose Fernando Garcia',
-         //   'email' => 'josefernandoge@gmail.com',
-         //   'username' => 'jeyef',
-          //  'password' => ('josefernando10'),
-       // ]);
+        $usuario = User::create([
+            'name' => 'Jose Fernando Garcia',
+            'email' => 'josefernandoge@gmail.com',
+            'username' => 'jeyef',
+            'password' => ('josefernando10'),
+        ]);
 
-       // $rol = Role::create(['name'=>'Administrador']);
+        $rol = Role::create(['name'=>'Administrador']);
 
-       // $permisos = Permission::pluck('id', 'id')->all();
+        $permisos = Permission::pluck('id', 'id')->all();
 
-        //$rol->syncPermissions($permisos);
+        $rol->syncPermissions($permisos);
 
-       // $usuario->assignRole([$rol->id]);
+        $usuario->assignRole([$rol->id]);
     }
 }

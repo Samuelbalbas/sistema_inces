@@ -278,8 +278,9 @@ function persona(obj) {
         return false;
     }
     var cargo = obj.cargo.value;
-    if (cargo==0){
+    if (!cargo){
         alert("Debe de seleccionar el Cargo de la Persona");
+        obj.cargo.focus();
         return (false);
     }
     var telefono = obj.telefono.value;
@@ -291,6 +292,18 @@ function persona(obj) {
     if (telefono.length < 11){
         alert("Faltan dígitos en el telefono");
         obj.telefono.focus();
+        return (false);
+    }
+    var id_sede = obj.id_sede.value;
+    if (!id_sede) {
+        alert("Debe de seleccionar la Sede");
+        obj.id_sede.focus();
+        return false;
+    }
+    var id_division = obj.id_division.value;
+    if (!id_division){
+        alert("Debe de seleccionar la División");
+        obj.id_division.focus();
         return (false);
     }
 }
