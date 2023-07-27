@@ -37,7 +37,7 @@
                             <br><br><br><br>
 
                             <div class="form-group d-flex flex-wrap">
-                                <label style="color: black;">Permisos para este Rol</label>
+                            
                                 
                                 <br/>
                                 <div class="form-check mr-3">
@@ -63,9 +63,21 @@
                         </center>
                                 
                     </form>
+                    <script>
+                        function select-all-permissions(source) {
+                        checkboxes = document.getElementsByTagName('permission[]');
+                        for(var i=0, n=checkboxes.length;i<n;i++) {
+                            if(checkboxes[i].type == 'checkbox') {
+                            checkboxes[i].checked = source.checked;
+                            }
+                        }
+                    }
+                    </script>
+
                 </div>
             </div> 
         </div>
     </div>
+
 
 @endsection

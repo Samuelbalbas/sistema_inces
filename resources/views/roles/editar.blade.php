@@ -35,7 +35,7 @@
 
                             <br><br><br><br>
 
-                            <div class="form-group">
+                            <div class="form-group d-flex flex-wrap">
                                 <label style="color: black;">Permisos para este Rol</label>
                                 <br/>
                                 @foreach($permission as $value)
