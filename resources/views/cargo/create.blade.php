@@ -2,6 +2,7 @@
 
 <title>@yield('title') Registrar Cargo</title>
 <script src="{{ asset('js/validaciones.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 
 
