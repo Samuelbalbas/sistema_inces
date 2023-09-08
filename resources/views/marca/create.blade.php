@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Marca</title>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 
 @section('content')

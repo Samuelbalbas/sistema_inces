@@ -4,6 +4,7 @@
 
 <script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
 
