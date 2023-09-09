@@ -1,8 +1,8 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Marca</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
-
 
 @section('content')
 
@@ -20,7 +20,7 @@
                         
                         <center>
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Marca:</label>
+                                <label style="color: black;">Nombre de la Marca</label>
                                 <input type="text" class="form-control" placeholder="Ingrese Una Marca" name="nombre_marca" id="nombre_marca" maxLength="15" value="{{ isset($marca->nombre_marca)?$marca->nombre_marca:'' }}" onkeypress="" style="background: white;">
                             </div>
                         </center>

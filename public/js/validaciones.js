@@ -429,6 +429,18 @@ function Sede(obj) {
         }
         if (!isChecked) {
             alert("Debe seleccionar al menos una división");
+            Swal.fire({
+                title: 'Sede',
+                text: "Debe seleccionar al menos una división",
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                }).then((result) => {
+            if (result.isConfirmed) {
+    
+                this.submit();
+            }
+            })
             return false;
         }
         return true;
@@ -495,7 +507,7 @@ function division(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(nombre_division)) {
         Swal.fire({
             title: 'División',
-            text: "El campo de la división no debe contener caracteres repetidos.",
+            text: "El campo de división no debe contener caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -509,7 +521,6 @@ function division(obj) {
         obj.nombre_division.focus();
         return false;
     }
-    
     if (!/^[A-Z][a-z]+$/.test(nombre_division)) {
         Swal.fire({
             title: 'División',
@@ -526,10 +537,8 @@ function division(obj) {
        
         obj.nombre_division.focus();
         return false;
-        
     }
-
-    
+   
 }
 //Validar Cargo
 function Cargo(obj) {
@@ -939,7 +948,7 @@ function persona(obj) {
     if (!cargo){
         Swal.fire({
             title: 'Persona',
-            text: "Debeb de seleccionar el Cargo de la Persona",
+            text: "Debe de seleccionar el Cargo de la Persona",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1029,51 +1038,186 @@ function persona(obj) {
 //Validar Marca
 function Marca(obj) {
 var nombre_marca = obj.nombre_marca.value;
-    if (!nombre_marca) {
-        alert("Debe de ingresar una Marca.");
-        obj.nombre_marca.focus();
-        return false;
+if (!nombre_marca) {
+    Swal.fire({
+        title: 'Marca',
+        text: "Debe de ingresar un marca.",
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        }).then((result) => {
+    if (result.isConfirmed) {
+
+        this.submit();
     }
+    })
+    
+    obj.nombre_marca.focus();
+    return false;
+}
+
     if (nombre_marca.length < 2){
-        alert("Faltan dígitos en la Marca.");
+        Swal.fire({
+            title: 'Marca',
+            text: "Faltan dígitos en este campo de texto.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+         
         obj.nombre_marca.focus();
         return (false);
     }
     if (nombre_marca.trim() == "") {
-        alert("El Campo Marca No debe contener solo Espacios en Blancos.");
+        Swal.fire({
+            title: 'Marca',
+            text:  "El campo de marca no debe contener espacios en blanco.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+       
         obj.nombre_marca.focus();
         return false;
     }
     if (/^([a-zA-Z0-9])\1+$/.test(nombre_marca)) {
-        alert("El campo Marca no debe contener solo Caracteres Repetidos.");
+        Swal.fire({
+            title: 'Marca',
+            text:  "El campo de marca no debe contener caracteres repetidos.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+        
         obj.nombre_marca.focus();
         return false;
     }
+   // if (!/^[A-Z][a-z]+$/.test(nombre_marca)) {
+   //    Swal.fire({
+   //         title: 'Marca',
+   //         text:  "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
+   //        icon: 'warning',
+   //         confirmButtonColor: '#3085d6',
+   //         cancelButtonColor: '#d33',
+   //         }).then((result) => {
+   //     if (result.isConfirmed) {
+    
+   //         this.submit();
+   //    }
+   //     })
+        
+    //    obj.nombre_marca.focus();
+    //    return false;
+
+   // }
+
 }
 
 //Validar Modelo
 function Modelo(obj) {
 var nombre_modelo = obj.nombre_modelo.value;
     if (!nombre_modelo) {
-        alert("Debe de ingresar un Modelo.");
+        Swal.fire({
+            title: 'Modelo',
+            text: "Debe de ingresar un modelo.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+        
         obj.nombre_modelo.focus();
         return false;
     }
     if (nombre_modelo.length < 2){
-        alert("Faltan dígitos en el Modelo.");
+        Swal.fire({
+            title: 'Modelo',
+            text: "Faltan dígitos en este campo de texto.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+        
         obj.nombre_modelo.focus();
         return (false);
     }
     if (nombre_modelo.trim() == "") {
-        alert("El Campo Modelo No debe contener solo Espacios en Blancos.");
+        Swal.fire({
+            title: 'Modelo',
+            text:  "El campo de modelo no debe contener espacios en blanco.",  
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+             
         obj.nombre_modelo.focus();
         return false;
     }
     if (/^([a-zA-Z0-9])\1+$/.test(nombre_modelo)) {
-        alert("El Campo Modelo no debe contener solo Caracteres Repetidos.");
+        Swal.fire({
+            title: 'Modelo',
+            text:  "El campo de modelo no debe contener caracteres repetidos.",  
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+    
+            this.submit();
+        }
+        })
+        
         obj.nombre_modelo.focus();
         return false;
     }
+    // if (!/^[A-Z][a-z]+$/.test(nombre_modelo)) {
+   //    Swal.fire({
+   //         title: 'Modelo',
+   //         text:  "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
+   //        icon: 'warning',
+   //         confirmButtonColor: '#3085d6',
+   //         cancelButtonColor: '#d33',
+   //         }).then((result) => {
+   //     if (result.isConfirmed) {
+    
+   //         this.submit();
+   //    }
+   //     })
+        
+    //    obj.nombre_modelo.focus();
+    //    return false;
+
+   // }
+
 }
 
 //Validar Tipo Periferico

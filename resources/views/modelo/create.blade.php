@@ -1,8 +1,8 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Modelo</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
-
 
 @section('content')
 
@@ -20,7 +20,7 @@
                         
                         <center>
                             <div class="col-3">
-                                <label style="color: black;">Nombre del Modelo:</label>
+                                <label style="color: black;">Nombre del Modelo</label>
                                 <input type="text" class="form-control" placeholder="Ingrese Un Modelo" name="nombre_modelo" id="nombre_modelo" maxLength="15" value="{{ isset($modelo->nombre_modelo)?$modelo->nombre_modelo:'' }}" onkeypress="" style="background: white;">
                             </div>
                         </center>
