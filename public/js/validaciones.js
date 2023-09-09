@@ -9,7 +9,7 @@ function login(obj) {
     if (!usuario) {
         Swal.fire({
             title: 'Login',
-            text: "Debe de ingresar un Usuario",
+            text: "Debe de ingresar un usuario",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -26,7 +26,7 @@ function login(obj) {
     if (usuario.length < 3){
         Swal.fire({
             title: 'Login',
-            text: "Faltan dígitos en el Usuario",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -44,7 +44,7 @@ function login(obj) {
     if (!contraseña) {
         Swal.fire({
             title: 'Login',
-            text: "Debe de ingresar la Contraseña",
+            text: "Debe de ingresar la contraseña",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -61,7 +61,7 @@ function login(obj) {
     if (contraseña.length < 4){
         Swal.fire({
             title: 'Login',
-            text: "Faltan dígitos en la Contraseña",
+            text: "Faltan dígitos en este campo de texto o numero. ",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -84,7 +84,7 @@ function registrousuario(obj) {
     if (!name) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Debe de ingresar un Nombre",
+            text: "Debe de ingresar un nombre",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -101,7 +101,7 @@ function registrousuario(obj) {
     if (name.length < 3){
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Faltan dígitos en el Nombre",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -118,7 +118,7 @@ function registrousuario(obj) {
     if (name.trim() == "") {
         Swal.fire({
            title: 'Registro de Usuario',
-           text: "El campo Nombre No debe contener Espacios en Blancos.",
+           text: "El campo de nombre no debe contener espacios en blancos.",
            icon: 'warning',
            confirmButtonColor: '#3085d6',
            cancelButtonColor: '#d33',
@@ -135,7 +135,7 @@ function registrousuario(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(name)) {
          Swal.fire({
             title: 'Registro de Usuario',
-            text: "El campo Nombre No debe contener Caracteres Repetidos.",
+            text: "El campo de nombre no debe contener caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -152,7 +152,7 @@ function registrousuario(obj) {
     if (!/^[A-Z][a-z]+$/.test(name)) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "El Nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
+            text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -170,7 +170,7 @@ function registrousuario(obj) {
     if (!email) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Debe de ingresar un E-Mail",
+            text: "Debe de ingresar un e-mail",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -187,7 +187,7 @@ function registrousuario(obj) {
     if (email.length < 4){
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Faltan dígitos en el E-Mail",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -205,7 +205,7 @@ function registrousuario(obj) {
     if (!username) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Debe de ingresar un Nombre de Usuario",
+            text: "Debe de ingresar un nombre de usuario",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -222,7 +222,7 @@ function registrousuario(obj) {
     if (username.length < 3){
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Faltan dígitos en el Nombre de Usuario",
+            text: "Faltan dígitos en este campo de texo.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -245,7 +245,7 @@ function registrousuario(obj) {
     if (!password) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Debe de ingresar la Contraseña",
+            text: "Debe de ingresar la contraseña",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -262,7 +262,7 @@ function registrousuario(obj) {
     if (password.length < 4){
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Faltan dígitos en la Contraseña",
+            text: "Faltan dígitos en este campo de texo o numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -280,7 +280,7 @@ function registrousuario(obj) {
     if (!password_confirmation) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Debe de ingresar la Confirmación de la Contraseña",
+            text: "Debe de ingresar la confirmación de la contraseña",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -297,7 +297,7 @@ function registrousuario(obj) {
     if (password_confirmation.length < 4){
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Faltan dígitos en la Confirmación de la Contraseña",
+            text: "Faltan dígitos en este campo de texto o numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -314,7 +314,7 @@ function registrousuario(obj) {
     if (password_confirmation != password) {
         Swal.fire({
             title: 'Registro de Usuario',
-            text: "Las Contraseñas No Coinciden",
+            text: "Las contraseñas no coinciden",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -337,7 +337,7 @@ function Sede(obj) {
     if (!nombre_sede) {
          Swal.fire({
              title: 'Sede',
-             text: "Debe de ingresar el Nombre de la Sede.",
+             text: "Debe de ingresar el nombre de la sede.",
              icon: 'warning',
              confirmButtonColor: '#3085d6',
              cancelButtonColor: '#d33',
@@ -371,7 +371,7 @@ function Sede(obj) {
     if (nombre_sede.trim() == "") {
          Swal.fire({
             title: 'Sede',
-            text: "El campo de la Sede No debe contener Espacios en Blancos.",
+            text: "El campo de la sede no debe contener espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -521,7 +521,7 @@ function division(obj) {
         obj.nombre_division.focus();
         return false;
     }
-    if (!/^[A-Z][a-z]+$/.test(nombre_division)) {
+    if (!/^[A-Z][a-ó-z ]+$/.test(nombre_division)) {
         Swal.fire({
             title: 'División',
             text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
@@ -637,7 +637,7 @@ function persona(obj) {
     if (!nombre) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de ingresar un Nombre",
+            text: "Debe de ingresar un nombre.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -654,7 +654,7 @@ function persona(obj) {
     if (nombre.length < 3){
         Swal.fire({
             title: 'Persona',
-            text: "Faltan dígitos en el Nombre",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -671,7 +671,7 @@ function persona(obj) {
     if (nombre.trim() == "") {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Nombre No debe contener solo Espacios en Blancos.",
+            text: "El Campo del nombre no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -688,7 +688,7 @@ function persona(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(nombre)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Nombre no debe contener solo Caracteres Repetidos.",
+            text: "El campo del nombre no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -705,7 +705,7 @@ function persona(obj) {
     if (!/^[A-Z][a-z]+$/.test(nombre)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
+            text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -723,7 +723,7 @@ function persona(obj) {
     if (!apellido) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de ingresar el Apellido",
+            text: "Debe de ingresar el apellido.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -740,7 +740,7 @@ function persona(obj) {
     if (apellido.length < 4){
         Swal.fire({
             title: 'Persona',
-            text: "Faltan dígitos en el Apellido",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -758,7 +758,7 @@ function persona(obj) {
     if (apellido.trim() == "") {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Apellido No debe contener solo Espacios en Blancos.",
+            text: "El campo de apellido no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -775,7 +775,7 @@ function persona(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(apellido)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Apellido No debe contener solo Caracteres Repetidos.",
+            text: "El campo de apellido no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -792,7 +792,7 @@ function persona(obj) {
     if (!/^[A-Z][a-z]+$/.test(apellido)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Apellido debe comenzar con una letra mayúscula y las demás en minúscula.",
+            text: "El apellido debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -810,7 +810,7 @@ function persona(obj) {
     if (!cedula) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de ingresar la Cédula",
+            text: "Debe de ingresar la cédula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -827,7 +827,7 @@ function persona(obj) {
     if (cedula.length < 7){
         Swal.fire({
             title: 'Persona',
-            text: "Faltan dígitos en la Cédula",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -844,7 +844,7 @@ function persona(obj) {
     if (cedula.trim() == "") {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Cédula No debe contener solo Espacios en Blancos",
+            text: "El campo de cédula no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -861,7 +861,7 @@ function persona(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(cedula)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Cédula No debe contener solo Caracteres Repetidos,",
+            text: "El campo de cédula no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -879,7 +879,7 @@ function persona(obj) {
     if (!id_usuario) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de ingresar un Id de Usuario",
+            text: "Debe de ingresar un id usuario.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -896,7 +896,7 @@ function persona(obj) {
     if (id_usuario.length < 4){
         Swal.fire({
             title: 'Persona',
-            text: "Faltan dígitos en el Id de Usuario",
+            text: "Faltan dígitos en el id usuario.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -913,7 +913,7 @@ function persona(obj) {
     if (id_usuario.trim() == "") {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Id de Usuario No debe contener solo Espacios en Blnacos.",
+            text: "El campo de id usuario no debe contener solo espacios en blnacos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -930,7 +930,7 @@ function persona(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(id_usuario)) {
         Swal.fire({
             title: 'Persona',
-            text: "El Campo Id de Usuario No debe contener solo Caracteres Repetidos.",
+            text: "El campo de id usuario no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -948,7 +948,7 @@ function persona(obj) {
     if (!cargo){
         Swal.fire({
             title: 'Persona',
-            text: "Debe de seleccionar el Cargo de la Persona",
+            text: "Debe de seleccionar el cargo de la persona.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -966,7 +966,7 @@ function persona(obj) {
     if (!telefono) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de ingresar el Telefono",
+            text: "Debe de ingresar el numero de telefono.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -983,7 +983,7 @@ function persona(obj) {
     if (telefono.length < 11){
         Swal.fire({
             title: 'Persona',
-            text: "Faltan dígitos en el Telefono",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1001,7 +1001,7 @@ function persona(obj) {
     if (!id_sede) {
         Swal.fire({
             title: 'Persona',
-            text: "Debe de seleccionar la Sede",
+            text: "Debe de seleccionar la sede",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1019,7 +1019,7 @@ function persona(obj) {
     if (!id_division){
         Swal.fire({
             title: 'Persona',
-            text: "Debe de seleccionar la División",
+            text: "Debe de seleccionar la división",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1041,7 +1041,7 @@ var nombre_marca = obj.nombre_marca.value;
 if (!nombre_marca) {
     Swal.fire({
         title: 'Marca',
-        text: "Debe de ingresar un marca.",
+        text: "Debe de ingresar una marca.",
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -1107,24 +1107,24 @@ if (!nombre_marca) {
         obj.nombre_marca.focus();
         return false;
     }
-   // if (!/^[A-Z][a-z]+$/.test(nombre_marca)) {
-   //    Swal.fire({
-   //         title: 'Marca',
-   //         text:  "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
-   //        icon: 'warning',
-   //         confirmButtonColor: '#3085d6',
-   //         cancelButtonColor: '#d33',
-   //         }).then((result) => {
-   //     if (result.isConfirmed) {
+   if (!/^[A-Z][a-z]+$/.test(nombre_marca)) {
+      Swal.fire({
+           title: 'Marca',
+           text:  "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
+          icon: 'warning',
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           }).then((result) => {
+       if (result.isConfirmed) {
     
-   //         this.submit();
-   //    }
-   //     })
+           this.submit();
+      }
+       })
         
-    //    obj.nombre_marca.focus();
-    //    return false;
+       obj.nombre_marca.focus();
+       return false;
 
-   // }
+   }
 
 }
 
@@ -1226,7 +1226,7 @@ var tipo = obj.tipo.value;
     if (!tipo) {
         Swal.fire({
             title: 'Tipo de Periférico',
-            text: "Debe de ingresar un Tipo de Periférico",
+            text: "Debe de ingresar un tipo de periférico.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1243,7 +1243,7 @@ var tipo = obj.tipo.value;
     if (tipo.length < 3){
         Swal.fire({
             title: 'Tipo de Periférico',
-            text: "Faltan dígitos en el Tipo de Periférico",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1260,7 +1260,7 @@ var tipo = obj.tipo.value;
     if (tipo.trim() == "") {
         Swal.fire({
             title: 'Tipo de Periférico',
-            text: "El Campo Tipo de Periférico No debe contener solo Espacios en Blancos.",
+            text: "El campo de tipo de periférico no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1277,7 +1277,7 @@ var tipo = obj.tipo.value;
     if (/^([a-zA-Z0-9])\1+$/.test(tipo)) {
         Swal.fire({
             title: 'Tipo de Periférico',
-            text: "El Campo Tipo de Periférico No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de tipo de periférico no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1294,7 +1294,7 @@ var tipo = obj.tipo.value;
     if (!/^[A-Z][a-z]+$/.test(tipo)) {
         Swal.fire({
             title: 'Tipo de Periférico',
-            text: "El Tipo de Periférico debe comenzar con una letra mayúscula y las demás en minúscula.",
+            text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1316,7 +1316,7 @@ function Periferico(obj) {
     if (id_tipo==0) {
         Swal.fire({
             title: 'Periférico',
-            text: "Debe de ingresar el Peroférico",
+            text: "Debe de ingresar el periférico",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1334,7 +1334,7 @@ function Periferico(obj) {
     if (id_marca==0){
         Swal.fire({
             title: 'Periférico',
-            text: "Debe de seleccionar la Marca",
+            text: "Debe de seleccionar una marca",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1352,7 +1352,7 @@ function Periferico(obj) {
     if (id_modelo==0){
         Swal.fire({
             title: 'Periférico',
-            text: "Debe de seleccionar el Modelo",
+            text: "Debe de seleccionar un modelo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1370,7 +1370,7 @@ function Periferico(obj) {
     if (!serial) {
         Swal.fire({
             title: 'Periférico',
-            text: "Debe de ingresar el Serial",
+            text: "Debe de ingresar el serial.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1387,7 +1387,7 @@ function Periferico(obj) {
     if (serial.length < 5){
         Swal.fire({
             title: 'Periférico',
-            text: "Faltan dígitos en el Serial",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1404,7 +1404,7 @@ function Periferico(obj) {
     if (serial.trim() == "") {
         Swal.fire({
             title: 'Periférico',
-            text: "El Campo Serial No debe contener solo Espacios en Blancos.",
+            text: "El campo de serial no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1421,7 +1421,7 @@ function Periferico(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(serial)) {
         Swal.fire({
             title: 'Periférico',
-            text: "El Campo Serial No debe contener solo Caracteres Repetidos.",
+            text: "El campo de serial no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1439,7 +1439,7 @@ function Periferico(obj) {
     if (!serialA) {
         Swal.fire({
             title: 'Periférico',
-            text: "Debe de ingresar el Serial Activo",
+            text: "Debe de ingresar el serial activo.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1456,7 +1456,7 @@ function Periferico(obj) {
     if (serialA.length < 5){
         Swal.fire({
             title: 'Periférico',
-            text: "Faltan dígitos en el Serial Activo",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1473,7 +1473,7 @@ function Periferico(obj) {
     if (serialA.trim() == "") {
         Swal.fire({
             title: 'Periférico',
-            text: "El Campo Serial Activo No debe contener solo Espacios en Blancos.",
+            text: "El campo de serial activo no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1490,7 +1490,7 @@ function Periferico(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(serialA)) {
         Swal.fire({
             title: 'Periférico',
-            text: "El Campo Serial Activo No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de serial activo no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1504,6 +1504,24 @@ function Periferico(obj) {
         obj.serialA.focus();
         return false;
     }
+    if (!/^[A-Z]-[0-9]+$/.test(serialA)) {
+        Swal.fire({
+             title: 'Periférico',
+             text:  "El serial activo debe comenzar con una letra mayúscula en guion y los demás en numero.",
+            icon: 'warning',
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             }).then((result) => {
+         if (result.isConfirmed) {
+      
+             this.submit();
+        }
+         })
+          
+         obj.serialA.focus();
+         return false;
+  
+    }
 }
 
 //Validar Sistemas Operatvos
@@ -1512,7 +1530,7 @@ function sistemas_operatvos(obj) {
     if (!tipo) {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "Debe de seleccionar un Tipo de Sistema Operativo",
+            text: "Debe de seleccionar un tipo de sistema operativo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1529,7 +1547,7 @@ function sistemas_operatvos(obj) {
     if (!nombre) {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "Debe de ingresar el Nombre del Sistema Operativo",
+            text: "Debe de ingresar el nombre.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1546,7 +1564,7 @@ function sistemas_operatvos(obj) {
     if (nombre.length < 4){
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "Faltan dígitos en el Nombre del Sistema Operativo",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1563,7 +1581,7 @@ function sistemas_operatvos(obj) {
     if (nombre.trim() == "") {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "El Campo Sistema Operativo No debe contener solo Espacios en Blancos.",
+            text: "El campo nombre no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1580,7 +1598,24 @@ function sistemas_operatvos(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(nombre)) {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "El Campo Sistema Operativo No debe contener solo Caracteres Rpetidos.",
+            text: "El campo nombre no debe contener solo caracteres repetidos.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+
+            this.submit();
+        }
+        })
+        
+        obj.nombre.focus();
+        return false;
+    }
+    if (!/^[A-Z][a-z]+$/.test(nombre)) {
+        Swal.fire({
+            title: 'Sistema Operativo',
+            text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1598,7 +1633,7 @@ function sistemas_operatvos(obj) {
     if (!version) {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "Debe de ingresar la Versión del Sistema Operativo",
+            text: "Debe de ingresar la versión.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1612,10 +1647,10 @@ function sistemas_operatvos(obj) {
         obj.version.focus();
         return false;
     }
-    if (version.length < 2){
+    if (version.length < 1){
 		Swal.fire({
             title: 'Sistema Operativo',
-            text: "Faltan dígitos en la Versión del Sistema Operativo",
+            text: "Faltan dígitos en este campo de texto. ",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1632,7 +1667,7 @@ function sistemas_operatvos(obj) {
     if (version.trim() == "") {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "El Campo Versión No debe contener solo Espacios en Blancos.",
+            text: "El campo versión No debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1649,7 +1684,7 @@ function sistemas_operatvos(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(version)) {
         Swal.fire({
             title: 'Sistema Operativo',
-            text: "El Campo Versión No debe contener solo Caracteres Rpetidos.",
+            text: "El campo versión no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1671,7 +1706,7 @@ function Equipo(obj) {
     if (marca==0){
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de seleccionar la Marca",
+            text: "Debe de seleccionar la marca",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1688,7 +1723,7 @@ function Equipo(obj) {
     if (modelo==0){
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de seleccionar el Modelo",
+            text: "Debe de seleccionar el modelo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1705,7 +1740,7 @@ function Equipo(obj) {
     if (!serial) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar el Serial",
+            text: "Debe de ingresar el serial",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1722,7 +1757,7 @@ function Equipo(obj) {
     if (serial.length < 5){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en el Serial",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1739,7 +1774,7 @@ function Equipo(obj) {
     if (serial.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Serial No debe contener solo Espacios en Blancos.",
+            text: "El campo de serial no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1756,7 +1791,7 @@ function Equipo(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(serial)) {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Serial No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de serial no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1774,7 +1809,7 @@ function Equipo(obj) {
     if (!serialA) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar el Serial Activo",
+            text: "Debe de ingresar el serial activo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1791,7 +1826,7 @@ function Equipo(obj) {
     if (serialA.length < 5){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en el Serial Activo",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1808,7 +1843,7 @@ function Equipo(obj) {
     if (serialA.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Serial Activo No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de serial activo no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1825,7 +1860,7 @@ function Equipo(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(serialA)) {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Serial Activo No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de serial activo no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1839,11 +1874,29 @@ function Equipo(obj) {
         obj.serialA.focus();
         return false;
     }
+    if (!/^[A-Z]-[0-9]+$/.test(serialA)) {
+        Swal.fire({
+             title: 'Equipo',
+             text:  "El serial activo debe comenzar con una letra mayúscula en guion y los demás en numero.",
+            icon: 'warning',
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             }).then((result) => {
+         if (result.isConfirmed) {
+      
+             this.submit();
+        }
+         })
+          
+         obj.serialA.focus();
+         return false;
+  
+    }
     var cpu = obj.cpu.value;
     if (!cpu) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar el Modelo del Procesador",
+            text: "Debe de ingresar el modelo del procesador",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1860,7 +1913,7 @@ function Equipo(obj) {
     if (cpu.length < 2){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en el Modelo del Procesador",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1877,7 +1930,7 @@ function Equipo(obj) {
     if (cpu.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Modelo del Procesador No debe contener solo Espacios en Blancos.",
+            text: "El campo de modelo del procesador no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1893,8 +1946,8 @@ function Equipo(obj) {
     }
     if (/^([a-zA-Z0-9])\1+$/.test(cpu)) {
         Swal.fire({
-            title: 'Sistema Operativo',
-            text: "El Campo CPU No debe contener solo Caracteres Rpetidos.",
+            title: 'Equipo',
+            text: "El campo de modelo del procesador no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1912,7 +1965,7 @@ function Equipo(obj) {
     if (!velocidad) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar la Velocidad del Procesador",
+            text: "Debe de ingresar la velocidad",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1929,7 +1982,7 @@ function Equipo(obj) {
     if (velocidad.length < 2 ){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en la Velocidad",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1946,7 +1999,7 @@ function Equipo(obj) {
     if (velocidad.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Velocidad No debe contener solo Espacios en Blancos.",
+            text: "El campo de velocidad no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1963,7 +2016,7 @@ function Equipo(obj) {
     if (/^([a-zA-Z0-9-.])\1+$/.test(velocidad)) {
         Swal.fire({
             title: '',
-            text: "El Campo Velocidad No debe contener solo Caracteres Rpetidos.",
+            text: "El campo velocidad no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1981,7 +2034,7 @@ function Equipo(obj) {
     if (!ram) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar la Memoria Ram",
+            text: "Debe de ingresar la memoria ram",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1998,7 +2051,7 @@ function Equipo(obj) {
     if (ram.length < 1){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en la Memoria Ram",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2015,7 +2068,7 @@ function Equipo(obj) {
     if (ram.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Memoria Ram No debe contener solo Espacios en Blancos.",
+            text: "El campo de memoria ram no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2032,7 +2085,7 @@ function Equipo(obj) {
     if (/^([a-zA-Z0-9-.])\1+$/.test(ram)) {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Memoria Ram No debe contener solo Caracteres Rpetidos.",
+            text: "El campo de memoria ram no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2050,7 +2103,7 @@ function Equipo(obj) {
     if (!disco) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de ingresar el Disco Duro",
+            text: "Debe de ingresar el disco duro",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2067,7 +2120,7 @@ function Equipo(obj) {
     if (disco.length < 2){
         Swal.fire({
             title: 'Equipo',
-            text: "Faltan dígitos en el Disco Duro",
+            text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2084,7 +2137,7 @@ function Equipo(obj) {
     if (disco.trim() == "") {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo del Disco Duro No debe contener solo Espacios en Blnacos",
+            text: "El campo del disco duro no debe contener solo espacios en blancos",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2101,7 +2154,7 @@ function Equipo(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(disco)) {
         Swal.fire({
             title: 'Equipo',
-            text: "El Campo Disco Duro No debe contener solo Caracteres Rpetidos.",
+            text: "El campo del disco duro no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2119,7 +2172,7 @@ function Equipo(obj) {
     if (!tipo) {
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de seleccionar un Tipo de Sistema Operativo",
+            text: "Debe de seleccionar un tipo de sistema operativo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2136,7 +2189,7 @@ function Equipo(obj) {
     if (id_so==0){
         Swal.fire({
             title: 'Equipo',
-            text: "Debe de seleccionar el Sistema Operativo",
+            text: "Debe de seleccionar el sistema operativo",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2158,7 +2211,7 @@ function usuario(obj) {
     if (!name) {
         Swal.fire({
             title: 'Usuario',
-            text: "Debe de ingresar el Nombre del Usuario",
+            text: "Debe de ingresar el nombre del usuario",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2175,7 +2228,7 @@ function usuario(obj) {
     if (name.length < 3){
         Swal.fire({
             title: 'Usuario',
-            text: "Faltan dígitos en el Nombre del Usuario",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2192,7 +2245,7 @@ function usuario(obj) {
     if (name.trim() == "") {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo Usuario No debe contener solo Espacios en Blnacos.",
+            text: "El campo de nombre del usuario no debe contener solo espacios en blnacos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2209,7 +2262,7 @@ function usuario(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(name)) {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo Usuario No debe contener solo Caracteres Repetidos.",
+            text: "El campo de nombre del usuario no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2227,7 +2280,7 @@ function usuario(obj) {
     if (!email) {
         Swal.fire({
             title: 'Usuario',
-            text: "Debe de ingresar el E-mail",
+            text: "Debe de ingresar el e-mail",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2244,7 +2297,7 @@ function usuario(obj) {
     if (email.length < 4){
         Swal.fire({
             title: 'Usuario',
-            text: "Faltan dígitos en el E-Mail",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2261,7 +2314,7 @@ function usuario(obj) {
     if (email.trim() == "") {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo E-Mail No debe contener solo Espacios en Blancos.",
+            text: "El campo de e-mail no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2278,7 +2331,7 @@ function usuario(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(email)) {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo E-Mail No debe contener solo Caracteres Repetidos.",
+            text: "El campo de e-mail no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2296,7 +2349,7 @@ function usuario(obj) {
     if (!username) {
         Swal.fire({
             title: 'Usuario',
-            text: "Debe de ingresar el Usuario",
+            text: "Debe de ingresar el usuario",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2313,7 +2366,7 @@ function usuario(obj) {
     if (username.length < 2){
         Swal.fire({
             title: 'Usuario',
-            text: "Faltan dígitos en el Usuario",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2330,7 +2383,7 @@ function usuario(obj) {
     if (username.trim() == "") {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo Usuario No debe contener solo Espacios en Blnacos.",
+            text: "El campo de usuario no debe contener solo espacios en blnacos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2347,7 +2400,7 @@ function usuario(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(username)) {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo Usuario No debe contener solo Caracteres Repetidos",
+            text: "El campo de usuario no debe contener solo caracteres repetidos",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2382,7 +2435,7 @@ function usuario(obj) {
     if (password.length < 4){
         Swal.fire({
             title: 'Usuario',
-            text: "Faltan dígitos en la Contraseña.",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2399,7 +2452,7 @@ function usuario(obj) {
     if (password.trim() == "") {
         Swal.fire({
             title: 'Usuario',
-            text: "El Campo Contraseña No debe contener solo Espacios en Blancos.",
+            text: "El campo de Contraseña no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2422,7 +2475,7 @@ function usuario(obj) {
     if (!confirm_password) {
         Swal.fire({
             title: 'Usuario',
-            text: "Debe de ingresar la Confirmación de la Contraseña",
+            text: "Debe de ingresar la confirmación de la contraseña",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2439,7 +2492,7 @@ function usuario(obj) {
     if (confirm_password.length < 4){
         Swal.fire({
             title: 'Usuario',
-            text: "Faltan dígitos en la Confirmación de la Contraseña",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2456,7 +2509,7 @@ function usuario(obj) {
     if (confirm_password != password) {
         Swal.fire({
             title: 'Usuario',
-            text: "Las Contraseñas No Coinciden",
+            text: "Las contraseñas no coinciden",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2478,7 +2531,7 @@ function roles(obj) {
     if (!name) {
         Swal.fire({
             title: 'Rol',
-            text: "Debe de ingresar el Nombre del Rol.",
+            text: "Debe de ingresar el nombre del rol.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2495,7 +2548,7 @@ function roles(obj) {
     if (name.length < 2){
 		Swal.fire({
             title: 'Rol',
-            text: "Faltan dígitos en el Nombre del Rol.",
+            text: "Faltan dígitos en este campo de texto.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2512,7 +2565,7 @@ function roles(obj) {
     if (name.trim() == "") {
         Swal.fire({
             title: 'Rol',
-            text: "El Campo Rol No debe contener solo Espacios en Blancos.",
+            text: "El campo de rol no debe contener solo espacios en blancos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -2529,7 +2582,7 @@ function roles(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(name)) {
         Swal.fire({
             title: 'Rol',
-            text: "El Campo Rol No debe contener solo Caracteres Repetidos.",
+            text: "El campo de Rol no debe contener solo caracteres repetidos.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

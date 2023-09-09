@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 <title>@yield('title') Perfil</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
