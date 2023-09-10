@@ -40,12 +40,12 @@
 
                             <div class="form-group d-flex flex-wrap">
                             
-                                
                                 <br/>
                                 <div class="form-check mr-3">
-                                     <input type="checkbox" id="select-all-permissions" class="form-check-input">
-                                     <label class="form-check-label" for="select-all-permissions">Seleccionar todo</label>
+                                     <input type="checkbox" id="select-all-permissions" onclick="selectAll()" class="form-check-input">
+                                     <label class="form-check-label" for="select-all">Seleccionar todos los roles</label>
                                 </div>
+
                                 @foreach($permission as $value)
                                 <div class="form-check mr-3">
                                     <label class="form-check-label">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'form-check-input')) }}
@@ -65,21 +65,22 @@
                         </center>
                                 
                     </form>
-                    <script>
-                        function select-all-permissions(source) {
-                        checkboxes = document.getElementsByTagName('permission[]');
-                        for(var i=0, n=checkboxes.length;i<n;i++) {
-                            if(checkboxes[i].type == 'checkbox') {
-                            checkboxes[i].checked = source.checked;
-                            }
-                        }
-                    }
-                    </script>
-
                 </div>
             </div> 
         </div>
     </div>
-
+    
+    <script>
+        
+        function selectAll() {
+          var checkboxes = document.getElementsByTagName("input");
+          for (var checkbox of checkboxes) {
+            if (checkbox.type === "checkbox") {
+                checkbox.checked = document.getElementById('select-all-permissions').checked;
+            } 
+          }
+        }
+        
+    </script>
 
 @endsection

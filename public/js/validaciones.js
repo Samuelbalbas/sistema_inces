@@ -2582,7 +2582,24 @@ function roles(obj) {
     if (/^([a-zA-Z0-9])\1+$/.test(name)) {
         Swal.fire({
             title: 'Rol',
-            text: "El campo de Rol no debe contener solo caracteres repetidos.",
+            text: "El campo de rol no debe contener solo caracteres repetidos.",
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            }).then((result) => {
+        if (result.isConfirmed) {
+
+            this.submit();
+        }
+        })
+        
+        obj.name.focus();
+        return false;
+    }
+    if (!/^[A-Z][a-z]+$/.test(name)) {
+        Swal.fire({
+            title: 'Rol',
+            text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
