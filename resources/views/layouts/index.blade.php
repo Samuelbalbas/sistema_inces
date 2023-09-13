@@ -106,8 +106,11 @@
                                                         
                         </div>
                     </div>
-                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
-                    <a href="reportes.html" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
+                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-right"></i>   Asignar</a>
+                    <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-left"></i>  Desincorporar</a>
+                    <a href= "{{ url('inventario') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
+                    <a href="{{ url('estadistica') }}" class="nav-item nav-link"><i class="bi bi-bar-chart-line"></i>  Estadística</a>
+                    <a href="{{ url('reportes') }}" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
                     <a href="manual.html" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
                 </div>
@@ -130,7 +133,7 @@
                 
                 
                 <div class="d-none d-md-flex ms-4" style="margin-top: 10px;">
-                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO DE EQUIPOS INFORMÁTICOS PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES (S.I.E.I.D.I)</MARQUEE> </h6> 
+                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES ESTADO YARACUY(S.I.E.I.D.I)</MARQUEE> </h6> 
                 </div>
                 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -140,10 +143,10 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i class="fa fa-user me-2"></i> {{auth()->user()->username }}</a>
                     <div class="dropdown-menu  border-0" style="background:rgb(190, 38, 38); ">
                         @can('ver-usuario')
-                            <a href="/usuarios" class="dropdown-item" style="color: white;">Usuarios</a>
+                            <a href= "/roles" class="dropdown-item" style="color: white;">Roles</a>
                         @endcan
                         @can('ver-rol')
-                            <a href="/roles" class="dropdown-item" style="color: white;">Roles</a>
+                            <a href="/usuarios" class="dropdown-item" style="color: white;">Usuarios</a>
                         @endcan
                          <a href="{{ route('Perfil') }}" class="dropdown-item" style="color: white;">Mi Perfil</a>
                         <a href="/logout" class="dropdown-item" style="color: white;">Cerrar Sesión</a>
