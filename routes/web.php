@@ -22,6 +22,7 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\TipoPerifericoController;
+use App\Http\Controllers\EstadisticaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,9 +155,9 @@ Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson']
 Route::get('/asignar/{asignar}/desincorporar', [AsignarController::class, 'desincorporar'])->name('asignar.desincorporar')->middleware('auth');
 Route::resource('asignar', AsignarController::class)->middleware('auth');
 
+/* Ruta Estadistica */
 
-
-
+Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
 
 
 
