@@ -126,7 +126,7 @@
                             <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
                                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Equipos DesicorporadosÑ</p>
+                                    <p class="mb-2">Equipos Reincorporados</p>
                                     <h6 class="mb-0">$1234</h6>
                                 </div>
                             </div>

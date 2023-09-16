@@ -6,6 +6,7 @@ use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
+use Brarrydvh\DomPDF\Facade\Pdf;
 
 class DivisionController extends Controller
 {
@@ -29,6 +30,13 @@ class DivisionController extends Controller
            return view('division.index',$datos);
     }
 
+    public function pdf()
+    {
+          $division=division::all();
+          $pdf = Pdf::loadView('division.pdf', compact('division'));
+            return $pdf->stream();       
+
+    }
     /**
      * Show the form for creating a new resource.
      *
