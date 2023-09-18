@@ -38,6 +38,7 @@ use App\Http\Controllers\EstadisticaController;
 Route::get('/', function () {
     return view('auth.login');
 })->name('login');
+Route::get('division/pdf',  [DivisionController::class,'pdf'])->name('division.pdf');
 
 /* Ruta Importar Nómina */
 Route::get('nomina', [NominaController::class, 'index']);
@@ -83,6 +84,7 @@ Route::get('/cargo/create',[CargoController::class,'create'])->name('create')->m
 Route::resource('cargo', CargoController::class)->middleware('auth');
 
 /* Ruta Division */
+
 Route::get('/division',  [DivisionController::class,'index'])->name('division')->middleware('auth');
 
 Route::get('/division/create',[DivisionController::class,'create'])->name('create')->middleware('auth');
@@ -90,7 +92,7 @@ Route::get('/division/create',[DivisionController::class,'create'])->name('creat
 Route::resource('division', DivisionController::class)->middleware('auth');
 
 /* Ruta de PDF Division */
-Route::get('division/pdf',  [DivisionController::class,'pdf'])->name('division.pdf');
+
 
 /* Ruta Marca */
 Route::get('/marca',  [MarcaController::class,'index'])->name('marca')->middleware('auth');

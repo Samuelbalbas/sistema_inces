@@ -9,15 +9,15 @@
 
 @section('content')
 
-<div class="container-fluid" style="margin-top: 11%">
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
-                
-                <h2 style="color: black; margin-left: 43%;">División</h2>
+            
+            
+                <h2 style="color: black; margin-left: 1%;">División</h2>
                 
                 @can('crear-division')
                     <form action="{{ url('division/create') }}" method="get">
-                        <a href="{{ url('division/pdf')}}" method="get" class="btn btn-sm btn-danger" target="_blank">PDF</a>
                         <button type="submit" title="Desea Registar una nueva División" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
