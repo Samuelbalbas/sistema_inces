@@ -6,6 +6,8 @@ use App\Models\Sistema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class SistemaController extends Controller
 {
     function __construct()
@@ -26,6 +28,14 @@ class SistemaController extends Controller
         //Cambiar numero 5 para aumentar los registros que muestra el catalogo
         $datos['sistemas']=sistema::all();
         return view('sistema.index',$datos);
+    }
+
+    public function pdf()
+    {
+          $sistemas=sistema::all();
+          $pdf=Pdf::loadView('sistema.pdf', compact('sistemas'));
+          return $pdf->stream();
+
     }
 
     /**

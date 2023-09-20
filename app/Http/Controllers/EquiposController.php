@@ -8,6 +8,8 @@ use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Sistema;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class EquiposController extends Controller
 {
     function __construct()
@@ -28,6 +30,14 @@ class EquiposController extends Controller
         $equipos = Equipos::with('marca')->get(); // Cargar la relación con "marca"
         $equipos = Equipos::with('modelo')->get(); // Cargar la relación con "modelo"
         return view('equipo.index', compact('equipos'));
+
+    }
+
+    public function pdf()
+    {
+          $equipos=Equipos::all();
+          $pdf=Pdf::loadView('equipo.pdf', compact('equipos'));
+          return $pdf->stream();
 
     }
 

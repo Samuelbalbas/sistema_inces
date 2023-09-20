@@ -8,6 +8,8 @@ use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\TipoPeriferico;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class PerifericosController extends Controller
 {
     function __construct()
@@ -31,6 +33,13 @@ class PerifericosController extends Controller
         return view('periferico.index', compact('perifericos'));
 
         
+    }
+    public function pdf()
+    {
+          $perifericos= Perifericos::all();
+          $pdf=Pdf::loadView('periferico.pdf', compact('perifericos'));
+          return $pdf->stream();
+
     }
 
     /**

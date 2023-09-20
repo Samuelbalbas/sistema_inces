@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Asignar</title>
+<title>@yield('title') Investario</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -13,7 +13,7 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 38%;">Equipos Asignados</h2>
+                <h2 style="color: black; margin-left: 38%;">Control de los Equipos</h2>
                 
                 {{-- @can('crear-cargo') --}}
                     <form action="{{ url('asignar/create') }}" method="get">

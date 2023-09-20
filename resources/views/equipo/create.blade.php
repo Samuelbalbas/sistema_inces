@@ -233,6 +233,11 @@ $(document).ready(function() {
 
                             </div>
 
+                            <div class="col-3" style="display:none;">
+                                <label style="color: black;">Estatus</label>
+                                <input type="text" class="form-control" name="estatus" id="equipo" value="Incorporado" onkeypress="return soloLetras(event);" style="background: white;">
+                            </div>
+
                         </div>
 
                         <br>
@@ -285,7 +290,6 @@ $(document).ready(function() {
         });
     });
 </script>
-
 
 
 

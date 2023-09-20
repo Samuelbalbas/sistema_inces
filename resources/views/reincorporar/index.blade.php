@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Asignar</title>
+<title>@yield('title')Reincorporar</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -13,13 +13,7 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 38%;">Equipos Asignados</h2>
-                
-                {{-- @can('crear-cargo') --}}
-                    <form action="{{ url('asignar/create') }}" method="get">
-                        <button type="submit" title="Desea Registrar" class="btn btn-sm btn-light"><i class="bi bi-box-arrow-right"></i></button>
-                    </form>
-                {{-- @endcan --}}
+                <h2 style="color: black; margin-left: 38%;">Equipos Reincorporados</h2>
 
             </div>
             <div class="">
@@ -53,9 +47,9 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
                             <td>
-                                <a class="btn btn-warning" title="Desea Editar" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                               
                                 {{-- @can('')  --}}
-                                    <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/desincorporar') }}" method="GET" class="" style="display:inline;">
+                                    <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/reincorporar') }}" method="GET" class="" style="display:inline;">
                                         {{-- @csrf --}}
                                         
                                         <button class="btn btn-danger" title="Desea Desiconpoarar" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>

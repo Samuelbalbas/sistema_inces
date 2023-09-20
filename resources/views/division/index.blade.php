@@ -13,7 +13,12 @@
         <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
             
-            
+            @can('generar-division')
+            <a href="{{ url('division/archivo') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
+            @endcan
+
                 <h2 style="color: black; margin-left: 1%;">División</h2>
                 
                 @can('crear-division')
@@ -21,6 +26,7 @@
                         <button type="submit" title="Desea Registar una nueva División" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
+
     
             </div>
             <div class="">
@@ -38,7 +44,7 @@
                                     <!-- <td style="color: black;">{{ $division->id}}</td> -->
                                     <td class="col-10" style="color: black;">{{ $division->nombre_division }}</td>
 
-                                    <td> 
+                                    <td>
                                         @can('editar-division')
                                             <a class="btn btn-warning" title="Desea Editar la División" style="margin-left: 30%;" href="{{ url('/division/'.$division->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan

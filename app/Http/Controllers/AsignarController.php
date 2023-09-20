@@ -28,7 +28,30 @@ class AsignarController extends Controller
     
         return view('asignar.index', compact('asignacionesAgrupadas'));
     }
+
+    public function desincorp()
+    {
+        $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
     
+        $asignacionesAgrupadas = $asignaciones->groupBy(function($asignacion) {
+            // Agrupa por la identificación de la persona y del equipo.
+            return $asignacion->id_persona . '-' . $asignacion->id_equipo;
+        });
+    
+        return view('desincorporar.index', compact('asignacionesAgrupadas'));
+    }
+    
+    public function reincorp()
+    {
+        $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
+    
+        $asignacionesAgrupadas = $asignaciones->groupBy(function($asignacion) {
+            // Agrupa por la identificación de la persona y del equipo.
+            return $asignacion->id_persona . '-' . $asignacion->id_equipo;
+        });
+    
+        return view('reincorporar.index', compact('asignacionesAgrupadas'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -150,6 +173,35 @@ class AsignarController extends Controller
     return view('asignar.desincorporar', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
     }
 
+    public function reincorporar($id)
+    {
+        $asignaciones = Asignar::where('id_persona', $id)->get();
+        $personas = Persona::all();
+        $equipos = Equipos::all();
+        $tipo_perifericos = TipoPeriferico::all();
+        $perifericos = Perifericos::all();
+    
+        // Si hay asignaciones para esta persona, usamos la primera para obtener los datos de la persona y el equipo
+        if (!$asignaciones->isEmpty()) {
+            $asignacion = $asignaciones->first();
+        } else {
+            // Si no hay asignaciones para esta persona, creamos un nuevo objeto Asignar con los valores predeterminados
+            $asignacion = new Asignar;
+            $asignacion->id_persona = 0;
+            $asignacion->id_equipo = 0;
+        }
+    
+        // Creamos una matriz con los ids de los tipos de periféricos de todas las asignaciones
+        $ids_perifericos_por_tipo = [];
+        foreach($asignaciones as $asignacion) {
+            $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
+            $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
+        }
+
+    
+    return view('asignar.reincorporar', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -236,11 +288,30 @@ class AsignarController extends Controller
             $asignacion->save();
         }
     
-        return redirect('asignar');
-    }
-    
+        // return redirect('asignar');
 
+        return redirect('desincorporar');
+    }
+
+    public function updatereincorp(Request $request, $asignar)
+    {
+        // Obtén el estatus y la observación de la solicitud
+        $estatus = $request->estatus;
+        $observacion = $request->observacion;
     
+        // Encuentra todas las asignaciones para la persona específica
+        $asignaciones = Asignar::where('id_persona', $asignar)->get();
+    
+        // Actualiza el estatus y la observación de todas las asignaciones
+        foreach ($asignaciones as $asignacion) {
+            $asignacion->estatus = $estatus;
+            $asignacion->observacion = $observacion;
+            $asignacion->save();
+        }
+
+        return redirect('reincorporar');
+    }
+
     public function updateByPerson(Request $request, $id)
     {
         // Obtén los periféricos de la solicitud
@@ -288,13 +359,6 @@ class AsignarController extends Controller
         return redirect('asignar');
     }
     
-
-    
-  
-    
-    
-
-
     /**
      * Remove the specified resource from storage.
      *

@@ -10,6 +10,7 @@ use App\Models\DivisionSede;
 use App\Models\Sede;
 use App\Models\PersonaDivisionSede;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class PersonaController extends Controller
@@ -32,7 +33,14 @@ class PersonaController extends Controller
         $personas = Persona::with(['cargo', 'divisionesSedes.sede', 'divisionesSedes.division'])->get();
         return view('persona.index', compact('personas'));
     }
-    
+
+    public function pdf()
+    {
+          $personas=Persona::all();
+          $pdf=Pdf::loadView('persona.pdf', compact('personas'));
+          return $pdf->stream();
+
+    }
     /**
      * Show the form for creating a new resource.
      *

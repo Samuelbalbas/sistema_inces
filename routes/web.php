@@ -38,7 +38,8 @@ use App\Http\Controllers\EstadisticaController;
 Route::get('/', function () {
     return view('auth.login');
 })->name('login');
-Route::get('division/pdf',  [DivisionController::class,'pdf'])->name('division.pdf');
+
+
 
 /* Ruta Importar Nómina */
 Route::get('nomina', [NominaController::class, 'index']);
@@ -89,10 +90,10 @@ Route::get('/division',  [DivisionController::class,'index'])->name('division')-
 
 Route::get('/division/create',[DivisionController::class,'create'])->name('create')->middleware('auth');
 
-Route::resource('division', DivisionController::class)->middleware('auth');
-
 /* Ruta de PDF Division */
+Route::get('/division/archivo',  [DivisionController::class,'archivo'])->name('division.archivo')->middleware('auth');
 
+Route::resource('division', DivisionController::class)->middleware('auth');
 
 /* Ruta Marca */
 Route::get('/marca',  [MarcaController::class,'index'])->name('marca')->middleware('auth');
@@ -126,6 +127,8 @@ Route::get('/periferico',  [PerifericosController::class,'index'])->name('perife
 
 Route::get('/periferico/create',[PerifericosController::class,'create'])->name('create')->middleware('auth');
 
+Route::get('/periferico/pdf',  [PerifericosController::class,'pdf'])->name('periferico')->middleware('auth');
+
 Route::resource('periferico', PerifericosController::class)->middleware('auth');
 
 /* Ruta Persona*/
@@ -135,6 +138,8 @@ Route::get('persona/by-sede/{sede}', [PersonaController::class, 'getBySede'])->n
 
 Route::get('/persona/create',[PersonaController::class,'create']);
 
+Route::get('/persona/pdf',  [PersonaController::class,'pdf'])->name('persona')->middleware('auth');
+
 Route::resource('persona', PersonaController::class);
 
 /* Ruta Sistema*/
@@ -142,12 +147,16 @@ Route::get('/sistema',  [SistemaController::class,'index'])->name('sistema')->mi
 
 Route::get('/sistema/create',[SistemaController::class,'create'])->name('create')->middleware('auth');
 
+Route::get('/sistema/pdf',  [SistemaController::class,'pdf'])->name('sistema')->middleware('auth');
+
 Route::resource('sistema', SistemaController::class)->middleware('auth');
 
 /* Ruta Equipo*/
 Route::get('/equipo',  [EquiposController::class,'index'])->name('equipo')->middleware('auth');
 
 Route::get('/equipo/create',[EquiposController::class,'create'])->name('create')->middleware('auth');
+
+Route::get('/equipo/pdf',  [EquiposController::class,'pdf'])->name('equipo')->middleware('auth');
 
 Route::resource('equipo', EquiposController::class)->middleware('auth');
 
@@ -157,8 +166,15 @@ Route::post('/equipo/marca', [EquiposController::class,'modal'])->middleware('au
 Route::get('/asignar', [AsignarController::class, 'index'])->name('asignar')->middleware('auth');
 Route::get('/asignar/create', [AsignarController::class, 'create'])->name('asignar.create')->middleware('auth');
 Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson'])->name('asignar.updateByPerson')->middleware('auth');
+Route::put('/asignar', [AsignarController::class, 'updatereincorp'])->name('asignar.updatereincorp')->middleware('auth');
+Route::get('/asignar/{asignar}/reincorporar', [AsignarController::class, 'reincorporar'])->name('asignar.reincorporar')->middleware('auth');
 Route::get('/asignar/{asignar}/desincorporar', [AsignarController::class, 'desincorporar'])->name('asignar.desincorporar')->middleware('auth');
+
 Route::resource('asignar', AsignarController::class)->middleware('auth');
+
+Route::get('/desincorporar', [AsignarController::class, 'desincorp'])->name('desincorporar')->middleware('auth');
+
+Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reincorporar')->middleware('auth');
 
 /* Ruta Estadistica */
 

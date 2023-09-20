@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Desincorporar</title>
+<title>@yield('title') Reincorporar</title>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
 
 @section('content')
@@ -11,9 +11,9 @@
                 <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
 
                     <center>
-                        <h3 class="mb-4" style="color: black;">Desincorporar</h3>
+                        <h3 class="mb-4" style="color: black;">Reincorporar</h3>
                     </center>
-                    <form method="post" action="{{ route('asignar.update', ['asignar' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
+                    <form method="post" action="{{ route('asignar.updatereincorp', ['asignar' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
 
 
                         @csrf   
@@ -118,13 +118,8 @@
                             <div class="col-2">
                                 <label for="" style="color: black;">Estatus</label>
                                 <div class="form-check">
-                                    <label class="form-check-label" style="color: black;" for="asignado">Asignado</label>
-                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="asignado" value="Asignado" {{ ($asignacion->estatus=="Asignado")? "checked" : ""}} >
-                                </div>
-
-                                <div class="form-check">
-                                    <label class="form-check-label" style="color: black;" for="desincorporado">Desincorporado</label>
-                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="desincorporado" value="Desincorporado" {{ ($asignacion->estatus=="Desincorporado")? "checked" : ""}} >
+                                    <label class="form-check-label" style="color: black;" for="reincorporar">Reincorporar</label>
+                                    <input class="form-check-input" style="border-color: black;" type="radio" name="estatus" id="reincoporar" value="Reincorporado" {{ ($asignacion->estatus=="Reincorporado")? "checked" : ""}} >
                                 </div>
                            
                                 <textarea class="form-control" name="observacion" placeholder="Observación" id="floatingTextarea" style="height: 220px; width: 270px; display:none;"></textarea>
@@ -138,7 +133,7 @@
                         <br>
                         <center>
                             <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>
-                            <a class="btn btn-primary" style="width: 10%; color: black; background: white;" href="{{ url('deisncorporar/') }}"> Regresar </a>
+                            <a class="btn btn-primary" style="width: 10%; color: black; background: white;" href="{{ url('reincorporar/') }}"> Regresar </a>
                         </center>
 
                     </form>
@@ -156,7 +151,7 @@
                     </script>
 
                     <script>
-                        document.getElementById('desincorporado').onclick = function() {
+                        document.getElementById('reincoporar').onclick = function() {
                         if (this.checked) {
                             document.getElementById('floatingTextarea').style.display = 'block';
                         } else {

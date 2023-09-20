@@ -14,6 +14,7 @@ class DivisionController extends Controller
     {
          $this->middleware('permission:ver-division|crear-division|editar-division|borrar-division', ['only' => ['index']]);
          $this->middleware('permission:crear-division', ['only' => ['create','store']]);
+         $this->middleware('permission:crear-division', ['only' => ['create','store']]);
          $this->middleware('permission:editar-division', ['only' => ['edit','update']]);
          $this->middleware('permission:borrar-division', ['only' => ['destroy']]);
     }
@@ -30,12 +31,12 @@ class DivisionController extends Controller
            return view('division.index',$datos);
     }
 
-    public function pdf()
+    public function archivo()
     {
           $divisions=Division::all();
-          $pdf=Pdf::loadView('division.pdf', compact('divisions'));
+          $pdf=Pdf::loadView('division.archivo', compact('divisions'));
           return $pdf->stream();
-        
+
     }
     /**
      * Show the form for creating a new resource.
