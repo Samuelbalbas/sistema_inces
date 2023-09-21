@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF Persona</title>
+    <link href="../public/img/inces.jpg" rel="icon">
+    <title>PDF Sede</title>
 </head>
 
 {{-- Estilo al PDF --}}
@@ -32,12 +33,13 @@ h1{
 }
 
 .table{
-    font-size: 17.2px;
-    text-align: center;
+    text-align: left;
+    font-size: 22px;
+    width: 95%;
 
 }
 tbody. tr. td{
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 img {
@@ -61,43 +63,28 @@ img {
     <body>
         {{-- <img class="left" src="../public/img/yaracuy.png" alt=""> --}}
         <img src="../public/img/ce.png" alt="">
-        <h1>Listado de la Persona</h1><br>
+        <h1>Listado de la Sede</h1><br>
             <table class="table" >
             <thead class="header">
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Cédula</th>
-                    <th>Id.Usuario</th>
-                    <th>Cargo</th>
-                    <th>Teléfono</th>
-                    <th>Sede</th>
+                    <th>Lugar de la Sede</th>
                     <th>División</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach ($personas as $persona)
+                @foreach ($sedes as $sede)
                 <tr>
-                    <td>{{ $persona->nombre }}</td>
-                    <td>{{ $persona->apellido}}</td>
-                    <td>{{ $persona->cedula }}</td>
-                    <td>{{ $persona->id_usuario}}</td>
-                    <td>{{ $persona->cargo->nombre_cargo }}</td>
-                    <td>{{ $persona->telefono }}</td>
+                    <td>{{ $sede->nombre_sede }}</td>
                     <td>
-                        @foreach($persona->divisionesSedes as $divisionSede)
-                            {{ $loop->first ? '' : ', ' }}
-                            {{ $divisionSede->sede->nombre_sede }}
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach($persona->divisionesSedes as $divisionSede)
-                            {{ $loop->first ? '' : ', ' }}
-                            {{ $divisionSede->division->nombre_division }}
+                        @foreach ($sede->division as $index => $division)
+                            {{ $division->nombre_division }}
+                            @if ($index < count($sede->division) - 1)
+                            ,
+                            @endif
                         @endforeach
                     </td>
                 </tr>
-        @endforeach
+            @endforeach    
             </tbody>
         </table>
     </body>

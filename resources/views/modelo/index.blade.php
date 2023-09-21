@@ -13,9 +13,13 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                
-                <h2 style="color: black; margin-left: 43%;">Modelo</h2>
-                
+                @can('generar-modelo')
+                <a href="{{ url('modelo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+                {{ ('PDF') }}
+                </a>
+                @endcan
+
+                <h2 style="color: black;">Modelo</h2>
                 
                 <form action="{{ url('modelo/create') }}" method="get">
                     <button type="submit" title="Desea Registar un nuevo Modelo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>

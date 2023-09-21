@@ -75,12 +75,15 @@ Route::post('/change/password',  [UserSettingsController::class,'changePassword'
 /* Ruta Sede */
 Route::get('/sede',  [SedeController::class,'index'])->name('sede')->middleware('auth');
 Route::get('/sede/create', [SedeController::class, 'create'])->name('create')->middleware('auth');
+Route::get('/sede/pdf',  [SedeController::class,'pdf'])->name('sede')->middleware('auth');
 Route::resource('sede', SedeController::class)->middleware('auth');
 
 /* Ruta Cargo */
 Route::get('/cargo',  [CargoController::class,'index'])->name('cargo')->middleware('auth');
 
 Route::get('/cargo/create',[CargoController::class,'create'])->name('create')->middleware('auth');
+
+Route::get('/cargo/pdf',  [CargoController::class,'pdf'])->name('cargo')->middleware('auth');
 
 Route::resource('cargo', CargoController::class)->middleware('auth');
 
@@ -100,6 +103,9 @@ Route::get('/marca',  [MarcaController::class,'index'])->name('marca')->middlewa
 
 Route::get('/marca/create',[MarcaController::class,'create'])->name('create')->middleware('auth');
 
+Route::get('/marca/pdf',  [MarcaController::class,'pdf'])->name('marca')->middleware('auth');
+
+
 Route::post('/marca/saveModal', [MarcaController::class, 'saveModal'])->name('marca.saveModal')->middleware('auth');//ruta para procesar la solicitud AJAX
 
 Route::resource('marca', MarcaController::class)->middleware('auth');
@@ -108,6 +114,8 @@ Route::resource('marca', MarcaController::class)->middleware('auth');
 Route::get('/modelo',  [ModeloController::class,'index'])->name('modelo')->middleware('auth');
 
 Route::get('/modelo/create',[ModeloController::class,'create'])->name('create')->middleware('auth');
+
+Route::get('/modelo/pdf',  [MarcaController::class,'pdf'])->name('modelo')->middleware('auth');
 
 Route::post('/modelo/saveModal', [ModeloController::class, 'saveModal'])->name('modelo.saveModal')->middleware('auth');//ruta para procesar la solicitud AJAX
 
@@ -118,6 +126,8 @@ Route::resource('modelo', ModeloController::class)->middleware('auth');
 Route::get('/tipoperiferico',  [TipoPerifericoController::class,'index'])->name('tipoperiferico')->middleware('auth');
 
 Route::get('/tipoperif/create',[TipoPerifericoController::class,'create'])->name('create')->middleware('auth');
+
+Route::get('/tipoperiferico/pdf',  [TipoPerifericoController::class,'pdf'])->name('tipoperiferico')->middleware('auth');
 
 Route::resource('tipoperif', TipoPerifericoController::class)->middleware('auth');
 
@@ -178,7 +188,7 @@ Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reinc
 
 /* Ruta Estadistica */
 
-Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
+Route::get('/estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
 
 /* Route::get('/desincorporar', function () {
     return view('desincorporar.index');

@@ -19,7 +19,7 @@
                 </a>
                 @endcan
                 
-                <h2 style="color: black;  margin-left: 43%;">Persona</h2>
+                <h2 style="color: black;">Persona</h2>
                 
                 @can('crear-persona')
                     <form action="{{ url('persona/create') }}" method="get">

@@ -52,7 +52,7 @@
                                     <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/reincorporar') }}" method="GET" class="" style="display:inline;">
                                         {{-- @csrf --}}
                                         
-                                        <button class="btn btn-danger" title="Desea Desiconpoarar" type="submit" value=""><i class="bi bi-box-arrow-left"></i></button>
+                                        <button class="btn btn-danger" title="Desea Desiconpoarar" type="submit" value="" style="margin-left: 34%;"><i class="bi bi-box-arrow-left"></i></button>
                                         <br>
                                         {{-- <button type="button" style="margin-left: 23%; margin-top:4%;" id='BtnSelector' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Ver Detalle

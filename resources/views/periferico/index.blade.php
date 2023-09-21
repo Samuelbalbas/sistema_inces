@@ -19,7 +19,7 @@
             </a>
             @endcan
                 
-                <h2 style="color: black;  margin-left: 43%;">Periférico</h2>
+                <h2 style="color: black;">Periférico</h2>
                 
                 @can('crear-periferico')
                     <form action="{{ url('periferico/create') }}" method="get">

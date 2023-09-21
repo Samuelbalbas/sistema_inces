@@ -100,12 +100,13 @@
                                 <a href="{{ url('sistema') }}" class="dropdown-item">Sistemas Operativos</a>
                             @endcan
 
-                            @can('ver-equipo')
-                                <a href="{{ url('equipo') }}" class="dropdown-item">Equipos Informáticos</a>
+                            {{-- @can('ver-equipo')
+                                <a href="{{ url('equipo') }}" class="dropdown-item">Incorporar</a>
                             @endcan
-                                                        
+                                                         --}}
                         </div>
                     </div>
+                    <a href="{{ url('equipo') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-right"></i>  Incorporar</a>
                     <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-right"></i>   Asignar</a>
                     <a href="{{ url('reincorporar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-left"></i>  Reincorporar</a>
                     <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-left"></i>  Desincorporar</a>

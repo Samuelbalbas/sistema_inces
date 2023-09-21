@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Modelo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ModeloController extends Controller
 {
@@ -26,6 +27,14 @@ class ModeloController extends Controller
         //Cambiar numero 5 para aumentar los registros que muestra el catalogo
         $datos['modelos']=modelo::all();
         return view('modelo.index',$datos);
+    }
+
+    public function pdf()
+    {
+          $moledos=Modelo::all();
+          $pdf=Pdf::loadView('modelo.pdf', compact('modelos'));
+          return $pdf->stream();
+
     }
 
     /**

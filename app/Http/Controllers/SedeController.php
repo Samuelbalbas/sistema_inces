@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
 use App\Models\DivisionSede;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 // use Illuminate\Pagination\LengthAwarePaginator;
 
 class SedeController extends Controller
@@ -29,6 +30,14 @@ class SedeController extends Controller
     {
         $sedes = Sede::with('division')->get(); // Cargar la relación con "division"
         return view('sede.index', compact('sedes'));
+    }
+
+    public function pdf()
+    {
+          $sedes=Sede::all();
+          $pdf=Pdf::loadView('sede.pdf', compact('sedes'));
+          return $pdf->stream();
+
     }
 
     /**

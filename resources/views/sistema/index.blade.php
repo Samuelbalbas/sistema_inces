@@ -19,7 +19,7 @@
             </a>
             @endcan
 
-                <h2 style="color: black; margin-left: 40%;"> Sistemas Operativos</h2>
+                <h2 style="color: black;"> Sistemas Operativos</h2>
                
                 @can('crear-sistema')
                     <form action="{{ url('sistema/create') }}" method="get">

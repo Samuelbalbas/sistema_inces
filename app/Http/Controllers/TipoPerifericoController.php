@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\TipoPeriferico;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class TipoPerifericoController extends Controller
 {
     function __construct()
@@ -26,6 +28,14 @@ class TipoPerifericoController extends Controller
         //Traigo todos los registros de la tabla de tipo SO.
         $datos['tipo_perifericos']=TipoPeriferico::all();
         return view('tipoperiferico.index',$datos);
+    }
+
+    public function pdf()
+    {
+          $tipo_perifericos=TipoPeriferico::all();
+          $pdf=Pdf::loadView('tipoperiferico.pdf', compact('tipo_perifericos'));
+          return $pdf->stream();
+
     }
 
     /**

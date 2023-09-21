@@ -18,7 +18,13 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 40%;">Tipos de Periféricos</h2>
+            @can('generar-tipoferif')
+            <a href="{{ url('tipoperiferico/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
+            @endcan
+
+                <h2 style="color: black;">Tipos de Periféricos</h2>
                 
                 @can('crear-tipoperif')
                     <form action="{{ url('tipoperif/create') }}" method="get">

@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Equipos</title>
+<title>@yield('title') Incorporar Equipos</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -19,7 +19,7 @@
             </a>
             @endcan
 
-                <h2 style="color: black;  margin-left: 44%;">Equipo</h2>
+                <h2 style="color: black;">Equipo</h2>
                 
                 @can('crear-equipo')
                     <form action="{{ url('equipo/create') }}" method="get">

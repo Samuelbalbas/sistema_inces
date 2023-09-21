@@ -13,7 +13,13 @@
         <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 43%;">Cargo</h2>
+                @can('generar-cargo')
+                <a href="{{ url('cargo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+                {{ ('PDF') }}
+                </a>
+                @endcan
+
+                <h2 style="color: black;">Cargo</h2>
                 
                 @can('crear-cargo')
                     <form action="{{ url('cargo/create') }}" method="get">

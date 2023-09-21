@@ -6,6 +6,8 @@ use App\Models\Marca;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class MarcaController extends Controller
 {
@@ -27,6 +29,14 @@ class MarcaController extends Controller
         //Cambiar numero 5 para aumentar los registros que muestra el catalogo
         $datos['marcas']=marca::all();
         return view('marca.index',$datos);
+    }
+
+    public function pdf()
+    {
+          $marcas=Marca::all();
+          $pdf=Pdf::loadView('marca.pdf', compact('marcas'));
+          return $pdf->stream();
+
     }
 
     /**

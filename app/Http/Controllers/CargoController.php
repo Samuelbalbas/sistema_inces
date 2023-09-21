@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CargoController extends Controller
 {
@@ -29,6 +30,13 @@ class CargoController extends Controller
          //Cambiar numero 5 para aumentar los registros que muestra el catalogo
          $datos['cargos']=cargo::all();
          return view('cargo.index',$datos);
+    }
+    public function pdf()
+    {
+          $cargos=Cargo::all();
+          $pdf=Pdf::loadView('cargo.pdf', compact('cargos'));
+          return $pdf->stream();
+
     }
 
     public function create()

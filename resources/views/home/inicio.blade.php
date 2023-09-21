@@ -14,38 +14,38 @@
                 <div class="container-fluid pt-4 px-4">
                     <div class="row">
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">SEDE</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">División</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-area fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Cargo</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Persona</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
@@ -55,38 +55,38 @@
                 <div class="container-fluid pt-4 px-4">
                     <div class="row">
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Marca</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Modelo</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-area fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Tipos de Periférico</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
                                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Periférico</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                 <div class="container-fluid pt-4 px-4">
                     <div class="row">
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 1px solid black;">
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Sistemas Operativos</p>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
                                 <i class="fa fa-chart-bar fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Informáticos</p>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
                                 <i class="fa fa-chart-area fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equpios Asignados</p>
@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
                                 <i class="fa fa-chart-pie fa-3x text-primary"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Reincorporados</p>
