@@ -23,6 +23,7 @@ use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\TipoPerifericoController;
 use App\Http\Controllers\EstadisticaController;
+use App\Http\Controllers\ReporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +180,10 @@ Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reinc
 /* Ruta Estadistica */
 
 Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
+
+/* Ruta reportes */
+Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
+Route::get('/reportes/pdf',  [ReporteController::class,'pdf'])->name('reportes.pdf')->middleware('auth');
 
 /* Route::get('/desincorporar', function () {
     return view('desincorporar.index');

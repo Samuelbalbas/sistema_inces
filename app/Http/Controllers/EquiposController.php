@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\equipos;
+use App\Models\Equipos;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
