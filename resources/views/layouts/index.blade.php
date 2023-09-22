@@ -107,8 +107,8 @@
                         </div>
                     </div>
                     <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-arrow-right-circle"></i>   Asignar</a>
-                    <a href="{{ url('reincorporar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-left"></i>  Reincorporar</a>
-                    <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-box-arrow-left"></i>  Desincorporar</a>
+                    <a href="{{ url('reincorporar') }}" class="nav-item nav-link"><i class="bi bi-arrow-repeat"></i> Reincorporar</a>
+                    <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-arrow-left-circle"></i>  Desincorporar</a>
                     <a href= "{{ url('inventario') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
                     <a href="{{ url('estadistica') }}" class="nav-item nav-link"><i class="bi bi-bar-chart-line"></i>  Estadística</a>
                     <a href="{{ url('reportes') }}" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>

@@ -11,120 +11,114 @@
           <!-- Recent Sales Start -->
 
            @include('partials.messages')
-                <div class="container-fluid pt-4 px-4">
+                <div class="container-fluid pt-1 px-4">
                     <div class="row">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 2px solid black;">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 3px solid black;">
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">SEDE</p>
+                                    <p class="mb-2">Sede</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-building fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">División</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-briefcase fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Cargo</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-users fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Persona</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-university fa-3x text-dark"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-star fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Marca</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Modelo</p>
-                                    <h6 class="mb-0">$2234</h6>
-                                </div>
+                        <div class="col-sm-6 col-xl-2">
+                        <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                            <i class="fa fa-tags fa-3x text-dark"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Modelo</p>
+                                <h6 class="mb-0">$2234</h6>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                    </div>
+                </div>
+
+                <div class="container-fluid pt-1 px-0">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-cogs fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Tipos de Periférico</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 2px solid black;">
-                                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-cog fa-3x text-dark"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Periférico</p>
+                                    <p class="mb-2">         Periférico</p>
                                     <h6 class="mb-0">$2234</h6>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 1px solid black;">
-                                <i class="fa fa-university fa-3x text-dark"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background:  rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-code fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Sistemas Operativos</p>
                                     <h6 class="mb-0">$1234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-desktop fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Informáticos</p>
                                     <h6 class="mb-0">$1234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
-                                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-share fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equpios Asignados</p>
                                     <h6 class="mb-0">$1234</h6>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 1px solid black;">
-                                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-random fa-2x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Reincorporados</p>
                                     <h6 class="mb-0">$1234</h6>
@@ -134,29 +128,43 @@
                     </div>
                 </div>
 
+                <div class="container-fluid pt-1 px-0">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
+                                <i class="fa fa-reply fa-2x text-dark"></i>
+                                <div class="ms-3">
+                                    <p class="mb-2">Equipos Desincorporados</p>
+                                    <h6 class="mb-0">$1234</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                       
+                    
             {{-- Catalogo para la Estadistíca  --}}
-                {{-- <div class="container-fluid pt-4 px-4">
+                <div class="container-fluid pt-3 px-4">
                     <div class="row g-4">
                         <div class="col-sm-12 col-xl-6">
-                            <div class="bg-secondary text-center rounded p-4">
+                            <div class="text-center rounded p-4" style=" background: linear-gradient(to bottom right, blue, pink);">
                                 <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">Worldwide Sales</h6>
-                                    <a href="">Show All</a>
+                                    <h6 class="mb-0">Grafico</h6>  
                                 </div>
                                 <canvas id="worldwide-sales"></canvas>
                             </div>
                         </div>
                         <div class="col-sm-12 col-xl-6">
-                            <div class="bg-secondary text-center rounded p-4">
+                            <div class="text-center rounded p-4" style=" background: linear-gradient(to bottom right, blue, pink);">
                                 <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">Salse & Revenue</h6>
-                                    <a href="">Show All</a>
+                                    <h6 class="mb-0">Control</h6>
                                 </div>
                                 <canvas id="salse-revenue"></canvas>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
             {{-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
