@@ -49,20 +49,20 @@ img {
   height: 22%;
 }
 
-/* .left{
-  width: 10%;
-  height: 5%;
+.left{
+  width: 17%;
+  height: 15%;
   margin-left: 1%;
-  border: 2px solid black;
   border-radius: 8% 
-} */
+}
 
 </style>
 {{-- Estilo al PDF --}}
 
 {{-- Index del PDF --}}
     <body>
-        {{-- <img class="left" src="../public/img/yaracuy.png" alt=""> --}}
+        <img class="left" src="../public/img/logo_pdf.jpg" alt="">
+        <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado de la Marca</h1><br>
             <table class="table" >
