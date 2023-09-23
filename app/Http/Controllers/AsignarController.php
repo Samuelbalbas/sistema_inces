@@ -29,6 +29,18 @@ class AsignarController extends Controller
         return view('asignar.index', compact('asignacionesAgrupadas'));
     }
 
+    public function estatus()
+    {
+        $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
+    
+        $asignacionesAgrupadas = $asignaciones->groupBy(function($asignacion) {
+            // Agrupa por la identificación de la persona y del equipo.
+            return $asignacion->id_persona . '-' . $asignacion->id_equipo;
+        });
+    
+        return view('inventario.estatus', compact('asignacionesAgrupadas'));
+    }
+
     public function desincorp()
     {
         $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();

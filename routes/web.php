@@ -23,6 +23,7 @@ use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\TipoPerifericoController;
 use App\Http\Controllers\EstadisticaController;
+use App\Models\Asignar;
 
 /*
 |--------------------------------------------------------------------------
@@ -190,6 +191,6 @@ Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reinc
 
 Route::get('/estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
 
-/* Route::get('/desincorporar', function () {
-    return view('desincorporar.index');
-})->name('desincorporar'); */
+/* Ruta Inventario*/
+Route::get('/inventario',  [EquiposController::class,'indexinvent'])->name('equipo')->middleware('auth');
+Route::get('/inventario/estatus',  [AsignarController::class,'estatus'])->name('estatus')->middleware('auth');

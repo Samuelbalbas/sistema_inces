@@ -33,6 +33,14 @@ class EquiposController extends Controller
 
     }
 
+    public function indexinvent()
+    {
+        $equipos = Equipos::with('marca')->get(); // Cargar la relación con "marca"
+        $equipos = Equipos::with('modelo')->get(); // Cargar la relación con "modelo"
+        return view('inventario.index', compact('equipos'));
+
+    }
+
     public function pdf()
     {
           $equipos=Equipos::all();
