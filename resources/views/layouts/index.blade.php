@@ -207,6 +207,8 @@
     @yield('js-datatable')
 
     @yield('sweetalert')
+
+    @yield('scripts')
     
 @endauth
 

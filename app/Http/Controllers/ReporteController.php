@@ -32,6 +32,14 @@ class ReporteController extends Controller
              ->whereNotNull('asignar.id_equipo');
         }
 
+        if ($divisionId) {
+            $equipos = $equipos
+             ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
+             ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+             ->where('division_sede.id_division', $divisionId)
+             ->whereNotNull('asignar.id_equipo');
+        }
+
         $equipos = $equipos->get(); //dd($equipos);
 
         $personas = Persona::all();
@@ -41,13 +49,52 @@ class ReporteController extends Controller
         return view('reporte.index', compact('equipos','divisions','sedes','personas','personId','sedeId','divisionId','estatus'));
     }
 
-    public function pdf(Request $request)
+    public function reportesPdf(Request $request)
     {
-          $filter = $request->filter;
-          $equipos=Equipos::all();
-          $pdf=Pdf::loadView('equipo.pdf', compact('equipos'))->setPaper('a4', 'landscape');
+          $equipos=$this->getEquipos($request);
+          $pdf=Pdf::loadView('reporte.equipo.pdf', compact('equipos'))->setPaper('a4', 'portrait'); //portrait,landscape
           return $pdf->stream();
 
+    }
+
+    public function getEquipos(Request $request)
+    {
+        $personId = (!empty($request->personId)) ? $request->personId : null ;
+        $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
+        $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
+        $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
+
+        $equipos = Equipos::select('equipos.*')
+            ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+            ->leftjoin('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
+            ->leftjoin('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id');        
+
+        if ($sedeId) {
+            $equipos = $equipos
+             ->where('persona_division_sede.id_persona', $personaId);
+        }
+
+        if ($sedeId) {
+          $equipos = $equipos
+             ->where('division_sede.id_sede', $sedeId)
+             ->whereNotNull('persona_division_sede.id_persona')
+             ->whereNotNull('division_sede.id')
+             ->whereNotNull('asignar.id_equipo');
+        }
+
+        if ($divisionId) {
+            $equipos = $equipos
+             ->where('division_sede.id_division', $divisionId)
+             ->whereNotNull('persona_division_sede.id_persona')
+             ->whereNotNull('division_sede.id')
+             ->whereNotNull('asignar.id_equipo');
+        }
+
+        $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
+
+        $equipos = $equipos->get();
+
+        return $equipos;
     }
 
 }

@@ -183,7 +183,7 @@ Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadi
 
 /* Ruta reportes */
 Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
-Route::get('/reportes/pdf',  [ReporteController::class,'pdf'])->name('reportes.pdf')->middleware('auth');
+Route::get('/reportes/pdf',  [ReporteController::class,'reportesPdf'])->name('reportes.pdf')->middleware('auth');
 
 /* Route::get('/desincorporar', function () {
     return view('desincorporar.index');

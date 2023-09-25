@@ -27,7 +27,7 @@
                 <form action="{{route('reportes')}}" method="GET">
                     <div class="input-group mb-3">
                       {{-- <div for="filter" class="form-label">Persona</div> --}}
-                    <select class="form-select" id="persona" name="personId">
+                    <select class="form-select" id="personId" name="personId">
                         <option value>Seleccione una Persona</option>
                         @foreach($personas as $persona)
                             <option value="{{ $persona->id }}" {{ ($persona->id==$personId) ? 'selected' : null}}>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
@@ -40,23 +40,23 @@
                         <option value="Desincorporado" {{ ($estatus=="Desincorporado") ? 'selected' : null}}>Desincorporado</option>
                     </select>
 
-                    <select class="form-select" id="sede" name="sedeId">
+                    <select class="form-select" id="sedeId" name="sedeId">
                         <option value>Seleccione una Sede</option>
                         @foreach($sedes as $sede)
                             <option value="{{ $sede->id }}" {{ ($sede->id==$sedeId) ? 'selected' : null}}>{{ $sede->nombre_sede }}</option>
                         @endforeach
                     </select>
                     
-                    <select class="form-select" id="division" name="divisionId">
+                    <select class="form-select" id="divisionId" name="divisionId">
                         <option value>Seleccione una División</option>
                         @foreach($divisions as $division)
-                            <option value="{{ $division->id }}" {{ ($persona->id==$divisionId) ? 'selected' : null}}>{{ $division->nombre_division }}</option>
+                            <option value="{{ $division->id }}" {{ ($division->id==$divisionId) ? 'selected' : null}}>{{ $division->nombre_division }}</option>
                         @endforeach
                     </select>
                     
                       <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
                       @can('generar-equipo')
-                        <a href="{{ url('reportes/pdf') }}" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
+                        <a href="{{ url('reportes/pdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
                       @endcan
                       <a href="{{ route('reportes') }}" class="btn btn-sm btn-dark">{{ ('Reset') }}</a>
                     </div>
@@ -118,7 +118,31 @@
         var errorMessage = @json($errors->first());
         alert(errorMessage);
     </script>
-@endif      
+@endif
+
+
+
+sedeId
+divisionId
+
+    @section('scripts')
+        @parent
+        <script>
+            $(document).ready(function() {
+                $('#btn_toprint').click(function (e) {
+                    e.preventDefault();
+                    var personId = $('#personId').val();
+                    var sedeId = $('#sedeId').val();
+                    var divisionId = $('#divisionId').val();
+                    var estatus = $('#estatus').val();
+                    var url = '{{ route("reportes.pdf") }}?personId=_pid_&sedeId=_sid_&divisionId=_did_&estatus=_eid_';
+                    url = url.replace('_pid_', personId); url = url.replace('_sid_', sedeId); url = url.replace('_did_', divisionId);url = url.replace('_eid_', estatus);
+                    window.open(url,'_blank');
+                });
+            });
+        </script>
+    @endsection
+
     @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
@@ -205,3 +229,4 @@
             </script>
     
 @endsection
+
