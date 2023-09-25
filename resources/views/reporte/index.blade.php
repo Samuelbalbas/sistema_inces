@@ -27,24 +27,33 @@
                 <form action="{{route('reportes')}}" method="GET">
                     <div class="input-group mb-3">
                       {{-- <div for="filter" class="form-label">Persona</div> --}}
-                    <select class="form-select" id="persona" name="id_persona">
-                        <option value="0">Seleccione una Persona</option>
+                    <select class="form-select" id="persona" name="personId">
+                        <option value>Seleccione una Persona</option>
                         @foreach($personas as $persona)
                             <option value="{{ $persona->id }}" {{ ($persona->id==$personId) ? 'selected' : null}}>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
                         @endforeach
                     </select>
-                    <select class="form-select" id="division" name="id_division">
-                        <option value="0">Seleccione una División</option>
-                        @foreach($divisions as $division)
-                            <option value="{{ $division->id }}" {{ ($persona->id==$personId) ? 'selected' : null}}>{{ $division->nombre_division }}</option>
-                        @endforeach
+
+                    <select class="form-select" id="estatus" name="estatus">
+                        <option value>Seleccione un Estado</option>
+                        <option value="Asignado" {{ ($estatus=="Asignado") ? 'selected' : null}}>Incorporado</option>
+                        <option value="Desincorporado" {{ ($estatus=="Desincorporado") ? 'selected' : null}}>Desincorporado</option>
                     </select>
-                    <select class="form-select" id="sede" name="id_sede">
-                        <option value="0">Seleccione una Sede</option>
+
+                    <select class="form-select" id="sede" name="sedeId">
+                        <option value>Seleccione una Sede</option>
                         @foreach($sedes as $sede)
                             <option value="{{ $sede->id }}" {{ ($sede->id==$sedeId) ? 'selected' : null}}>{{ $sede->nombre_sede }}</option>
                         @endforeach
                     </select>
+                    
+                    <select class="form-select" id="division" name="divisionId">
+                        <option value>Seleccione una División</option>
+                        @foreach($divisions as $division)
+                            <option value="{{ $division->id }}" {{ ($persona->id==$divisionId) ? 'selected' : null}}>{{ $division->nombre_division }}</option>
+                        @endforeach
+                    </select>
+                    
                       <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
                       @can('generar-equipo')
                         <a href="{{ url('reportes/pdf') }}" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
@@ -66,7 +75,7 @@
                             <th  style="color: black;">Memoria Ram(Gb)</th>
                             <th  style="color: black;">Disco Duro(Gb)</th>
                             <th  style="color: black;">Tipo S.O.</th>
-                            <th class="col-2" style="color: black; width: 107px;"><center>Acciones</center></th>
+                            {{-- <th class="col-2" style="color: black; width: 107px;"><center>Acciones</center></th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -84,7 +93,7 @@
                                     <td style="color: black;">{{ $equipo->disco}}</td>
                                     <td style="color: black;">{{ $equipo->sistema->nombre}}</td>
 
-                                    <td> 
+                                    {{-- <td> 
                                         @can('editar-equipo')
                                             <a class="btn btn-warning" title="Desea Editar el Equipo" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
@@ -96,7 +105,7 @@
                                                 <button class="btn btn-danger" title="Desea Eliminar el Equipo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form>
                                         @endcan 
-                                    </td>
+                                    </td> --}}
                                 </tr>
                         @endforeach
                     </tbody>

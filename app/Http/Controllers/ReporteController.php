@@ -12,21 +12,24 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ReporteController extends Controller
 {
     public function index(Request $request)
-    {
-    	  $personId = $request->id_persona; //id_persona,id_sede,id_division
-        $sedeId = $request->id_sede; //id_persona,id_sede,id_division
-        $id_division = $request->id_division; //id_persona,id_sede,id_division
+    {       
+        $personId = (!empty($request->personId)) ? $request->personId : null ;
+        $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
+        $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
+        $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
 
-        $equipos = Equipos::select('equipos.*');
+        $equipos = Equipos::select('equipos.*')->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo');
+
+        $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
 
         $equipos = ($personId) ? $equipos->whereHas('asignars', function ($query) use ($personId) { $query->where('id_persona', $personId); }) : $equipos ;
-        //$equipos = ($sedeId) ? $equipos->whereHas('divisionesSedes', function ($query) use ($sedeId) { $query->where('id_sede', $sedeId);}) : $equipos ;
 
         if ($sedeId) {
-          $equipos = $equipos->join('asignar', 'equipos.id', '=', 'asignar.id_equipo')  
+          $equipos = $equipos
              ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
              ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
-             ->where('division_sede.id_sede', $sedeId);
+             ->where('division_sede.id_sede', $sedeId)
+             ->whereNotNull('asignar.id_equipo');
         }
 
         $equipos = $equipos->get(); //dd($equipos);
@@ -35,7 +38,7 @@ class ReporteController extends Controller
         $divisions = Division::all();
         $sedes = Sede::all();
 
-        return view('reporte.index', compact('equipos','divisions','sedes','personas','personId','sedeId'));
+        return view('reporte.index', compact('equipos','divisions','sedes','personas','personId','sedeId','divisionId','estatus'));
     }
 
     public function pdf(Request $request)
