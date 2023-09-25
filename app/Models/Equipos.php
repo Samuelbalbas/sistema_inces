@@ -25,4 +25,8 @@ class Equipos extends Model
     {
         return $this->belongsTo(Sistema::class, 'id_so');
     }
+    public function asignars()
+    {
+        return $this->hasMany(Asignar::class, 'id_equipo');
+    }
 }

@@ -24,19 +24,34 @@
             </div>
             <div class="">
 
-                <div class="input-group mb-3">
-                  <select name="filter" class="form-select" id="inputGroupSelect02">
-                    <option selected>Seleccione</option>
-                  <option value="1">Incorporado</option>
-                  <option value="2">Reincorporado</option>
-                  </select>
-                  <button class="btn btn-outline-secondary" type="button">Filtrar</button>
-                  @can('generar-equipo')
-                    <a href="{{ url('reportes/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
-                    {{ ('PDF') }}
-                    </a>
-                  @endcan
-                </div>
+                <form action="{{route('reportes')}}" method="GET">
+                    <div class="input-group mb-3">
+                      {{-- <div for="filter" class="form-label">Persona</div> --}}
+                    <select class="form-select" id="persona" name="id_persona">
+                        <option value="0">Seleccione una Persona</option>
+                        @foreach($personas as $persona)
+                            <option value="{{ $persona->id }}" {{ ($persona->id==$personId) ? 'selected' : null}}>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
+                        @endforeach
+                    </select>
+                    <select class="form-select" id="division" name="id_division">
+                        <option value="0">Seleccione una División</option>
+                        @foreach($divisions as $division)
+                            <option value="{{ $division->id }}" {{ ($persona->id==$personId) ? 'selected' : null}}>{{ $division->nombre_division }}</option>
+                        @endforeach
+                    </select>
+                    <select class="form-select" id="sede" name="id_sede">
+                        <option value="0">Seleccione una Sede</option>
+                        @foreach($sedes as $sede)
+                            <option value="{{ $sede->id }}" {{ ($sede->id==$sedeId) ? 'selected' : null}}>{{ $sede->nombre_sede }}</option>
+                        @endforeach
+                    </select>
+                      <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+                      @can('generar-equipo')
+                        <a href="{{ url('reportes/pdf') }}" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
+                      @endcan
+                      <a href="{{ route('reportes') }}" class="btn btn-sm btn-dark">{{ ('Reset') }}</a>
+                    </div>
+                </form>
 
                 <hr>
                 <table id="equipos" class="table text-start align-middle table-bordered table-hover mb-0">

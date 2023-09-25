@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\perifericos;
+use App\Models\Perifericos;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
@@ -82,7 +82,7 @@ class PerifericosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function show(perifericos $perifericos)
@@ -93,7 +93,7 @@ class PerifericosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -110,7 +110,7 @@ class PerifericosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, perifericos $perifericos, $id)
@@ -143,7 +143,7 @@ class PerifericosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function destroy(perifericos $perifericos, $id)

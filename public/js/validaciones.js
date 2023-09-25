@@ -826,7 +826,7 @@ function persona(obj) {
     }
     if (cedula.length < 7){
         Swal.fire({
-            title: 'Persona',
+            title: 'CI Persona',
             text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
