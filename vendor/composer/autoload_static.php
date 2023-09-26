@@ -646,6 +646,7 @@ class ComposerStaticInit3c912e9742101e8bbc559255f4dd3d0e
         'App\\Http\\Requests\\RegisterRequest' => __DIR__ . '/../..' . '/app/Http/Requests/RegisterRequest.php',
         'App\\Imports\\NominasImport' => __DIR__ . '/../..' . '/app/Imports/NominasImport.php',
         'App\\Models\\Asignar' => __DIR__ . '/../..' . '/app/Models/Asignar.php',
+        'App\\Models\\Bitacora' => __DIR__ . '/../..' . '/app/Models/Bitacora.php',
         'App\\Models\\Cargo' => __DIR__ . '/../..' . '/app/Models/Cargo.php',
         'App\\Models\\Division' => __DIR__ . '/../..' . '/app/Models/Division.php',
         'App\\Models\\DivisionSede' => __DIR__ . '/../..' . '/app/Models/DivisionSede.php',

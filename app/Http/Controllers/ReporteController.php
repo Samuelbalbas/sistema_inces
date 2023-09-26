@@ -7,10 +7,17 @@ use App\Models\Equipos;
 use App\Models\Persona;
 use App\Models\Division;
 use App\Models\Sede;
+use App\Models\Bitacora;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteController extends Controller
 {
+    public function bitacora()
+    { 
+        $bitacora = Bitacora::all();
+        return view('reporte.bitacora', compact('bitacora'));
+    }
+
     public function index(Request $request)
     {       
         $personId = (!empty($request->personId)) ? $request->personId : null ;

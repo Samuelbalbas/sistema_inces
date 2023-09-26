@@ -36,7 +36,8 @@
 
                     <select class="form-select" id="estatus" name="estatus">
                         <option value>Seleccione un Estado</option>
-                        <option value="Asignado" {{ ($estatus=="Asignado") ? 'selected' : null}}>Incorporado</option>
+                        <option value="Asignado" {{ ($estatus=="Asignado") ? 'selected' : null}}>Asignado</option>
+                        {{-- <option value="Asignado" {{ ($estatus=="Asignado") ? 'selected' : null}}>Incorporado</option> --}}
                         <option value="Desincorporado" {{ ($estatus=="Desincorporado") ? 'selected' : null}}>Desincorporado</option>
                     </select>
 
@@ -66,6 +67,7 @@
                 <table id="equipos" class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-white">
+                            <th>N</th>
                             <th  style="color: black;">Marca</th>
                             <th  style="color: black;">Modelo</th>
                             <th  style="color: black;">Serial</th>
@@ -82,7 +84,7 @@
 
                         @foreach ($equipos as $equipo)
                                 <tr>
-                                    <!-- <td style="color: black;">{{ $equipo->id}}</td> -->
+                                    <td>{{ $loop->iteration }}</td>
                                     <td style="color: black;">{{ $equipo->marca->nombre_marca }}</td>
                                     <td style="color: black;">{{ $equipo->modelo->nombre_modelo }}</td>
                                     <td style="color: black;">{{ $equipo->serial}}</td>

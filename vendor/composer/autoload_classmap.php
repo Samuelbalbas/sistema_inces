@@ -44,6 +44,7 @@ return array(
     'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Imports\\NominasImport' => $baseDir . '/app/Imports/NominasImport.php',
     'App\\Models\\Asignar' => $baseDir . '/app/Models/Asignar.php',
+    'App\\Models\\Bitacora' => $baseDir . '/app/Models/Bitacora.php',
     'App\\Models\\Cargo' => $baseDir . '/app/Models/Cargo.php',
     'App\\Models\\Division' => $baseDir . '/app/Models/Division.php',
     'App\\Models\\DivisionSede' => $baseDir . '/app/Models/DivisionSede.php',
