@@ -128,7 +128,7 @@ Route::get('/tipoperiferico',  [TipoPerifericoController::class,'index'])->name(
 
 Route::get('/tipoperif/create',[TipoPerifericoController::class,'create'])->name('create')->middleware('auth');
 
-Route::get('/tipoperiferico/pdf',  [TipoPerifericoController::class,'pdf'])->name('tipoperiferico')->middleware('auth');
+Route::get('/tipoperif/pdf',  [TipoPerifericoController::class,'pdf'])->name('tipoperiferico')->middleware('auth');
 
 Route::resource('tipoperif', TipoPerifericoController::class)->middleware('auth');
 
