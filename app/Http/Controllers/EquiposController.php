@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\equipos;
+use App\Models\Equipos;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
@@ -158,10 +158,14 @@ class EquiposController extends Controller
         );
         // Excluir el campo "tipo" al actualizar los datos del equipo con los datos del formulario
         $data = $request->except(['_token', '_method', 'id', 'tipo']);
-        Equipos::where('id', $id)->update($data);
+
+        $equipo = Equipos::findOrFail($id);
+        $equipo->fill($data);
+        $equipo->save();
+        // Equipos::where('id', $id)->update($data);
     
         // Obtén el equipo actualizado
-        $equipo = Equipos::findOrFail($id);
+        // $equipo = Equipos::findOrFail($id);
     
         // Obtén la lista de las marcas, modelos y sistemas
         $marcas = Marca::all();

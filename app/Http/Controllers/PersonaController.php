@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\persona;
+use App\Models\Persona;
 use Illuminate\Http\Request;
-use App\Models\cargo;
+use App\Models\Cargo;
 use App\Models\Division;
 use App\Models\DivisionSede;
 use App\Models\Sede;

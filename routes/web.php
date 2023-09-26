@@ -24,7 +24,7 @@ use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\TipoPerifericoController;
 use App\Http\Controllers\EstadisticaController;
 use App\Models\Asignar;
-
+use App\Http\Controllers\ReporteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -191,6 +191,16 @@ Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reinc
 
 Route::get('/estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
 
+/* Ruta reportes */
+Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
+Route::get('/reportes/pdf',  [ReporteController::class,'reportesPdf'])->name('reportes.pdf')->middleware('auth');
+
+Route::get('bitacora', [ReporteController::class, 'bitacora'])->name('bitacora')->middleware('auth');
+
 /* Ruta Inventario*/
 Route::get('/inventario',  [EquiposController::class,'indexinvent'])->name('equipo')->middleware('auth');
 Route::get('/inventario/estatus',  [AsignarController::class,'estatus'])->name('estatus')->middleware('auth');
+
+/* Route::get('/desincorporar', function () {
+    return view('desincorporar.index');
+})->name('desincorporar'); */

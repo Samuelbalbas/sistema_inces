@@ -23,8 +23,9 @@ class Persona extends Model
     public function divisionesSedes()
     {
         return $this->belongsToMany(DivisionSede::class, 'persona_division_sede', 'id_persona', 'id_division_sede');
-            
-            
     }
+    public function asignaciones() {
+        return $this->hasMany(Asignar::class,'id_persona');
+    } 
 }
 

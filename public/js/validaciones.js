@@ -826,7 +826,7 @@ function persona(obj) {
     }
     if (cedula.length < 7){
         Swal.fire({
-            title: 'Persona',
+            title: 'CI Persona',
             text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
@@ -982,8 +982,8 @@ function persona(obj) {
     }
     if (telefono.length < 11){
         Swal.fire({
-            title: 'Persona',
-            text: "Faltan dígitos en este campo de numero.",
+            title: 'Teléfono de la Persona',
+            text: "Faltan dígitos en este campo de numero. Mínimo 11",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -1981,7 +1981,7 @@ function Equipo(obj) {
     }
     if (velocidad.length < 2 ){
         Swal.fire({
-            title: 'Equipo',
+            title: 'Velocidad',
             text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
@@ -2050,7 +2050,7 @@ function Equipo(obj) {
     }
     if (ram.length < 1){
         Swal.fire({
-            title: 'Equipo',
+            title: 'RAM',
             text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',
@@ -2119,7 +2119,7 @@ function Equipo(obj) {
     }
     if (disco.length < 2){
         Swal.fire({
-            title: 'Equipo',
+            title: 'Disco',
             text: "Faltan dígitos en este campo de numero.",
             icon: 'warning',
             confirmButtonColor: '#3085d6',

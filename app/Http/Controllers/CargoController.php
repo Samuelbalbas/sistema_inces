@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargo;
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -28,7 +28,7 @@ class CargoController extends Controller
     {
         //
          //Cambiar numero 5 para aumentar los registros que muestra el catalogo
-         $datos['cargos']=cargo::all();
+         $datos['cargos']=Cargo::all();
          return view('cargo.index',$datos);
     }
     public function pdf()
@@ -54,7 +54,7 @@ class CargoController extends Controller
     {
         //
         $datosCargo = request()->except('_token');
-        cargo::create($datosCargo);
+        Cargo::create($datosCargo);
 
         return redirect ('cargo');
 
