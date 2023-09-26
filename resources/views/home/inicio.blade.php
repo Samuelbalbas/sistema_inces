@@ -12,7 +12,7 @@
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Sede</p>
-                                    <h6 class="mb-0"></h6>
+                                    <h4 class="mb-0" style="color: black"></h4>
                                 </div>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                                 <i class="fa fa-building fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">División</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0" style="color: black"></h4>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                 <i class="fa fa-briefcase fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Cargo</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0">$2234</h4>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 <i class="fa fa-users fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Persona</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_persona) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <i class="fa fa-star fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Marca</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0">$2234</h4>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <i class="fa fa-tags fa-3x text-dark"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Modelo</p>
-                                <h6 class="mb-0">$2234</h6>
+                                <h4 class="mb-0">$2234</h4>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 <i class="fa fa-cogs fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Tipos de Periférico</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_tipo_periferico) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 <i class="fa fa-cog fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Periférico</p>
-                                    <h6 class="mb-0">$2234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_periferico) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                 <i class="fa fa-code fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Sistemas Operativos</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_sistema) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +96,8 @@
                             <div class="rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
                                 <i class="fa fa-desktop fa-3x text-dark"></i>
                                 <div class="ms-3">
-                                    <p class="mb-2">Equipos Informáticos</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <p class="mb-2">Equipos Incorporados</p>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_equipo) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 <i class="fa fa-share fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equpios Asignados</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ( $count_asignar) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                 <i class="fa fa-random fa-2x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Reincorporados</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_resicorporar) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                 <i class="fa fa-reply fa-2x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Equipos Desincorporados</p>
-                                    <h6 class="mb-0">$1234</h6>
+                                    <h4 class="mb-0" style="color: black">{{ ( $count_desincorporar) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                 <br><br><br>
                     
             {{-- Catalogo para la Estadistíca  --}}
-                <div class="container-fluid pt-3 px-4">
+                {{-- <div class="container-fluid pt-3 px-4">
                     <div class="row g-4">
                         <div class="col-sm-12 col-xl-6">
                             <div class="text-center rounded p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             {{-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">

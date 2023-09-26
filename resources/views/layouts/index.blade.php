@@ -101,7 +101,7 @@
                             @endcan
 
                             @can('ver-equipo')
-                                <a href="{{ url('equipo') }}" class="dropdown-item">Equipos Informáticos</a>
+                                <a href="{{ url('equipo') }}" class="dropdown-item">Incorporar Equipos</a>
                             @endcan
                                                         
                         </div>
