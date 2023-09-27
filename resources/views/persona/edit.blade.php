@@ -150,7 +150,21 @@
     @if ($errors->any())
     <script>
         var errorMessageEdit = @json($errors->first());
-        alert(errorMessageEdit);
+        Swal.fire({
+                            title: 'Persona',
+                            text: " No se puede registar la cédula debido que ya pertence a otra persona.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '¡Si, Eliminar!',
+                            cancelButtonText: 'Cancelar',
+                            }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            this.submit();
+                        }
+                        })
     </script>
     @endif 
     

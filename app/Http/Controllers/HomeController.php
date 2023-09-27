@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 
 
-
+use App\Models\Sede;
+use App\Models\Division;
+use App\Models\Cargo;
+use App\Models\Marca;
+use App\Models\Modelo;
 use App\Models\Persona;
 use App\Models\TipoPeriferico;
 use App\Models\Perifericos;
@@ -23,13 +27,25 @@ class homeController extends Controller
         
 
 
+        $sedes = Sede::all();
+        $count_sede = DB::table('sedes')
+        ->count();
 
+        $divisions = Division::all();
+        $count_division = DB::table('divisions')
+        ->count();
 
+        $cargos = Cargo::all();
+        $count_cargo = DB::table('cargos')
+        ->count();
 
+        $marcas = Marca::all();
+        $count_marca = DB::table('marcas')
+        ->count();
 
-
-
-
+        $modelos = Modelo::all();
+        $count_modelo = DB::table('modelos')
+        ->count();
 
         $personas = Persona::all();
         $count_persona = DB::table('personas')
@@ -63,9 +79,9 @@ class homeController extends Controller
         $count_resicorporar = DB::table('asignar')
         ->count();
 
-        return view("home.inicio", compact('count_persona','count_tipo_periferico', 'count_periferico', 'count_sistema', 'count_equipo',
+        return view("home.inicio", compact('count_sede', 'count_division','count_cargo','count_marca','count_modelo','count_persona','count_tipo_periferico', 'count_periferico', 'count_sistema', 'count_equipo',
             'count_asignar', 'count_resicorporar', 'count_desincorporar' ) , [
-            'count' => $count_persona, $count_tipo_periferico, $count_periferico, $count_sistema, $count_equipo, $count_asignar, 
+            'count' => $count_sede, $count_division, $count_cargo, $count_marca, $count_modelo, $count_persona, $count_tipo_periferico, $count_periferico, $count_sistema, $count_equipo, $count_asignar, 
                 $count_resicorporar, $count_desincorporar,
           ]);
 

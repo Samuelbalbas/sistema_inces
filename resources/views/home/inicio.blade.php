@@ -12,7 +12,7 @@
                                 <i class="fa fa-university fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Sede</p>
-                                    <h4 class="mb-0" style="color: black"></h4>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_sede) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                                 <i class="fa fa-building fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">División</p>
-                                    <h4 class="mb-0" style="color: black"></h4>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_division) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                 <i class="fa fa-briefcase fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Cargo</p>
-                                    <h4 class="mb-0">$2234</h4>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_cargo) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <i class="fa fa-star fa-3x text-dark"></i>
                                 <div class="ms-3">
                                     <p class="mb-2">Marca</p>
-                                    <h4 class="mb-0">$2234</h4>
+                                    <h4 class="mb-0" style="color: black">{{ ($count_marca) }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <i class="fa fa-tags fa-3x text-dark"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Modelo</p>
-                                <h4 class="mb-0">$2234</h4>
+                                <h4 class="mb-0" style="color: black">{{ ($count_modelo) }}</h4>
                             </div>
                         </div>
                     </div>

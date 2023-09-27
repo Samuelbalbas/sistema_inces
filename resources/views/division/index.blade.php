@@ -153,7 +153,20 @@
     @if ($errors->any())
     <script>
         var errorMessage = @json($errors->first());
-        alert(errorMessage);
+        Swal.fire({
+                            title: 'División',
+                            text: "No se puede eliminar la división debido a que tiene personas asignadas a esta división en una o varias sedes.",
+                            icon: 'warning',
+                            showconfirmButton: true,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '¡OK!',
+                            
+                            }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            this.submit();
+                        }
+                        })
     </script>
 @endif       
 @endsection

@@ -176,7 +176,20 @@
 @if ($errors->any())
     <script>
         var errorMessage = @json($errors->first());
-        alert(errorMessage);
+        Swal.fire({
+                            title: 'Persona',
+                            text: " No se puede eliminar la persona debido a que tiene un equipo y perifericos asignados.",
+                            icon: 'warning',
+                            showconfirmButton: true,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '¡OK!',
+                            
+                            }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            this.submit();
+                        }
+                        })
     </script>
 @endif
     

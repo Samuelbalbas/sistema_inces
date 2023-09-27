@@ -124,7 +124,7 @@ class DivisionController extends Controller
             return redirect('division')->with('eliminar', 'ok');
 
         } catch (QueryException $exception) {
-            $errorMessage = 'Error: No se puede eliminar la division debido a que tiene personas asignadas a esta division en una o varias sedes.';
+            $errorMessage = 'Error: No se puede eliminar la división debido a que tiene personas asignadas a esta división en una o varias sedes.';
             return redirect()->back()->withErrors($errorMessage);
         }
     }

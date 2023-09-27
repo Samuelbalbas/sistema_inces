@@ -19,7 +19,7 @@
             </a>
             @endcan
 
-                <h2 style="color: black;">Equipo</h2>
+                <h2 style="color: black;">Equipos Incorporados</h2>
                 
                 @can('crear-equipo')
                     <form action="{{ url('equipo/create') }}" method="get">

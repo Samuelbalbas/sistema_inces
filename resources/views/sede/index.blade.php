@@ -169,7 +169,20 @@
 @if ($errors->any())
     <script>
         var errorMessage = @json($errors->first());
-        alert(errorMessage);
+        Swal.fire({
+                            title: 'Sede',
+                            text: " No se puede eliminar la sede debido a que tiene divisiones asignadas.",
+                            icon: 'warning',
+                            showconfirmButton: true,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '¡OK!',
+                            
+                            }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            this.submit();
+                        }
+                        })
     </script>
 @endif
     
