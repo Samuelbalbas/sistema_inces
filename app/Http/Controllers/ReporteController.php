@@ -78,7 +78,7 @@ class ReporteController extends Controller
 
         if ($sedeId) {
             $equipos = $equipos
-             ->where('persona_division_sede.id_persona', $personaId);
+             ->where('persona_division_sede.id_persona', $personId);
         }
 
         if ($sedeId) {

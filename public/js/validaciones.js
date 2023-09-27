@@ -428,7 +428,6 @@ function Sede(obj) {
             }
         }
         if (!isChecked) {
-            alert("Debe seleccionar al menos una división");
             Swal.fire({
                 title: 'Sede',
                 text: "Debe seleccionar al menos una división",

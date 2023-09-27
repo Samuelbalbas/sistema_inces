@@ -12,7 +12,7 @@
     <div class="container-fluid" style="margin-top: 11%">
         <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
-               
+
                 <h2 style="color: black; margin-left: 43%;"> Roles</h2>
                
                 @can('crear-rol')

@@ -112,7 +112,7 @@
                     <a href= "{{ url('inventario') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
                     <a href="{{ url('estadistica') }}" class="nav-item nav-link"><i class="bi bi-bar-chart-line"></i>  Estadística</a>
                     <a href="{{ url('reportes') }}" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
-                    <a href="{{ url('bitacora') }}" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Bitácora</a>
+                    <a href="{{ url('bitacora') }}" class="nav-item nav-link"><i class="bi bi-arrows-angle-contract"></i>  Bitácora</a>
                     <a href="manual.html" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
                 </div>

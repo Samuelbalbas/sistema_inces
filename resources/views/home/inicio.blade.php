@@ -138,26 +138,13 @@
                 <br><br><br>
                     
             {{-- Catalogo para la Estadistíca  --}}
-                {{-- <div class="container-fluid pt-3 px-4">
-                    <div class="row g-4">
-                        <div class="col-sm-12 col-xl-6">
-                            <div class="text-center rounded p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0" style="color: black">Grafico</h6>  
-                                </div>
-                                <canvas id="worldwide-sales"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xl-6">
-                            <div class="text-center rounded p-4" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0" style="color: black">Control</h6>
-                                </div>
-                                <canvas id="salse-revenue"></canvas>
-                            </div>
+                 <div class="container mt-5">
+                    <div class="row">
+                        <div class="col">
+                            <div id="container"></div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
             {{-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
@@ -226,4 +213,71 @@
                 </div>
             </div> --}} 
 
+@endsection
+
+@section('js-highcharts')
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                align: 'left',
+                text: 'Browser market shares. January, 2022'
+            },
+            subtitle: {
+                align: 'left',
+                text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total percent market share'
+                }
+
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                }
+            },
+
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            },
+
+            series: [
+                {
+                    name: 'Browsers',
+                    colorByPoint: true,
+                    data: 
+                }
+
+                ],
+        
+        });
+
+    </script>
 @endsection

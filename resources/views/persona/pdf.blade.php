@@ -32,7 +32,7 @@ h1{
 }
 
 .table{
-    font-size: 17.2px;
+    font-size: 15.2px;
     text-align: center;
 
 }
