@@ -158,23 +158,6 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-        //     // Obtener la persona a eliminar
-            $persona = Persona::findOrFail($id);
-        
-        //     // Eliminar los registros relacionados en la tabla puente
-            //$persona->PersonaDivisionSede()->detach();
-        
-        //     // Eliminar la persona
-            $persona->delete();
-            
-        
-           return redirect('persona')->with('editar', 'ok');
-        }   catch (QueryException $exception) {
-            $errorMessage = 'Error: No se puede registar la cedula debido que ya pertence a otra persona.';
-            return redirect()->back()->withErrors($errorMessage);
-        }
-
        // Luego puedes continuar con el código de actualización de la persona
        $persona = Persona::find($id);
        $persona->nombre = $request->input('nombre');
@@ -204,6 +187,7 @@ class PersonaController extends Controller
 
     return redirect('persona');
     }
+
 
     /**
      * Remove the specified resource from storage.
