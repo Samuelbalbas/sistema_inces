@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class Bitacora extends Model
 {
-	protected $table = 'bitacora';
-    protected $fillable = ['model','user_id','model_id','event','old_values','new_values'];
+	protected $table = 'historico_sidi';
+    protected $fillable = ['tablaafectada', 'operacion', 'fecha', 'usuario_bd', 'usuario', 'datos_nuevos', 'datos_viejos', 'id_historico'];
 
-    public static function log($model, $event)  
+    /* public static function log($model, $event)  
 	{
 		$oldValues = null;
 		$newValues = null;
@@ -44,5 +44,5 @@ class Bitacora extends Model
 			'new_values' => json_encode($newValues),
 		]);
 
-	}
+	} */
 }
