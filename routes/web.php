@@ -40,8 +40,6 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
-
-
 /* Ruta Importar Nómina */
 Route::get('nomina', [NominaController::class, 'index']);
 Route::post('nomina/importar', [NominaController::class, 'Importar']);
@@ -200,7 +198,3 @@ Route::get('bitacora', [ReporteController::class, 'bitacora'])->name('bitacora')
 /* Ruta Inventario*/
 Route::get('/inventario',  [EquiposController::class,'indexinvent'])->name('equipo')->middleware('auth');
 Route::get('/inventario/estatus',  [AsignarController::class,'estatus'])->name('estatus')->middleware('auth');
-
-/* Route::get('/desincorporar', function () {
-    return view('desincorporar.index');
-})->name('desincorporar'); */
