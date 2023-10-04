@@ -5,102 +5,108 @@
 @section('content')
 
            @include('partials.messages')
+           <br><br>
                 <div class="container-fluid pt-1 px-4">
                     <div class="row">
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background:  rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-university fa-3x text-dark"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Sede</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_sede) }}</h4>
+                            <div class="p-3" style="background-color: white;border-radius: 30px;">
+                            <h4 class="mb-4" style="color: black;">{{ ($count_sede) }} Sede</h4><i class="fa fa-university fa-3x" style="color: red;"></i>
+                                <h4 class="mb-4" style="color: black; font-size: 30px;"></h4>
+                                <div class="ms-1">
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-building fa-3x text-dark"></i>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-building fa-3x"  style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white">División</h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">División</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_division) }}</h4>
+                                    <h4 class="mb-4" style="color: white">{{ ($count_division) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-briefcase fa-3x text-dark"></i>
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-briefcase fa-3x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white"> Cargo</h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Cargo</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_cargo) }}</h4>
+                                    <h4 class="mb-0" style="color: white">{{ ($count_cargo) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-users fa-3x text-dark"></i>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-users fa-3x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white;">Persona </h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Persona</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_persona) }}</h4>
+                                    <h4 class="mb-0" style="color: white;"> {{ ($count_persona) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background:  rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-star fa-3x text-dark"></i>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-star fa-3x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white;">Marca </h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Marca</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_marca) }}</h4>
+                                    <h4 class="mb-0" style="color: white">{{ ($count_marca) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                        <div class="rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                            <i class="fa fa-tags fa-3x text-dark"></i>
+                        <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                            <i class="fa fa-tags fa-3x" style="color: white;"></i>
+                            <h4 class="mb-0" style="color: white;">Modelo</h4>
                             <div class="ms-3">
-                                <p class="mb-2">Modelo</p>
-                                <h4 class="mb-0" style="color: black">{{ ($count_modelo) }}</h4>
+                                <h4 class="mb-0" style="color: white;">{{ ($count_modelo) }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
+                <br>
 
                 <div class="container-fluid pt-1 px-0">
                     <div class="row">
                         <div class="col-sm-6 col-xl-2">
-                            <div class=" rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-cogs fa-3x text-dark"></i>
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-cogs fa-3x" style="color: white;"></i>
+                                <h4 class="mb-0"sytle="color: white;">Tipo Periferico</h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Tipos de Periférico</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_tipo_periferico) }}</h4>
+                                    <h4 class="mb-0" style="color: white;">{{ ($count_tipo_periferico) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-3" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-cog fa-3x text-dark"></i>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-cog fa-3x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white;">Periferico</h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Periférico</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_periferico) }}</h4>
+                                    <h4 class="mb-0" style="color: white;">{{ ($count_periferico) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background:  rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-code fa-3x text-dark"></i>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-code fa-2x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white;">Sistemas Operativos</h4>
                                 <div class="ms-3">
-                                    <p class="mb-2">Sistemas Operativos</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_sistema) }}</h4>
+                                    <h4 class="mb-0" style="color: white;">{{ ($count_sistema) }}</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-xl-2">
-                            <div class="rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
-                                <i class="fa fa-desktop fa-3x text-dark"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Equipos Incorporados</p>
-                                    <h4 class="mb-0" style="color: black">{{ ($count_equipo) }}</h4>
-                                </div>
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image: radial-gradient(circle at 50% 61.28%, #9f90f4 0, #6c6cd8 50%, #284bbd 100%);">
+                                <i class="fa fa-desktop fa-2x" style="color: white;"></i>
+                                <h4 class="mb-0" style="color: white;">Equipos Incorporados</h4>
+                                <h4 class="mb-0" style="color: white;">{{ ($count_equipo) }}</h4>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="container-fluid pt-1 px-0">
+                    <div class="row">
                         <div class="col-sm-6 col-xl-2">
                             <div class=" rounded d-flex align-items-center justify-content-between p-1" style="background: rgb(255, 253, 253);border: 3px solid black;">
                                 <i class="fa fa-share fa-3x text-dark"></i>
@@ -121,6 +127,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
 
                 <div class="container-fluid pt-1 px-0">
                     <div class="row">
@@ -135,7 +142,6 @@
                         </div>
                     </div>
                 </div>
-                <br><br><br>
                     
             {{-- Catalogo para la Estadistíca  --}}
                  <div class="container mt-5">

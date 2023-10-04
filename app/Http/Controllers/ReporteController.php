@@ -18,6 +18,20 @@ class ReporteController extends Controller
         return view('reporte.bitacora', compact('bitacora'));
     }
 
+    // public function update(Request $request, Bitacora $historico_sidi)
+    // {
+    //     $historico_sidi->tablaafectada = $request->input('tablaafectada');
+    //     $historico_sidi->operacion = $request->input('operacion');
+    //     $historico_sidi->fecha = $request->input('fecha');
+    //     $historico_sidi->usuario_bd = $request->input('usuario_bd');
+    //     $historico_sidi->usuario = $request->input('usuario');
+    //     $historico_sidi->datos_nuevos = $request->input('datos_nuevos');
+    //     $historico_sidi->datos_viejos = $request->input('datos_viejos');
+    //     $historico_sidi->save();
+
+    //     return $historico_sidi;
+    // }
+
     public function index(Request $request)
     {       
         $personId = (!empty($request->personId)) ? $request->personId : null ;

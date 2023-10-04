@@ -29,12 +29,14 @@
                         <tr class="text-white">
                             {{-- 'model','user_id','model_id','event','old_values','new_values' --}}
                             {{-- <th  style="color: black;">Modelo</th> --}}
-                            <th  style="color: black;">N</th>
-                            <th  style="color: black;">userId</th>
-                            <th  style="color: black;">ModeloId</th>
-                            <th  style="color: black;">Evento</th>
-                            <th  style="color: black;">Valores Viejos</th>
-                            <th  style="color: black;">Valores Nuevos</th>
+                            <th  style="color: black;">id</th>
+                            <th  style="color: black;">Tabla Afectada</th>
+                            <th  style="color: black;">Operación</th>
+                            <th  style="color: black;">Fecha</th>
+                            <th  style="color: black;">Usuario BD</th>
+                            <th  style="color: black;">Usuario</th>
+                            <th  style="color: black;">Datos Viejos</th>
+                            <th  style="color: black;">Datos Nuevos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,11 +44,13 @@
                         @foreach ($bitacora as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td style="color: black;">{{ $item->user_id }}</td>
-                                    <td style="color: black;">{{ $item->model_id }}</td>
-                                    <td style="color: black;">{{ $item->event}}</td>
-                                    <td style="color: black;">{{ $item->old_values }}</td>
-                                    <td style="color: black;">{{ $item->new_values}}</td>
+                                    <td style="color: black;">{{ $item-> tablaafectada}}</td>
+                                    <td style="color: black;">{{ $item-> operacion}}</td>
+                                    <td style="color: black;">{{ $item-> fecha}}</td>
+                                    <td style="color: black;">{{ $item-> usuario_bd}}</td>
+                                    <td style="color: black;">{{ $item-> usuario}}</td>
+                                    <td style="color: black;">{{ $item-> datos_nuevos}}</td>
+                                    <td style="color: black;">{{ $item-> datos_viejos}}</td>
                                 </tr>
                         @endforeach
                     </tbody>
@@ -61,12 +65,7 @@
     </script>
 @endif
 
-
-
-sedeId
-divisionId
-
-    @section('scripts')
+    <!-- @section('scripts')
         @parent
         <script>
             $(document).ready(function() {
@@ -82,7 +81,7 @@ divisionId
                 });
             });
         </script>
-    @endsection
+    @endsection -->
 
     @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

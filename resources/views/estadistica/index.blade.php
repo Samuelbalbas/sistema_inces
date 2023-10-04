@@ -4,81 +4,64 @@
 
 @section('content')
 
-<div class="p-4">
-    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-2">
-        <div class="col">
-            <div class="card border-dark mb-3">
-              <div class="card-header fw-bold text-center">Equipos Asignados</div>
-              <div class="card-body text-dark">
-                <div class="display-1 text-center">
-                    {{$assignedCount ?? null}}
-                </div>
-                <div class="fw-bold small text-center">
-                    De un total: {{ ($equipos) ? $equipos->count() : null }}
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card border-dark mb-3">
-              <div class="card-header fw-bold text-center">Equipos desincorporados</div>
-              <div class="card-body text-dark">
-                <div class="display-1 text-center">
-                    {{$desincorporadoCount ?? null}}
-                </div>
-                <div class="fw-bold small text-center">
-                    De un total: {{ ($equipos) ? $equipos->count() : null }}
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card border-dark mb-3">
-              <div class="card-header fw-bold text-center">Equipos sin asignación</div>
-              <div class="card-body text-dark">
-                <div class="display-1 text-center">
-                    {{$noAssignedCount ?? null}}
-                </div>
-                <div class="fw-bold small text-center">
-                    De un total: {{ ($equipos) ? $equipos->count() : null }}
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card border-dark mb-3">
-              <div class="card-header fw-bold text-center">División con mas equipos</div>
-              <div class="card-body text-dark">
-                <div class="display-1 text-center">
-                    {{ ($division) ? $division->equipos_asignados : null }}
-                </div>
-                <div class="fw-bold small text-center">
-                    {{ ($division) ? $division->nombre_division : null }}
-                </div>
-              </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card border-dark mb-3">
-              <div class="card-header fw-bold text-center">Sede con mas equipos</div>
-              <div class="card-body text-dark">
-                <div class="display-1 text-center">
-                    {{ ($sede) ? $sede->equipos_asignados : null }}
-                </div>
-                <div class="fw-bold small text-center">
-                    {{ ($sede) ? $sede->nombre_sede : null }}
-                </div>
-              </div>
-            </div>
-        </div>
-
+    <div class="container-fluid" style="margin-top: 11%">
+        <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
+            <div id="container"></div>
+        </div>     
     </div>
-</div>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <script>
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    align: 'center',
+                    text: 'Estadistíca'
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}%'
+                        }
+                    }
+                },
     
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                },
+    
+                series: [
+                    {
+                        name: 'Estadistica',
+                        colorByPoint: true,
+                        data: <?= $data ?>
+                    }
+                ],
+            
+            });
+            
+        </script>
+
 @endsection
 
     

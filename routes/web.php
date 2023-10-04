@@ -187,7 +187,7 @@ Route::get('/reincorporar', [AsignarController::class, 'reincorp'])->name('reinc
 
 /* Ruta Estadistica */
 
-Route::get('/estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
+Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadistica')->middleware('auth');
 
 /* Ruta reportes */
 Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
