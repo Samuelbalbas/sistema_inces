@@ -13,7 +13,7 @@
                     <center>
                         <h3 class="mb-4" style="color: black;">Reincorporar</h3>
                     </center>
-                    <form method="post" action="{{ route('asignar.updatereincorp', ['asignar' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
+                    <form method="post" action="{{ route('asignar.updatereincorp', ['id' => $asignacion->persona->id]) }}" enctype="multipart/form-data" onsubmit="">
 
 
                         @csrf   
@@ -22,7 +22,7 @@
 
                             <div class="col-3">
                                 <label for="persona" style="color: black;">Persona</label>
-                                <select class="form-select" id="persona" name="id_persona" disabled>
+                                <select class="form-select" id="persona" name="id_persona">
                                     <option value="0">Seleccione una Persona</option>
                                     @foreach($personas as $persona)
                                         <option value="{{ $persona->id }}" @if($persona->id == $asignacion->id_persona) selected @endif>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
