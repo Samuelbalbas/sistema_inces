@@ -13,7 +13,7 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 38%;">Equipos Reincorporados</h2>
+                <h2 style="color: black; margin-left: 38%;">Equipos Para Reincorporar</h2>
 
             </div>
             <div class="">

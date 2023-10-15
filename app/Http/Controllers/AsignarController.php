@@ -310,12 +310,14 @@ class AsignarController extends Controller
         // Obtén el estatus y la observación de la solicitud
         $estatus = $request->estatus;
         $observacion = $request->observacion;
+        $nuevo_id_persona = $request->id_persona; // Asume que el nuevo ID de persona viene en la solicitud
     
         // Encuentra todas las asignaciones para la persona específica
         $asignaciones = Asignar::where('id_persona', $asignar)->get();
     
         // Actualiza el estatus y la observación de todas las asignaciones
         foreach ($asignaciones as $asignacion) {
+            $asignacion->id_persona = $nuevo_id_persona; // Usa el nuevo ID de la persona
             $asignacion->estatus = $estatus;
             $asignacion->observacion = $observacion;
             $asignacion->save();
