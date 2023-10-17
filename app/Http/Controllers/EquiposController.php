@@ -85,10 +85,10 @@ class EquiposController extends Controller
         Equipos::create($datosEquipo);
        
         
-        return redirect('equipo');
+        
         $bitacora = new BitacoraController;
         $bitacora->update();
-
+        return redirect('equipo');
        /* $datosEquipo = request()->except('_token', 'nuevamarca', 'nuevomodelo', 'tipo');
         $datosEquipo['id_so'] = $request->input('id_so');
         $datosEquipo['tipo'] = $request->input('tipo');

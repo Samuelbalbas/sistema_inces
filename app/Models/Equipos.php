@@ -33,40 +33,40 @@ class Equipos extends Model
     }
 
 
-    public static function boot()
-    {
-        parent::boot(); //dd('intro');
+    // public static function boot()
+    // {
+    //     parent::boot(); //dd('intro');
 
-        static::created(function ($model) {
-          // dd('123');
-            $model->logEvent('created');
-        });
+    //     static::created(function ($model) {
+    //       // dd('123');
+    //         $model->logEvent('created');
+    //     });
 
-        static::updated(function ($model) {
-            // dd('123');
-            $model->logEvent('updated'); //dd('123');
-        });
+    //     static::updated(function ($model) {
+    //         // dd('123');
+    //         $model->logEvent('updated'); //dd('123');
+    //     });
 
-        static::deleted(function ($model) {
-            $model->logEvent('deleted');
-        });
-    }
+    //     static::deleted(function ($model) {
+    //         $model->logEvent('deleted');
+    //     });
+    // }
 
-    public function logEvent($event)
-    {
-        $oldData = $this->getOriginal();
-        $newData = $this->getAttributes();
-        $user_id = Auth::id();
+    // public function logEvent($event)
+    // {
+    //     $oldData = $this->getOriginal();
+    //     $newData = $this->getAttributes();
+    //     $user_id = Auth::id();
 
-        $model = $this;
+    //     $model = $this;
 
-        Bitacora::create([
-          'model' => $this,
-          'user_id' => $user_id,
-          'model_id' => $this->id,
-          'event' => $event, 
-          'old_values' => json_encode($oldData),
-          'new_values' => json_encode($newData),
-        ]);
-    }
+    //     Bitacora::create([
+    //       'model' => $this,
+    //       'user_id' => $user_id,
+    //       'model_id' => $this->id,
+    //       'event' => $event, 
+    //       'old_values' => json_encode($oldData),
+    //       'new_values' => json_encode($newData),
+    //     ]);
+    // }
 }
