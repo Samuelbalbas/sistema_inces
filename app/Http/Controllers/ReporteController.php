@@ -18,19 +18,34 @@ class ReporteController extends Controller
         return view('reporte.bitacora', compact('bitacora'));
     }
 
-    // public function update(Request $request, Bitacora $historico_sidi)
-    // {
-    //     $historico_sidi->tablaafectada = $request->input('tablaafectada');
-    //     $historico_sidi->operacion = $request->input('operacion');
-    //     $historico_sidi->fecha = $request->input('fecha');
-    //     $historico_sidi->usuario_bd = $request->input('usuario_bd');
-    //     $historico_sidi->usuario = $request->input('usuario');
-    //     $historico_sidi->datos_nuevos = $request->input('datos_nuevos');
-    //     $historico_sidi->datos_viejos = $request->input('datos_viejos');
-    //     $historico_sidi->save();
+    //  public function update(Request $request, Bitacora $historico_sidi)
+    //  {
+    //     // Obtener el usuario actual
+        
 
-    //     return $historico_sidi;
-    // }
+    //     // Crear un nuevo registro de bitacora 
+    //     $bitacora = new Bitacora();
+    //     $bitacora->tablaafectada = 'usuasrios';
+    //     $bitacora->operacion = 'creado';
+    //     $bitacora->fecha = now();
+    //     $bitacora->usuario_bd = env ('DB_USERNAME');
+    //     $bitacora->usuario = $user;
+    //     $bitacora->datos_nuevos = [
+    //         'name' => 'admin',
+    //         'email' => 'admin@gmail.com',
+    //         'password' => '123456',
+    //     ];
+
+    //     $bitacora->datos_viejos = [];
+        
+    //     // Guardar la bitacora
+    //     $bitacora->save();
+
+    //     // Retornar el usuario creado
+    //     return response()->json($user);
+
+
+    //  }
 
     public function index(Request $request)
     {       

@@ -23,13 +23,10 @@ class EstadisticaController extends Controller
         $estadisticas = Estadistica::all();
 
         $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
-        $count_asignar = DB::table('asignar')
-        ->count();
+        $count_asignar = DB::table('asignar')->count();
+        $prueba='Asignar';
 
-        return view("estadistica.index", compact('count_asignar') ,["data" =>json_encode($estadisticas)] , [
-        'count' => $count_asignar, 
-           
-      ]);
+        return view("estadistica.index", compact('prueba','count_asignar'));
 
       
     }

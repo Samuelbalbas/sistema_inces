@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modelo;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -31,7 +32,7 @@ class ModeloController extends Controller
 
     public function pdf()
     {
-          $moledos=Modelo::all();
+          $modelos=Modelo::all();
           $pdf=Pdf::loadView('modelo.pdf', compact('modelos'));
           return $pdf->stream();
 
@@ -57,7 +58,8 @@ class ModeloController extends Controller
     {
         $datosModelo = request()->except('_token');
         modelo::create($datosModelo);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('modelo');
     }
 
@@ -109,6 +111,8 @@ class ModeloController extends Controller
     {
         $datosModelo = request()->except('_token','_method');
         modelo::where('id','=',$id)->update($datosModelo);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('modelo');
     }
@@ -122,6 +126,8 @@ class ModeloController extends Controller
     public function destroy($id)
     {
          modelo::destroy($id);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('modelo')->with('eliminar', 'ok');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\Bitacora;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
@@ -60,7 +62,8 @@ class DivisionController extends Controller
         division::create($datosDivision);
         // dd($datosDivision);
         // return response()->json($datosDivision);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('division');
     }
     
@@ -100,6 +103,8 @@ class DivisionController extends Controller
     {
         $datosDivision = request()->except('_token','_method');
         division::where('id','=',$id)->update($datosDivision);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('division');
     }
@@ -120,6 +125,8 @@ class DivisionController extends Controller
         
             // Elimina el registro de la tabla division
             $division->delete();
+            $bitacora = new BitacoraController;
+            $bitacora->update();
 
             return redirect('division')->with('eliminar', 'ok');
 

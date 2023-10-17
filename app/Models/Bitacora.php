@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class Bitacora extends Model
 {
 	protected $table = 'historico_sidi';
-    protected $fillable = ['tablaafectada','operacion','fecha','usuario_bd','usuario','datos_nuevos','datos_viejos',];
+    protected $fillable = ['id','tablaafectada','operacion','fecha','usuario_bd','usuario','datos_nuevos','datos_viejos'];
 
     // public static function log($model, $event)  
 	// {

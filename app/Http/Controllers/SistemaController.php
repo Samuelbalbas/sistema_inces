@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sistema;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
@@ -58,7 +59,8 @@ class SistemaController extends Controller
     {
         $datosSistema = request()->except('_token');
         sistema::create($datosSistema);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('sistema');
     }
 
@@ -97,6 +99,8 @@ class SistemaController extends Controller
     {
         $datosSistema = request()->except('_token','_method');
         sistema::where('id','=',$id)->update($datosSistema);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('sistema');
     }
@@ -111,6 +115,8 @@ class SistemaController extends Controller
     {
         try {
             sistema::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
             return redirect('sistema')->with('eliminar', 'ok');
 
         } catch (QueryException $exception) {

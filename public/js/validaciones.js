@@ -402,7 +402,7 @@ function Sede(obj) {
         obj.nombre_sede.focus();
         return false;
     }
-    if (!/^[A-Z][a-z]+$/.test(nombre_sede)) {
+    if (!/^[A-Z][a-ñ-z]+$/.test(nombre_sede)) {
         Swal.fire({
             title: 'Sede',
             text: "El nombre debe comenzar con una letra mayúscula y las demás en minúscula.",

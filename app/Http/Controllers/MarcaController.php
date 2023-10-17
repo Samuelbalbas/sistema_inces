@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -60,6 +61,8 @@ class MarcaController extends Controller
     {
         $datosMarca = request()->except('_token');
         marca::create($datosMarca);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('marca');
     }
@@ -112,6 +115,8 @@ class MarcaController extends Controller
     {
         $datosMarca = request()->except('_token','_method');
         marca::where('id','=',$id)->update($datosMarca);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('marca');
     }
@@ -125,6 +130,8 @@ class MarcaController extends Controller
     public function destroy($id)
     {
         marca::destroy($id);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('marca')->with('eliminar', 'ok');
     }
 }

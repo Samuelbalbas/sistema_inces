@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perifericos;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
@@ -75,6 +76,8 @@ class PerifericosController extends Controller
         );
         $datosPeriferico = request()->except('_token');
         Perifericos::create($datosPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('periferico');
     }
@@ -127,7 +130,8 @@ class PerifericosController extends Controller
         );
          // Actualiza los datos del periferico con los datos del formulario
          Perifericos::where('id', $id)->update($request->except(['_token', '_method', 'id']));
-        
+         $bitacora = new BitacoraController;
+         $bitacora->update();
          // Obtén el periferico actualizado
          $periferico = Perifericos::findOrFail($id);
          
@@ -135,7 +139,8 @@ class PerifericosController extends Controller
          $marcas = Marca::all();
          $modelos = Modelo::all();
          $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo de periférico"
-         
+         $bitacora = new BitacoraController;
+         $bitacora->update();
          return redirect ('periferico');
          
     }
@@ -150,6 +155,8 @@ class PerifericosController extends Controller
     {
         try {
             Perifericos::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
             return redirect('periferico')->with('eliminar', 'ok');
 
         } catch (QueryException $exception) {

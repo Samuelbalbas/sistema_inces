@@ -114,7 +114,7 @@ Route::get('/modelo',  [ModeloController::class,'index'])->name('modelo')->middl
 
 Route::get('/modelo/create',[ModeloController::class,'create'])->name('create')->middleware('auth');
 
-Route::get('/modelo/pdf',  [MarcaController::class,'pdf'])->name('modelo')->middleware('auth');
+Route::get('/modelo/pdf',  [ModeloController::class,'pdf'])->name('modelo')->middleware('auth');
 
 Route::post('/modelo/saveModal', [ModeloController::class, 'saveModal'])->name('modelo.saveModal')->middleware('auth');//ruta para procesar la solicitud AJAX
 
@@ -126,7 +126,7 @@ Route::get('/tipoperiferico',  [TipoPerifericoController::class,'index'])->name(
 
 Route::get('/tipoperif/create',[TipoPerifericoController::class,'create'])->name('create')->middleware('auth');
 
-Route::get('/tipoperif/pdf',  [TipoPerifericoController::class,'pdf'])->name('tipoperiferico')->middleware('auth');
+Route::get('/tipoperiferico/pdf',[TipoPerifericoController::class,'pdf'])->name('tipoperiferico')->middleware('auth');
 
 Route::resource('tipoperif', TipoPerifericoController::class)->middleware('auth');
 

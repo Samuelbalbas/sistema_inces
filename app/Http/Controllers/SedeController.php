@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
 use App\Models\DivisionSede;
+use App\Models\Bitacora;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
 // use Illuminate\Pagination\LengthAwarePaginator;
@@ -61,13 +63,13 @@ class SedeController extends Controller
     {
         $datosSede = request()->except('_token');
         $sede = Sede::create($datosSede);
-        
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         // Obtener las divisiones seleccionadas
         $divisiones = $request->input('divisiones', []);
                 
         // Guardar las relaciones en la tabla puente
         $sede->division()->sync($divisiones);
-
         return redirect ('sede');
     }
 
@@ -102,6 +104,8 @@ class SedeController extends Controller
         
             // Actualiza las divisiones de la sede en la tabla puente
             $sede->division()->sync($request->input('division', []));
+            $bitacora = new BitacoraController;
+            $bitacora->update();
         
             return redirect('sede');  
 
@@ -128,6 +132,8 @@ class SedeController extends Controller
         
             // Eliminar la sede
             $sede->delete();
+            $bitacora = new BitacoraController;
+            $bitacora->update();
 
             return redirect('sede')->with('eliminar', 'ok');   
         } catch (QueryException $exception) {

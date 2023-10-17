@@ -52,9 +52,9 @@
     
                 series: [
                     {
-                        name: 'Estadistica',
+                        name: <?= $prueba ?>,
                         colorByPoint: true,
-                        data: <?= $data ?>
+                        data: <?= $count_asignar ?>
                     }
                 ],
             

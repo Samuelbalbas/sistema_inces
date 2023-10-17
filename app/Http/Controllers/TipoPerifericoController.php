@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\TipoPeriferico;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -58,6 +59,8 @@ class TipoPerifericoController extends Controller
     {
         $datosTipoPeriferico = request()->except('_token');
         TipoPeriferico::create($datosTipoPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('tipoperiferico');
     }
@@ -99,6 +102,8 @@ class TipoPerifericoController extends Controller
         //
         $datosTipoPeriferico = request()->except('_token','_method');
         TipoPeriferico::where('id','=',$id)->update($datosTipoPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('tipoperiferico');
     }
@@ -113,6 +118,8 @@ class TipoPerifericoController extends Controller
     {
         try {
             TipoPeriferico::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
             return redirect('tipoperiferico')->with('eliminar', 'ok');
         } catch (QueryException $exception) {
             $errorMessage = 'Error: No se puede eliminar el tipo de periferico debido a que tiene perifericos registrados en esta categoria.';

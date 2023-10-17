@@ -9,6 +9,7 @@ use App\Models\Division;
 use App\Models\DivisionSede;
 use App\Models\Sede;
 use App\Models\PersonaDivisionSede;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -79,13 +80,17 @@ class PersonaController extends Controller
         );
         $datosPersona = $request->except('_token');
         $persona = Persona::create($datosPersona);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         $idDivision = $request->input('id_division');
 
         $personaDivisionSede = new PersonaDivisionSede();
         $personaDivisionSede->id_persona = $persona->id;
         $personaDivisionSede->id_division_sede = $idDivision;
         $personaDivisionSede->save();
+
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect('persona');
     }
@@ -166,7 +171,9 @@ class PersonaController extends Controller
        $persona->id_usuario = $request->input('id_usuario');
        $persona->id_cargo = $request->input('id_cargo');
        $persona->telefono = $request->input('telefono');
-    
+       $bitacora = new BitacoraController;
+       $bitacora->update();
+
        // Obtener el ID de la relación persona_division_sede correspondiente a la persona
        $id_division_sede = $request->input('id_division_sede');
 
@@ -182,8 +189,10 @@ class PersonaController extends Controller
         $relacion->id_division_sede = $id_division_sede;
         $relacion->save();
     }
-       
+    $bitacora = new BitacoraController;
+    $bitacora->update(); 
     $persona->save();
+     
 
     return redirect('persona');
     }
@@ -206,7 +215,8 @@ class PersonaController extends Controller
         
             // Eliminar la persona
             $persona->delete();
-            
+            $bitacora = new BitacoraController;
+            $bitacora->update();
         
             return redirect('persona')->with('eliminar', 'ok');
         } catch (QueryException $exception) {

@@ -35,8 +35,8 @@
                             <th  style="color: black;">Fecha</th>
                             <th  style="color: black;">Usuario BD</th>
                             <th  style="color: black;">Usuario</th>
-                            <th  style="color: black;">Datos Viejos</th>
                             <th  style="color: black;">Datos Nuevos</th>
+                            <th  style="color: black;">Datos Viejos</th>
                         </tr>
                     </thead>
                     <tbody>

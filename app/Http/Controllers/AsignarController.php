@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asignar;
+use App\Http\Controllers\BitacoraController;
 use App\Models\Equipos;
 use App\Models\Perifericos;
 use App\Models\Persona;
@@ -145,6 +146,9 @@ class AsignarController extends Controller
                 'estatus' => $estatus
             ]);
         }
+
+        $bitacora = new BitacoraController;
+        $bitacora->update();
     
         return redirect('asignar');
     }
@@ -163,6 +167,8 @@ class AsignarController extends Controller
         $equipos = Equipos::all();
         $tipo_perifericos = TipoPeriferico::all();
         $perifericos = Perifericos::all();
+        $bitacora = new BitacoraController;
+        $bitacora->update();
     
         // Si hay asignaciones para esta persona, usamos la primera para obtener los datos de la persona y el equipo
         if (!$asignaciones->isEmpty()) {
@@ -180,7 +186,8 @@ class AsignarController extends Controller
             $periferico = $asignacion->periferico; // Asumiendo que tienes una relación "periferico" en el modelo Asignar
             $ids_perifericos_por_tipo[$periferico->id_tipo] = $periferico->id;
         }
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
     
     return view('asignar.desincorporar', compact('asignacion', 'personas', 'equipos', 'tipo_perifericos', 'perifericos', 'ids_perifericos_por_tipo'));
     }

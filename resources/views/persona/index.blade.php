@@ -13,11 +13,11 @@
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                @can('generar-persona')
+                
                 <a href="{{ url('persona/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
                 {{ ('PDF') }}
                 </a>
-                @endcan
+              
                 
                 <h2 style="color: black;">Persona</h2>
                 

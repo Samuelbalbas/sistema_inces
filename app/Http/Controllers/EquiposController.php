@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Sistema;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -82,8 +83,11 @@ class EquiposController extends Controller
         );
         $datosEquipo = $request->except('_token', 'nuevamarca', 'nuevomodelo');
         Equipos::create($datosEquipo);
-    
+       
+        
         return redirect('equipo');
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
        /* $datosEquipo = request()->except('_token', 'nuevamarca', 'nuevomodelo', 'tipo');
         $datosEquipo['id_so'] = $request->input('id_so');
@@ -171,7 +175,6 @@ class EquiposController extends Controller
         $marcas = Marca::all();
         $modelos = Modelo::all();
         $sistemas = Sistema::all();
-    
         return redirect('equipo');
     }
     
