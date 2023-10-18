@@ -84,8 +84,6 @@ class EquiposController extends Controller
         $datosEquipo = $request->except('_token', 'nuevamarca', 'nuevomodelo');
         Equipos::create($datosEquipo);
        
-        
-        
         $bitacora = new BitacoraController;
         $bitacora->update();
         return redirect('equipo');
@@ -166,6 +164,8 @@ class EquiposController extends Controller
         $equipo = Equipos::findOrFail($id);
         $equipo->fill($data);
         $equipo->save();
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         // Equipos::where('id', $id)->update($data);
     
         // Obtén el equipo actualizado
@@ -175,6 +175,8 @@ class EquiposController extends Controller
         $marcas = Marca::all();
         $modelos = Modelo::all();
         $sistemas = Sistema::all();
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('equipo');
     }
     
@@ -189,6 +191,8 @@ class EquiposController extends Controller
     {
         try {
             Equipos::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
             return redirect('equipo')->with('eliminar', 'ok');
         } catch (QueryException $exception) {
             $errorMessage = 'Error: No se puede eliminar el equipo debido a que esta asignado a una persona.';
