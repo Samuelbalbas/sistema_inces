@@ -4,64 +4,95 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 11%">
-        <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
-            <div id="container"></div>
-        </div>     
+<div class="container continer-fluid">
+    <div class="row">
+
+        <div class="col-sm-6">
+            
+            <div class="card p-4 m-4">
+            <div class="card-body">
+                <h5 class="card-title text-dark">Equipos asignados por división</h5>
+                
+                <div class="bar-chart-vertical">
+                    @php $total = $equipos_divisions->sum('cantidad'); @endphp
+                    @foreach ($equipos_divisions as $equipo)
+                        @php
+                            $height = (! is_null($total)) ? $equipo->cantidad / $total: null ;
+                            $height = 100 * round($height,2);
+                        @endphp
+                        <div class="item">
+                            <div class="bar" style="height:{{$height}}%">
+                                <div class="value text-white small">{{$height}}%</div>
+                            </div>
+                            <div class="title text-nowrap">{{$equipo->nombre_division}}</div> 
+                        </div>
+                    @endforeach
+
+                </div>
+                
+            </div>
+            </div>                      
+            
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card p-4 m-4">
+                <div class="card-body">
+                    <h5 class="card-title text-dark">Equipos asignados por sede</h5>
+                    
+                    <div class="bar-chart-vertical">
+                    @php $total = $equipos_sedes->sum('cantidad'); @endphp
+                    @foreach ($equipos_sedes as $equipo)
+                        @php
+                            $height = (! is_null($total)) ? $equipo->cantidad / $total: null ;
+                            $height = 100 * round($height,2);
+                        @endphp
+                        <div class="item">
+                            <div class="bar bg-success" style="height:{{$height}}%">
+                                <div class="value text-white small">{{$height}}%</div>
+                            </div>
+                            <div class="title text-nowrap">{{$equipo->nombre_sede}}</div> 
+                        </div>
+                    @endforeach  
+                    </div>              
+                </div>
+            </div> 
+        </div>
     </div>
-
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-        <script>
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    align: 'center',
-                    text: 'Estadistíca'
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y:.1f}%'
-                        }
-                    }
-                },
-    
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                },
-    
-                series: [
-                    {
-                        name: <?= $prueba ?>,
-                        colorByPoint: true,
-                        data: <?= $count_asignar ?>
-                    }
-                ],
-            
-            });
-            
-        </script>
+  </div>
 
 @endsection
 
+@section('stylesheet')
+    <style>
+        .bar-chart-vertical {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 300px;
+        }
+
+        .bar {
+        background: #007bff;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        border-radius: 5px;
+        }
+
+        .title {
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center; 
+        width: 60px;
+        }
+
+        .value {
+        font-size: 14px;
+        padding: 5px 0;
+        }
+    </style>
+
+@endsection
     

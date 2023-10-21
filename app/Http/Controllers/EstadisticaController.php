@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class EstadisticaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function indeX()
     {
         $estadisticas = Estadistica::all();
 
@@ -26,10 +22,48 @@ class EstadisticaController extends Controller
         $count_asignar = DB::table('asignar')->count();
         $prueba='Asignar';
 
-        return view("estadistica.index", compact('prueba','count_asignar'));
+        $equipos_divisions = Equipos::select('divisions.nombre_division',DB::raw('count(*) as cantidad'))
+        ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+        ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
+        ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
+        ->groupBy('division_sede.id_division')
+        ->whereNotNull('asignar.id_equipo')
+        ->get();
+        
+        $equipos_sedes = Equipos::select('sedes.nombre_sede',DB::raw('count(*) as cantidad'))
+        ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+        ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
+        ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        ->join('sedes', 'sedes.id', '=', 'division_sede.id_sede')
+        ->groupBy('sedes.id')
+        ->whereNotNull('asignar.id_equipo')
+        ->get();
+
+
+        return view("estadistica.index", compact('prueba','count_asignar','equipos_divisions','equipos_sedes'),["data" =>json_encode($estadisticas)] , ['count' => $count_asignar]);
+
+        // return view("estadistica.index", compact('count_asignar') ,["data" =>json_encode($estadisticas)] , ['count' => $count_asignar]);
 
       
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function index()
+    // {
+    //     $estadisticas = Estadistica::all();
+
+    //     $asignaciones = Asignar::with('persona', 'equipo', 'periferico')->get();
+    //     $count_asignar = DB::table('asignar')->count();
+    //     $prueba='Asignar';
+
+    //     return view("estadistica.index", compact('prueba','count_asignar'));
+
+      
+    // }
 
     //     $equipos = Equipos::all();
 

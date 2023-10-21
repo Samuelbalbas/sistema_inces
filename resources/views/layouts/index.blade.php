@@ -34,6 +34,9 @@
     <link href="{{ asset ('css/style.css') }}" rel="stylesheet">
 
     <script src="{{ asset ('js/validaciones.js') }}"></script> 
+
+    @yield('stylesheet')
+    
 </head>
                                 <!--                               ? Body o Cuerpo del sistama
                                     ? Spinner de carga (circulo de carga que aparece en el medio de la pantalla) -->
