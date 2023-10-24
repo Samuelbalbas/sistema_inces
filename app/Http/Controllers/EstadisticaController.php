@@ -22,26 +22,44 @@ class EstadisticaController extends Controller
         $count_asignar = DB::table('asignar')->count();
         $prueba='Asignar';
 
-        $equipos_divisions = Equipos::select('divisions.nombre_division',DB::raw('count(*) as cantidad'))
-        ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+        $equipos_divisions = DB::table('equipos')
+        ->select('divisions.*',DB::raw('count(*) as cantidad'))
+        ->join('asignar', 'equipos.id', '=', 'asignar.id_equipo')
         ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
         ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
         ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
-        ->groupBy('division_sede.id_division')
-        ->whereNotNull('asignar.id_equipo')
+        ->groupBy('divisions.id')
         ->get();
         
-        $equipos_sedes = Equipos::select('sedes.nombre_sede',DB::raw('count(*) as cantidad'))
-        ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+        $equipos_sedes = DB::table('equipos')
+        ->select('sedes.*',DB::raw('count(*) as cantidad'))
+        ->join('asignar', 'equipos.id', '=', 'asignar.id_equipo')
         ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
         ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
         ->join('sedes', 'sedes.id', '=', 'division_sede.id_sede')
         ->groupBy('sedes.id')
-        ->whereNotNull('asignar.id_equipo')
         ->get();
 
+        $equipos_so = DB::table('equipos')
+        ->select('sistemas.tipo', DB::raw('count(*) as cantidad'))
+        ->join('sistemas', 'equipos.id_so', '=', 'sistemas.id')
+        ->groupBy('sistemas.tipo')
+        ->orderBy('cantidad', 'desc')
+        ->get(); //dd($equipos_sedes,$equipos_so);
 
-        return view("estadistica.index", compact('prueba','count_asignar','equipos_divisions','equipos_sedes'),["data" =>json_encode($estadisticas)] , ['count' => $count_asignar]);
+        $equipos_divisions_so = DB::table('equipos')
+        ->join('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+        ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
+        ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
+        ->join('sistemas', 'equipos.id_so', '=', 'sistemas.id')
+        ->select('divisions.*', 'sistemas.tipo', DB::raw('count(sistemas.tipo) as cantidad'))
+        ->groupBy('divisions.id', 'sistemas.tipo')
+        ->orderBy('divisions.id')
+        ->get(); //dd($equipos_divisions_so);
+
+
+        return view("estadistica.index", compact('prueba','count_asignar','equipos_divisions','equipos_sedes','equipos_so','equipos_divisions_so'),["data" =>json_encode($estadisticas)] , ['count' => $count_asignar]);
 
         // return view("estadistica.index", compact('count_asignar') ,["data" =>json_encode($estadisticas)] , ['count' => $count_asignar]);
 
