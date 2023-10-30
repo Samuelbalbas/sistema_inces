@@ -7,7 +7,9 @@ use App\Models\Equipos;
 use App\Models\Persona;
 use App\Models\Division;
 use App\Models\Sede;
+use App\Models\Asignar;
 use App\Models\Bitacora;
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteController extends Controller
@@ -18,120 +20,132 @@ class ReporteController extends Controller
         return view('reporte.bitacora', compact('bitacora'));
     }
 
-    //  public function update(Request $request, Bitacora $historico_sidi)
-    //  {
-    //     // Obtener el usuario actual
-        
-
-    //     // Crear un nuevo registro de bitacora 
-    //     $bitacora = new Bitacora();
-    //     $bitacora->tablaafectada = 'usuasrios';
-    //     $bitacora->operacion = 'creado';
-    //     $bitacora->fecha = now();
-    //     $bitacora->usuario_bd = env ('DB_USERNAME');
-    //     $bitacora->usuario = $user;
-    //     $bitacora->datos_nuevos = [
-    //         'name' => 'admin',
-    //         'email' => 'admin@gmail.com',
-    //         'password' => '123456',
-    //     ];
-
-    //     $bitacora->datos_viejos = [];
-        
-    //     // Guardar la bitacora
-    //     $bitacora->save();
-
-    //     // Retornar el usuario creado
-    //     return response()->json($user);
-
-
-    //  }
-
     public function index(Request $request)
-    {       
-        $personId = (!empty($request->personId)) ? $request->personId : null ;
-        $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
-        $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
-        $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
+    {
+            $persona = Persona::join('persona_division_sede', 'persona_division_sede.id_persona', '=', 'personas.id')
+                ->join('division_sede', 'division_sede.id', '=', 'persona_division_sede.id_division_sede')
+                ->join('sedes', 'sedes.id', '=', 'division_sede.id_sede')
+                ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
+                ->join('asignar', 'asignar.id_persona', '=', 'personas.id')
+                ->join('equipos', 'asignar.id_equipo', '=', 'equipos.id')
+                ->select([
+                    'personas.cedula',
+                    'personas.nombre',
+                    'personas.apellido',
+                    'personas.id_usuario',
+                    'divisions.nombre_division',
+                    'sedes.nombre_sede',
+                    'equipos.serial',
+                    'equipos.serialA',
+                    'asignar.estatus',
+                ]);
+    
+            $resultados = $persona->get();
 
-        $equipos = Equipos::select('equipos.*')->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo');
+        return view('reporte.index', ['resultados' => $resultados]);  
+        // $personId = (!empty($request->personId)) ? $request->personId : null ;
+        // $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
+        // $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
+        // $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
 
-        $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
+        // $equipos = Equipos::select('equipos.*')->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo');
 
-        $equipos = ($personId) ? $equipos->whereHas('asignars', function ($query) use ($personId) { $query->where('id_persona', $personId); }) : $equipos ;
+        // $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
 
-        if ($sedeId) {
-          $equipos = $equipos
-             ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
-             ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
-             ->where('division_sede.id_sede', $sedeId)
-             ->whereNotNull('asignar.id_equipo');
-        }
+        // $equipos = ($personId) ? $equipos->whereHas('asignars', function ($query) use ($personId) { $query->where('id_persona', $personId); }) : $equipos ;
 
-        if ($divisionId) {
-            $equipos = $equipos
-             ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
-             ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
-             ->where('division_sede.id_division', $divisionId)
-             ->whereNotNull('asignar.id_equipo');
-        }
+        // if ($sedeId) {
+        //   $equipos = $equipos
+        //      ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
+        //      ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        //      ->where('division_sede.id_sede', $sedeId)
+        //      ->whereNotNull('asignar.id_equipo');
+        // }
 
-        $equipos = $equipos->get(); //dd($equipos);
+        // if ($divisionId) {
+        //     $equipos = $equipos
+        //      ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
+        //      ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        //      ->where('division_sede.id_division', $divisionId)
+        //      ->whereNotNull('asignar.id_equipo');
+        // }
 
-        $personas = Persona::all();
-        $divisions = Division::all();
-        $sedes = Sede::all();
+        // $equipos = $equipos->get(); //dd($equipos);
 
-        return view('reporte.index', compact('equipos','divisions','sedes','personas','personId','sedeId','divisionId','estatus'));
+        // $personas = Persona::all();
+        // $divisions = Division::all();
+        // $sedes = Sede::all();
+  
     }
+    // public function indexDivisionEquipo(Request $request)
+    // {
+    //     $persona = Persona::first();
+    //     $division_sede = $persona->division_sede;
+        
+    //     $resultados = Equipos::where('id_division_sede', $division_sede->id)
+    //         ->join('marcas', 'equipos.id_marca', '=', 'marcas.id')
+    //         ->join('modelos', 'equipos.id_modelo', '=', 'modelos.id')
+    //         ->join('sistemas', 'equipos.id_so', '=', 'sistemas.id')
+    //         ->select('division_sede.nombre_division', 'equipos.serial', 'equipos.serialA', 'equipos.disco', 'equipos.cpu', 'equipos.ram', 'equipos.velocidad', 'sistemas.nombre', 'modelos.nombre', 'marcas.nombre')
+
+
+    // }
 
     public function reportesPdf(Request $request)
     {
-          $equipos=$this->getEquipos($request);
-          $pdf=Pdf::loadView('reporte.equipo.pdf', compact('equipos'))->setPaper('a4', 'portrait'); //portrait,landscape
-          return $pdf->stream();
+        $resultados = Persona::join('persona_division_sede', 'persona_division_sede.id_persona', '=', 'personas.id')
+        ->join('division_sede', 'division_sede.id', '=', 'persona_division_sede.id_division_sede')
+        ->join('sedes', 'sedes.id', '=', 'division_sede.id_sede')
+        ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
+        ->join('asignar', 'asignar.id_persona', '=', 'personas.id')
+        ->join('equipos', 'asignar.id_equipo', '=', 'equipos.id')
+        ->get();
+
+        $pdf = Pdf::loadView('reporte.equipo.pdf', compact('resultados'))->setPaper('a4', 'portrait'); //portrait,landscape
+
+        return $pdf->stream();
 
     }
 
-    public function getEquipos(Request $request)
-    {
-        $personId = (!empty($request->personId)) ? $request->personId : null ;
-        $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
-        $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
-        $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
+    // public function getEquipos(Request $request)
+    // {
+    //     $personId = (!empty($request->personId)) ? $request->personId : null ;
+    //     $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
+    //     $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
+    //     $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
 
-        $equipos = Equipos::select('equipos.*')
-            ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
-            ->leftjoin('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
-            ->leftjoin('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id');        
+    //     $equipos = Equipos::select('equipos.*')
+    //         ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
+    //         ->leftjoin('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
+    //         ->leftjoin('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id');        
 
-        if ($sedeId) {
-            $equipos = $equipos
-             ->where('persona_division_sede.id_persona', $personId);
-        }
+    //     if ($sedeId) {
+    //         $equipos = $equipos
+    //          ->where('persona_division_sede.id_persona', $personId);
+    //     }
 
-        if ($sedeId) {
-          $equipos = $equipos
-             ->where('division_sede.id_sede', $sedeId)
-             ->whereNotNull('persona_division_sede.id_persona')
-             ->whereNotNull('division_sede.id')
-             ->whereNotNull('asignar.id_equipo');
-        }
+    //     if ($sedeId) {
+    //       $equipos = $equipos
+    //          ->where('division_sede.id_sede', $sedeId)
+    //          ->whereNotNull('persona_division_sede.id_persona')
+    //          ->whereNotNull('division_sede.id')
+    //          ->whereNotNull('asignar.id_equipo');
+    //     }
 
-        if ($divisionId) {
-            $equipos = $equipos
-             ->where('division_sede.id_division', $divisionId)
-             ->whereNotNull('persona_division_sede.id_persona')
-             ->whereNotNull('division_sede.id')
-             ->whereNotNull('asignar.id_equipo');
-        }
+    //     if ($divisionId) {
+    //         $equipos = $equipos
+    //          ->where('division_sede.id_division', $divisionId)
+    //          ->whereNotNull('persona_division_sede.id_persona')
+    //          ->whereNotNull('division_sede.id')
+    //          ->whereNotNull('asignar.id_equipo');
+    //     }
 
-        $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
+    //     $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
 
-        $equipos = $equipos->get();
+    //     $equipos = $equipos->get();
 
-        return $equipos;
-    }
+    //     return $equipos;
+    // }
 
 }
 

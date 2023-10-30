@@ -62,7 +62,7 @@ img {
         <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado de la Persona</h1><br>
-            <table class="table" >
+        <table class="table" cellpadding="1" cellspacing="1" width="100%" style="padding-bottom:0.6rem;font-size:0.8rem !important">
             <thead class="header">
                 <tr>
                     <th>Nombre</th>

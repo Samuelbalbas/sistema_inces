@@ -71,15 +71,13 @@
     </div>
     
     <script>
-        
-        function selectAll() {
-          var checkboxes = document.getElementsByTagName("input");
-          for (var checkbox of checkboxes) {
-            if (checkbox.type === "checkbox") {
-                checkbox.checked = document.getElementById('select-all-permissions').checked;
-            } 
-          }
+        const estatusInput = document.getElementById('estatus');
+
+        estatusInput.addEventListener('change', function() {
+        if (!this.checked) {
+            alert('¡Atención! Debe seleccionar un estado para el formulario.');
         }
+        });
         
     </script>
 

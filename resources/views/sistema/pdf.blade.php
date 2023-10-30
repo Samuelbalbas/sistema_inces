@@ -11,6 +11,7 @@
 
 <style>
 
+
 body{
     margin: 0;
 	padding: 0;
@@ -32,8 +33,9 @@ h1{
 }
 
 .table{
-    font-size: 17.8px;
+    font-size: 18px;
     text-align: center;
+    /* width: 100%; */
 
 }
 tbody. tr. td{
@@ -62,7 +64,7 @@ img {
         <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado de Sistemas Operativos</h1><br>
-            <table class="table" >
+        <table class="table" cellpadding="1" cellspacing="1" width="100%" style="padding-bottom:0.6rem;font-size:0.8rem !important">
             <thead class="header">
                 <tr>
                     <th>Tipo del Sistema Operativo</th>

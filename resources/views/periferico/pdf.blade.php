@@ -32,9 +32,9 @@ h1{
 }
 
 .table{
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
-    width: 100%;
+    /* width: 100%; */
 
 }
 tbody. tr. td{
@@ -63,7 +63,7 @@ img {
         <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado del Periférico</h1><br>
-            <table class="table" >
+        <table class="table" cellpadding="1" cellspacing="1" width="100%" style="padding-bottom:0.6rem;font-size:0.8rem !important">
             <thead class="header">
                 <tr>
                     <th>Tipo</th>

@@ -33,14 +33,13 @@ h1{
 }
 
 .table{
-    text-align: left;
-    font-size: 22px;
-    width: 95%;
+    font-size: 18px;
+    text-align: center;
+    /* width: 100%; */
 
 }
 tbody. tr. td{
-    border: 1px solid black;
-    
+    border: 2px solid black;
 }
 
 img {
@@ -56,6 +55,7 @@ img {
   border-radius: 8% 
 }
 
+
 </style>
 {{-- Estilo al PDF --}}
 
@@ -65,7 +65,7 @@ img {
         <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado de la Marca</h1><br>
-            <table class="table" >
+        <table class="table" cellpadding="1" cellspacing="1" width="100%" style="padding-bottom:0.6rem;font-size:0.8rem !important">
             <thead class="header">
                 <tr>
                     <th>Marca</th>

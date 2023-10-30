@@ -34,7 +34,7 @@
                     <thead>
                         <tr class="text-white">
                             <th>N</th>
-                            <th  style="color: black;">Cédula</th>
+                            <th  style="color: black;">Division</th>
                             <th  style="color: black;">Nombre</th>
                             <th  style="color: black;">Apellido</th>
                             <th  style="color: black;">Id.Usuario</th>

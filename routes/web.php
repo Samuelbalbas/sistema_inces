@@ -173,6 +173,7 @@ Route::post('/equipo/marca', [EquiposController::class,'modal'])->middleware('au
 
 /* Ruta Asignar */
 Route::get('/asignar', [AsignarController::class, 'index'])->name('asignar')->middleware('auth');
+Route::get('/asignar/pdf', [AsignarController::class, 'pdf'])->name('asignar')->middleware('auth');
 Route::get('/asignar/create', [AsignarController::class, 'create'])->name('asignar.create')->middleware('auth');
 Route::put('/asignar/persona/{id}', [AsignarController::class, 'updateByPerson'])->name('asignar.updateByPerson')->middleware('auth');
 Route::put('/asignar/reincorp/{id}', [AsignarController::class, 'updatereincorp'])->name('asignar.updatereincorp')->middleware('auth');
@@ -192,6 +193,7 @@ Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadi
 /* Ruta reportes */
 Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
 Route::get('/reportes/pdf',  [ReporteController::class,'reportesPdf'])->name('reportes.pdf')->middleware('auth');
+Route::get('reportes/{reporte}/division_equipo', [ReporteController::class, 'indexDivisionEquipo'])->name('reporte.indexdivisionequipo')->middleware('auth');
 
 Route::get('bitacora', [ReporteController::class, 'bitacora'])->name('bitacora')->middleware('auth');
 

@@ -2,6 +2,7 @@
 
 <title>@yield('title') Reincorporar</title>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
 
@@ -164,4 +165,17 @@
             </div> 
         </div>
     </div>
+    
+    <script>
+       const form = document.querySelector('form');
+        const estatusInput = document.getElementById('reincoporar');
+
+        form.addEventListener('submit', function(event) {
+        if (!estatusInput.checked) {
+            event.preventDefault();
+            alert('Debe seleccionar el estatus de reincorporar.');
+        }
+        });
+    </script>
+
 @endsection

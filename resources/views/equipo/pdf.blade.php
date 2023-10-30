@@ -63,32 +63,32 @@ img {
         <br><br>
         <img src="../public/img/ce.png" alt="">
         <h1>Listado del Equipo</h1><br>
-            <table class="table" >
+        <table class="table" cellpadding="1" cellspacing="1" width="100%" style="padding-bottom:0.6rem;font-size:0.8rem !important">
             <thead class="header">
                 <tr>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Serial</th>
-                    <th>Serial Activo</th>
-                    <th>Modelo del CPU</th>
-                    <th>Velocidad del CPU(Mhz)</th>
-                    <th>Memoria Ram(Gb)</th>
-                    <th>Disco Duro(Gb)</th>
-                    <th>Tipo S.O.</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serial</th>
+                <th>Serial Activo</th>
+                <th>Modelo del CPU</th>
+                <th>Velocidad del CPU(Mhz)</th>
+                <th>Memoria Ram(Gb)</th>
+                <th>Disco Duro(Gb)</th>
+                <th>Tipo S.O.</th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($equipos as $equipo)
                 <tr>
-                    <td>{{ $equipo->marca->nombre_marca }}</td>
-                    <td>{{ $equipo->modelo->nombre_modelo }}</td>
-                    <td>{{ $equipo->serial}}</td>
-                    <td>{{ $equipo->serialA }}</td>
-                    <td>{{ $equipo->cpu}}</td>
-                    <td>{{ $equipo->velocidad }}</td>
-                    <td>{{ $equipo->ram}}</td>
-                    <td>{{ $equipo->disco}}</td>
-                    <td>{{ $equipo->sistema->nombre}}</td>
+                <td>{{ $equipo->marca->nombre_marca }}</td>
+                <td>{{ $equipo->modelo->nombre_modelo }}</td>
+                <td>{{ $equipo->serial}}</td>
+                <td>{{ $equipo->serialA }}</td>
+                <td>{{ $equipo->cpu}}</td>
+                <td>{{ $equipo->velocidad }}</td>
+                <td>{{ $equipo->ram}}</td>
+                <td>{{ $equipo->disco}}</td>
+                <td>{{ $equipo->sistema->nombre}}</td>
                 </tr>
         @endforeach
             </tbody>

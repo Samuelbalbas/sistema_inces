@@ -12,8 +12,12 @@
     <div class="container-fluid" style="margin-top: 10%">
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
+
+            <a href="{{ url('asignar/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
                 
-                <h2 style="color: black; margin-left: 38%;">Equipos Asignados</h2>
+                <h2 style="color: black;">Equipos Asignados</h2>
                 
                 {{-- @can('crear-cargo') --}}
                     <form action="{{ url('asignar/create') }}" method="get">
@@ -47,9 +51,7 @@
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}, {{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}, {{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}, {{ $asignacionesGrupo->first()->periferico->serial }}, {{ $asignacionesGrupo->first()->periferico->serialA }}</td>
-                            
-                                 
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->periferico->tipo_periferico->tipo }}, {{ $asignacionesGrupo->first()->periferico->marca->nombre_marca }}, {{ $asignacionesGrupo->first()->periferico->modelo->nombre_modelo }}, {{ $asignacionesGrupo->first()->periferico->serial }}, {{ $asignacionesGrupo->first()->periferico->serialA }}</td>     
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
 
                             <td>
@@ -69,64 +71,6 @@
                             </td>
                         </tr> 
                      @endforeach
-
-                    {{-- @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
-                            <tr>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->apellido }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->cpu }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->sistema->tipo }}</td>
-
-                                <td class="" style="color: black;">
-                                    @foreach ($asignacionesGrupo as $asignacion)
-                                        {{ $asignacion->periferico->tipo_periferico->tipo }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="" style="color: black;">
-                                    @foreach ($asignacionesGrupo as $asignacion)
-                                        {{ $asignacion->periferico->marca->nombre_marca }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="" style="color: black;">
-                                    @foreach ($asignacionesGrupo as $asignacion)
-                                        {{ $asignacion->periferico->modelo->nombre_modelo }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="" style="color: black;">
-                                    @foreach ($asignacionesGrupo as $asignacion)
-                                        {{ $asignacion->periferico->serial }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="" style="color: black;">
-                                    @foreach ($asignacionesGrupo as $asignacion)
-                                        {{ $asignacion->periferico->serialA }}<br>
-                                    @endforeach
-                                </td> 
-
-                                <td class="" style="color: black;">{{ $asignacionesGrupo->first()->estatus }}</td>
-
-                                <td>
-                                    <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/asignar/'.$asignacionesGrupo->first()->persona->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
-                                    @can('borrar-cargo') 
-                                         <form action="{{ url('/asignar/'.$asignacionesGrupo->first()->id) }}" method="POST" class="sweetalert" style="display:inline;">
-                                            @csrf
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
-
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Ver Detalles
-                                            </button>
-
-                                            
-                                        </form>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach --}}
-                            
 
                     </tbody>
                 </table>

@@ -10,6 +10,7 @@ use App\Models\Perifericos;
 use App\Models\Persona;
 use App\Models\TipoPeriferico;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AsignarController extends Controller
 {
@@ -28,6 +29,27 @@ class AsignarController extends Controller
         });
     
         return view('asignar.index', compact('asignacionesAgrupadas'));
+    }
+
+    public function pdf()
+    {
+        // Trae todos los registros de la tabla asignar
+            $asignaciones = Asignar::all();
+
+            // Crea un arreglo vacío para almacenar los datos del equipo con la persona
+            $asignacionesAgrupadas = [];
+
+            // Recorre todos los registros de la tabla asignar
+            foreach ($asignaciones as $asignacion) {
+            // Agrega los datos del equipo con la persona al arreglo
+            $asignacionesAgrupadas[] = $asignacion;
+            }
+
+            // Carga la vista del PDF
+            $pdf = PDF::loadView('asignar.pdf', compact('asignacionesAgrupadas'))->setPaper('a4', 'portrait');
+
+            // Genera el PDF
+            return $pdf->stream();
     }
 
     public function estatus()

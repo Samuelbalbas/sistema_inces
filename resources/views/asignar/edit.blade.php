@@ -33,6 +33,7 @@
                                 <div id="datosPersona">                       
                                     <label for="id_cargo" style="color: black;">Cargo</label>
                                     <input class="form-control" style="background: white;" type="text" id="id_cargo" name="id_cargo" value="{{ isset($persona->cargo->nombre_cargo)?$persona->cargo->nombre_cargo:'' }}" disabled>
+                                    </div>
                                 </div>
                                 
                                 <div class="col-2">
