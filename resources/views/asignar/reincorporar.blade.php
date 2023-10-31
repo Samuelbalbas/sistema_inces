@@ -26,7 +26,14 @@
                                 <select class="form-select" id="persona" name="id_persona">
                                     <option value="0">Seleccione una Persona</option>
                                     @foreach($personas as $persona)
-                                        <option value="{{ $persona->id }}" @if($persona->id == $asignacion->id_persona) selected @endif>{{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}</option>
+                                        <option value="{{ $persona->id }}" 
+                                                data-cargo="{{ $persona->cargo->nombre_cargo }}"
+                                                data-telefono="{{ $persona->telefono }}"
+                                                data-sede="{{ $persona->divisionesSedes[0]->sede->nombre_sede }}"
+                                                data-division="{{ $persona->divisionesSedes[0]->division->nombre_division }}"
+                                                @if($persona->id == $asignacion->id_persona) selected @endif>
+                                            {{ $persona->nombre }}  {{ $persona->apellido }} - {{ $persona->cedula }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -149,6 +156,19 @@
                                 select.value = '0';
                             }
                         }
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#persona').change(function () {
+                                var selectedPersona = $(this).find('option:selected');
+
+                                // Actualizar campos de entrada con los datos de la persona seleccionada
+                                $('#id_cargo').val(selectedPersona.data('cargo'));
+                                $('#telefono').val(selectedPersona.data('telefono'));
+                                $('#sede').val(selectedPersona.data('sede'));
+                                $('#division').val(selectedPersona.data('division'));
+                            });
+                        });
                     </script>
 
                     <script>

@@ -145,6 +145,62 @@
                             }
                         }
                     </script>
+                    <script>
+                        $(document).ready(function(){
+                            $('#persona').on('change', function(){
+                                var persona_id = $(this).val();
+                                if(persona_id){
+                                    var data = {!! json_encode($personas->toArray()) !!};
+                                    $.each(data, function(i, v){
+                                        if(v.id == persona_id){
+                                            $('#id_cargo').val(v.cargo.nombre_cargo);
+                                            $('#telefono').val(v.telefono);
+                                            $('#sede').val(v.divisiones_sedes[0].sede.nombre_sede);
+                                            $('#division').val(v.divisiones_sedes[0].division.nombre_division);
+                                        }
+                                    })
+                                    $('#datosPersona').show();
+                                }else{
+                                    $('#id_cargo').val('');
+                                    $('#telefono').val('');
+                                    $('#sede').val('');
+                                    $('#division').val('');
+                                    $('#datosPersona').hide();
+                                }
+                            });
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function(){
+                            $('#equipo').on('change', function(){
+                                var equipo_id = $(this).val();
+                                if(equipo_id){
+                                    var data = {!! json_encode($equipos->toArray()) !!};
+                                    $.each(data, function(i, v){
+                                        if(v.id == equipo_id){
+                                            $('#serial').val(v.serial);
+                                            $('#serialA').val(v.serialA);
+                                            $('#cpu').val(v.cpu);
+                                            $('#velocidad').val(v.velocidad);
+                                            $('#ram').val(v.ram);
+                                            $('#disco').val(v.disco);
+                                            $('#id_so').val(v.sistema.nombre); // Aquí es donde se ha realizado el cambio
+                                        }
+                                    })
+                                    $('#datosEquipo').show();
+                                }else{
+                                    $('#serial').val('');
+                                    $('#serialA').val('');
+                                    $('#cpu').val('');
+                                    $('#velocidad').val('');
+                                    $('#ram').val('');
+                                    $('#disco').val('');
+                                    $('#id_so').val('');
+                                    $('#datosEquipo').hide();
+                                }
+                            });
+                        });
+                    </script>
 
                 </div>
             </div> 
