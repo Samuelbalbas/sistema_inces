@@ -13,33 +13,23 @@
         <div class="p-3" style="background:rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-            {{-- @can('generar-equipo')
-                <a href="{{ url('equipo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
-                {{ ('PDF') }}
-                </a>
-            @endcan --}}
+            <a href="{{ url('reportes/perifpdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
 
-                <h2 style="color: black;  margin-left: 44%;">Reporte</h2>
+                <h2 style="color: black;  margin-right: 44%;">Reporte Periféricos</h2>
 
-            </div>
-            <div class="">
-                      <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
-                      
-                        <a href="{{ url('reportes/pdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
-                    </div>
-                </form>
-
-                <hr>
+            </div>    
                 <table id="equipos" class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-white">
                             <th>N</th>
-                            <th  style="color: black;">Division</th>
+                            <th  style="color: black;">Cedula</th>
                             <th  style="color: black;">Nombre</th>
                             <th  style="color: black;">Apellido</th>
-                            <th  style="color: black;">Id.Usuario</th>
                             <th  style="color: black;">División</th>
                             <th  style="color: black;">Sede</th>
+                            <th  style="color: black;">Tipo de Periférico</th>
+                            <th  style="color: black;">Marca</th>
+                            <th  style="color: black;">Modelo</th>
                             <th  style="color: black;">Serial</th>
                             <th  style="color: black;">Serial Activo</th>
                             <th  style="color: black;">Estatus</th>
@@ -47,18 +37,20 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($resultados as $resultado)
+                        @foreach ($perifs as $perif)
                                 <tr>
                                     <td style="color: black;">{{ $loop->iteration }}</td>
-                                    <td style="color: black;">{{ $resultado->nombre }}</td>
-                                    <td style="color: black;">{{ $resultado->apellido }}</td>
-                                    <td style="color: black;">{{ $resultado->cedula }}</td>
-                                    <td style="color: black;">{{ $resultado->id_usuario }}</td>
-                                    <td style="color: black;">{{ $resultado->nombre_division }}</td>
-                                    <td style="color: black;">{{ $resultado->nombre_sede }}</td>
-                                    <td style="color: black;">{{ $resultado->serial }}</td>
-                                    <td style="color: black;">{{ $resultado->serialA }}</td>
-                                    <td style="color: black;">{{ $resultado->estatus }}</td>
+                                    <td style="color: black;">{{ $perif->cedula }}</td>
+                                    <td style="color: black;">{{ $perif->nombre }}</td>
+                                    <td style="color: black;">{{ $perif->apellido }}</td>
+                                    <td style="color: black;">{{ $perif->nombre_division }}</td>
+                                    <td style="color: black;">{{ $perif->nombre_sede }}</td>
+                                    <td style="color: black;">{{ $perif->tipo }}</td>
+                                    <td style="color: black;">{{ $perif->nombre_marca }}</td>
+                                    <td style="color: black;">{{ $perif->nombre_modelo }}</td>
+                                    <td style="color: black;">{{ $perif->serial }}</td>
+                                    <td style="color: black;">{{ $perif->serialA }}</td>
+                                    <td style="color: black;">{{ $perif->estatus }}</td>
                                 </tr>
                         @endforeach
                     </tbody>
@@ -72,25 +64,6 @@
         alert(errorMessage);
     </script>
 @endif
-
-
-    <!-- @section('scripts')
-        @parent
-        <script>
-            $(document).ready(function() {
-                $('#btn_toprint').click(function (e) {
-                    e.preventDefault();
-                    var personId = $('#personId').val();
-                    var sedeId = $('#sedeId').val();
-                    var divisionId = $('#divisionId').val();
-                    var estatus = $('#estatus').val();
-                    var url = '{{ route("reportes.pdf") }}?personId=_pid_&sedeId=_sid_&divisionId=_did_&estatus=_eid_';
-                    url = url.replace('_pid_', personId); url = url.replace('_sid_', sedeId); url = url.replace('_did_', divisionId);url = url.replace('_eid_', estatus);
-                    window.open(url,'_blank');
-                });
-            });
-        </script>
-    @endsection -->
 
     @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

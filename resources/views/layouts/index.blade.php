@@ -114,6 +114,7 @@
                     <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-arrow-left-circle"></i>  Desincorporar</a>
                     <a href= "{{ url('inventario') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
                     <a href="{{ url('estadistica') }}" class="nav-item nav-link"><i class="bi bi-bar-chart-line"></i>  Estadística</a>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Reportes</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -123,14 +124,15 @@
                         @endcan
 
                         @can('ver-reporte')
-                        <a href="{{ url('division_equipo') }}" class="dropdown-item"></i>Division Equipo</a>
+                        <a href="{{ url('reportes/indexperif') }}" class="dropdown-item"></i>Reporte Perifericos</a>
                         @endcan
                         </div>
                     </div>
 
                     
                     <a href="{{ url('bitacora') }}" class="nav-item nav-link"><i class="bi bi-arrows-angle-contract"></i>  Bitácora</a>
-                    <a href="manual.html" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
+                    
+                    <a href="{{ url('manual') }}" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
                 </div>
             </nav>
@@ -152,7 +154,7 @@
                 
                 
                 <div class="d-none d-md-flex ms-4" style="margin-top: 10px;">
-                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES ESTADO YARACUY(S.I.E.I.D.I)</MARQUEE> </h6> 
+                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES ESTADO YARACUY(S.I.D.I)</MARQUEE> </h6> 
                 </div>
                 
                 <div class="navbar-nav align-items-center ms-auto">

@@ -25,6 +25,7 @@ use App\Http\Controllers\TipoPerifericoController;
 use App\Http\Controllers\EstadisticaController;
 use App\Models\Asignar;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ManualController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -193,10 +194,13 @@ Route::get('estadistica', [EstadisticaController::class, 'index'])->name('estadi
 /* Ruta reportes */
 Route::get('reportes', [ReporteController::class, 'index'])->name('reportes')->middleware('auth');
 Route::get('/reportes/pdf',  [ReporteController::class,'reportesPdf'])->name('reportes.pdf')->middleware('auth');
-Route::get('reportes/{reporte}/division_equipo', [ReporteController::class, 'indexDivisionEquipo'])->name('reporte.indexdivisionequipo')->middleware('auth');
-
+Route::get('reportes/indexperif', [ReporteController::class, 'indexperif'])->name('reportes')->middleware('auth');
+Route::get('/reportes/perifpdf',  [ReporteController::class,'reportesperifPdf'])->name('reportes.perifpdf')->middleware('auth');
 Route::get('bitacora', [ReporteController::class, 'bitacora'])->name('bitacora')->middleware('auth');
 
 /* Ruta Inventario*/
 Route::get('/inventario',  [EquiposController::class,'indexinvent'])->name('equipo')->middleware('auth');
 Route::get('/inventario/estatus',  [AsignarController::class,'estatus'])->name('estatus')->middleware('auth');
+
+/* Ruta Manual */
+Route::get('/manual',  [ManualController::class,'index'])->name('manual')->middleware('auth');

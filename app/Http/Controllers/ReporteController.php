@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipos;
+use App\Models\Perifericos;
+use App\Models\TipoPeriferico;
 use App\Models\Persona;
 use App\Models\Division;
 use App\Models\Sede;
@@ -42,54 +44,8 @@ class ReporteController extends Controller
     
             $resultados = $persona->get();
 
-        return view('reporte.index', ['resultados' => $resultados]);  
-        // $personId = (!empty($request->personId)) ? $request->personId : null ;
-        // $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
-        // $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
-        // $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
-
-        // $equipos = Equipos::select('equipos.*')->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo');
-
-        // $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
-
-        // $equipos = ($personId) ? $equipos->whereHas('asignars', function ($query) use ($personId) { $query->where('id_persona', $personId); }) : $equipos ;
-
-        // if ($sedeId) {
-        //   $equipos = $equipos
-        //      ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
-        //      ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
-        //      ->where('division_sede.id_sede', $sedeId)
-        //      ->whereNotNull('asignar.id_equipo');
-        // }
-
-        // if ($divisionId) {
-        //     $equipos = $equipos
-        //      ->join('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')  
-        //      ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
-        //      ->where('division_sede.id_division', $divisionId)
-        //      ->whereNotNull('asignar.id_equipo');
-        // }
-
-        // $equipos = $equipos->get(); //dd($equipos);
-
-        // $personas = Persona::all();
-        // $divisions = Division::all();
-        // $sedes = Sede::all();
-  
+        return view('reporte.index', ['resultados' => $resultados]);
     }
-    // public function indexDivisionEquipo(Request $request)
-    // {
-    //     $persona = Persona::first();
-    //     $division_sede = $persona->division_sede;
-        
-    //     $resultados = Equipos::where('id_division_sede', $division_sede->id)
-    //         ->join('marcas', 'equipos.id_marca', '=', 'marcas.id')
-    //         ->join('modelos', 'equipos.id_modelo', '=', 'modelos.id')
-    //         ->join('sistemas', 'equipos.id_so', '=', 'sistemas.id')
-    //         ->select('division_sede.nombre_division', 'equipos.serial', 'equipos.serialA', 'equipos.disco', 'equipos.cpu', 'equipos.ram', 'equipos.velocidad', 'sistemas.nombre', 'modelos.nombre', 'marcas.nombre')
-
-
-    // }
 
     public function reportesPdf(Request $request)
     {
@@ -106,46 +62,59 @@ class ReporteController extends Controller
         return $pdf->stream();
 
     }
+    
+    public function indexperif(Request $request)
+    {
+        $personas = Persona::join('persona_division_sede', 'personas.id', '=', 'persona_division_sede.id_persona')
+        ->join('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id')
+        ->join('sedes', 'division_sede.id_sede', '=', 'sedes.id')
+        ->join('divisions', 'division_sede.id_division', '=', 'divisions.id')
+        ->join('asignar', 'personas.id', '=', 'asignar.id_persona')
+        ->join('perifericos', 'asignar.id_periferico', '=', 'perifericos.id')
+        ->join('tipo_perifericos', 'perifericos.id_tipo', '=', 'tipo_perifericos.id')
+        ->join('marcas', 'perifericos.id_marca', '=', 'marcas.id')
+        ->join('modelos', 'perifericos.id_modelo', '=', 'modelos.id')
+        ->select([
+            'personas.cedula',
+            'personas.nombre',
+            'personas.apellido',
+            'divisions.nombre_division',
+            'sedes.nombre_sede',
+            'tipo_perifericos.tipo',
+            'marcas.nombre_marca',
+            'modelos.nombre_modelo',
+            'perifericos.id_tipo',
+            'perifericos.id_marca',
+            'perifericos.id_modelo',
+            'perifericos.serial',
+            'perifericos.serialA',
+            'asignar.estatus',
+        ]);
+        
+        $perifs = $personas->get();
 
-    // public function getEquipos(Request $request)
-    // {
-    //     $personId = (!empty($request->personId)) ? $request->personId : null ;
-    //     $sedeId = (!empty($request->sedeId)) ? $request->sedeId : null ;
-    //     $divisionId = (!empty($request->divisionId)) ? $request->divisionId : null ;
-    //     $estatus = (!empty($request->estatus)) ? $request->estatus : null ;
+        return view('reporte.indexperif', ['perifs' => $perifs]); 
+    }
 
-    //     $equipos = Equipos::select('equipos.*')
-    //         ->leftjoin('asignar', 'equipos.id', '=', 'asignar.id_equipo')
-    //         ->leftjoin('persona_division_sede', 'asignar.id_persona', '=', 'persona_division_sede.id_persona')
-    //         ->leftjoin('division_sede', 'persona_division_sede.id_division_sede', '=', 'division_sede.id');        
+    
+    public function reportesperifPdf(Request $request)
+    {
+        $perifs = Persona::join('persona_division_sede', 'persona_division_sede.id_persona', '=', 'personas.id')
+        ->join('division_sede', 'division_sede.id', '=', 'persona_division_sede.id_division_sede')
+        ->join('sedes', 'sedes.id', '=', 'division_sede.id_sede')
+        ->join('divisions', 'divisions.id', '=', 'division_sede.id_division')
+        ->join('asignar', 'personas.id', '=', 'asignar.id_persona')
+        ->join('perifericos', 'asignar.id_periferico', '=', 'perifericos.id')
+        ->join('tipo_perifericos', 'perifericos.id_tipo', '=', 'tipo_perifericos.id')
+        ->join('marcas', 'perifericos.id_marca', '=', 'marcas.id')
+        ->join('modelos', 'perifericos.id_modelo', '=', 'modelos.id')
+        ->get();
 
-    //     if ($sedeId) {
-    //         $equipos = $equipos
-    //          ->where('persona_division_sede.id_persona', $personId);
-    //     }
+        $pdf = Pdf::loadView('reporte.equipo.perifpdf', compact('perifs'))->setPaper('a4', 'portrait'); //portrait,landscape
 
-    //     if ($sedeId) {
-    //       $equipos = $equipos
-    //          ->where('division_sede.id_sede', $sedeId)
-    //          ->whereNotNull('persona_division_sede.id_persona')
-    //          ->whereNotNull('division_sede.id')
-    //          ->whereNotNull('asignar.id_equipo');
-    //     }
+        return $pdf->stream();
 
-    //     if ($divisionId) {
-    //         $equipos = $equipos
-    //          ->where('division_sede.id_division', $divisionId)
-    //          ->whereNotNull('persona_division_sede.id_persona')
-    //          ->whereNotNull('division_sede.id')
-    //          ->whereNotNull('asignar.id_equipo');
-    //     }
-
-    //     $equipos = ($estatus) ? $equipos->where('asignar.estatus',$estatus) : $equipos ;
-
-    //     $equipos = $equipos->get();
-
-    //     return $equipos;
-    // }
+    }
 
 }
 

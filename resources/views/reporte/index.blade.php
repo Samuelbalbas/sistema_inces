@@ -13,23 +13,14 @@
         <div class="p-3" style="background:rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-            {{-- @can('generar-equipo')
-                <a href="{{ url('equipo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
-                {{ ('PDF') }}
-                </a>
-            @endcan --}}
+            <a href="{{ url('reportes/pdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}
 
-                <h2 style="color: black;  margin-left: 44%;">Reporte</h2>
+            </a>
+
+                <h2 style="color: black;  margin-right: 44%;">Reporte General</h2>
 
             </div>
-            <div class="">
-                      <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
-                      
-                        <a href="{{ url('reportes/pdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>
-                    </div>
-                </form>
 
-                <hr>
                 <table id="equipos" class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-white">
