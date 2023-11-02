@@ -17,7 +17,7 @@
                     {{ ('PDF') }}
             </a>
 
-                <h2 style="color: black; margin-left: 38%;">Equipos Desincorporados</h2>
+                <h2 style="color: black; margin-right: 40%;">Equipos Desincorporados</h2>
 
             </div>
             <div class="">

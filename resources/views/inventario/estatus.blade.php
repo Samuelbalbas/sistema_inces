@@ -26,8 +26,8 @@
                 <table id="asignar" class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                         <tr class="text-white">
-                            {{-- <th  style="color: black;">Persona (Cédula)</th>
-                            <th  style="color: black;">Persona (Nombre y Apellido)</th> --}}
+                            <th  style="color: black;">Persona (Cédula)</th>
+                            <th  style="color: black;">Persona (Nombre y Apellido)</th>
                             <th  style="color: black;">Equipo (CPU)</th>
                             <th  style="color: black;">Equipo (Serial)</th>
                             <th  style="color: black;">Equipo (SerialA)</th>
@@ -41,8 +41,8 @@
                 
                    @foreach ($asignacionesAgrupadas as $asignacionesGrupo)
                         <tr>
-                            {{-- <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
-                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }} {{ $asignacionesGrupo->first()->persona->apellido }}</td> --}}
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->cedula }}</td>
+                            <td class="" style="color: black;">{{ $asignacionesGrupo->first()->persona->nombre }} {{ $asignacionesGrupo->first()->persona->apellido }}</td> 
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->cpu }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serial }}</td>
                             <td class="" style="color: black;">{{ $asignacionesGrupo->first()->equipo->serialA }}</td>
