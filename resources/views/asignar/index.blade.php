@@ -12,12 +12,8 @@
     <div class="container-fluid" style="margin-top: 10%">
         <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
-
-            <a href="{{ url('asignar/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
-            {{ ('PDF') }}
-            </a>
                 
-                <h2 style="color: black;">Equipos Asignados</h2>
+                <h2 style="color: black; margin-left:44%;">Equipos Asignados</h2>
                 
                 {{-- @can('crear-cargo') --}}
                     <form action="{{ url('asignar/create') }}" method="get">
