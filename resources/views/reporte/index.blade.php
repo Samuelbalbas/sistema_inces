@@ -19,7 +19,7 @@
 
             </a>-->
 
-                <h2 style="color: black;  margin-right: 44%;">Reporte General</h2>
+                <h2 style="color: black;  margin-left: 44%;">Reporte General</h2>
 
             </div>
 

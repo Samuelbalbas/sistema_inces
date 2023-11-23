@@ -17,7 +17,7 @@
                 
             <!--<a href="{{ url('reportes/perifpdf') }}" id="btn_toprint" class="btn btn-sm btn-danger" target="_blank">{{ ('PDF') }}</a>-->
 
-                <h2 style="color: black;  margin-right: 44%;">Reporte Periféricos</h2>
+                <h2 style="color: black;  margin-left: 44%;">Reporte Periféricos</h2>
 
             </div>    
                 <table id="equipos" class="table text-start align-middle table-bordered table-hover mb-0">
