@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargo;
+use App\Models\Cargo;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class CargoController extends Controller
 {
@@ -27,8 +30,15 @@ class CargoController extends Controller
     {
         //
          //Cambiar numero 5 para aumentar los registros que muestra el catalogo
-         $datos['cargos']=cargo::all();
+         $datos['cargos']=Cargo::all();
          return view('cargo.index',$datos);
+    }
+    public function pdf()
+    {
+          $cargos=Cargo::all();
+          $pdf=Pdf::loadView('cargo.pdf', compact('cargos'));
+          return $pdf->stream();
+
     }
 
     public function create()
@@ -46,8 +56,9 @@ class CargoController extends Controller
     {
         //
         $datosCargo = request()->except('_token');
-        cargo::create($datosCargo);
-
+        Cargo::create($datosCargo);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('cargo');
 
         // return response()->json($datosCargo);
@@ -90,7 +101,8 @@ class CargoController extends Controller
         //
         $datosCargo = request()->except('_token','_method');
         cargo::where('id','=',$id)->update($datosCargo);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('cargo');
 
         // $cargo=cargo::findOrFail($id);
@@ -107,6 +119,8 @@ class CargoController extends Controller
     {
         //
         cargo::destroy($id);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('cargo')->with('eliminar', 'ok');
     }
 }

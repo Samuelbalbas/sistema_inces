@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sistema;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SistemaController extends Controller
 {
@@ -28,6 +31,14 @@ class SistemaController extends Controller
         return view('sistema.index',$datos);
     }
 
+    public function pdf()
+    {
+          $sistemas=sistema::all();
+          $pdf=Pdf::loadView('sistema.pdf', compact('sistemas'));
+          return $pdf->stream();
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +59,8 @@ class SistemaController extends Controller
     {
         $datosSistema = request()->except('_token');
         sistema::create($datosSistema);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect ('sistema');
     }
 
@@ -87,6 +99,8 @@ class SistemaController extends Controller
     {
         $datosSistema = request()->except('_token','_method');
         sistema::where('id','=',$id)->update($datosSistema);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('sistema');
     }
@@ -99,7 +113,15 @@ class SistemaController extends Controller
      */
     public function destroy($id)
     {
-        sistema::destroy($id);
-        return redirect('sistema')->with('eliminar', 'ok');
+        try {
+            sistema::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
+            return redirect('sistema')->with('eliminar', 'ok');
+
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el sistema operativo debido a que tiene equipos usando este sistema.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

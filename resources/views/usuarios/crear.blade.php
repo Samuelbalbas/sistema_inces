@@ -1,6 +1,8 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Usuarios</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
 
@@ -16,22 +18,22 @@
         </div>
     @endif
 
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-                <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+                <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     <center>
                         <h3 class="mb-4" style="color: black;">Crear Usuario</h3>
                     </center>
                     
-                    <form method="post" action="{{ route('usuarios.store') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('usuarios.store') }}" enctype="multipart/form-data" onsubmit="return usuario(this)">
                             @csrf
 
                         <div class="row">
 
                             <div class="col-3">
                                 <label style="color: black;">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" style="background: white;" value="" placeholder="Ingrese el Nombre" autocomplete="off">
+                                <input type="text" class="form-control" id="name" name="name" style="background: white;" value="" placeholder="Ingrese el Nombre" autocomplete="off" onkeypress="return soloLetras(event);">
                             </div>
 
                             <div class="col-3">
@@ -51,7 +53,7 @@
 
                             <div class="col-3">
                                 <label style="color: black;">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="confirm-password" name="confirm-password" style="background: white;" value="" placeholder="Confirme La Contraseña" autocomplete="off">
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" style="background: white;" value="" placeholder="Confirme La Contraseña" autocomplete="off">
                             </div>
 
                             <div class="col-3">

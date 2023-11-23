@@ -1,6 +1,8 @@
 @extends('layouts.index')
 
 <title>@yield('title') Perfil</title>
+<script src="{{ asset('js/validaciones.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
 
@@ -9,12 +11,12 @@
                     <!-- ? Tabla o formulario con sus respectivos campos -->
 
     @include('partials.messages')
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid" style="margin-top: 11%;">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 255, 255);  margin-top: 30vh;">
+            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                 <center>
-                    <h6 class="mb-4" style="color: black;">Gestión Perfil</h6>
+                    <h3 class="mb-4" style="color: black;">Gestión Perfil</h3>
                 </center>
                             
                 <form method="POST" action="{{route('changePassword')}}">

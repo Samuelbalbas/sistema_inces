@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\perifericos;
+use App\Models\Perifericos;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\TipoPeriferico;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PerifericosController extends Controller
 {
@@ -32,6 +35,13 @@ class PerifericosController extends Controller
 
         
     }
+    public function pdf()
+    {
+          $perifericos= Perifericos::all();
+          $pdf=Pdf::loadView('periferico.pdf', compact('perifericos'));
+          return $pdf->stream();
+
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -54,8 +64,20 @@ class PerifericosController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:perifericos,serial',
+            'serialA' => 'unique:perifericos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
         $datosPeriferico = request()->except('_token');
         Perifericos::create($datosPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('periferico');
     }
@@ -63,7 +85,7 @@ class PerifericosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function show(perifericos $perifericos)
@@ -74,7 +96,7 @@ class PerifericosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -91,14 +113,25 @@ class PerifericosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, perifericos $perifericos, $id)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:perifericos,serial',
+            'serialA' => 'unique:perifericos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
          // Actualiza los datos del periferico con los datos del formulario
          Perifericos::where('id', $id)->update($request->except(['_token', '_method', 'id']));
-        
+         $bitacora = new BitacoraController;
+         $bitacora->update();
          // Obtén el periferico actualizado
          $periferico = Perifericos::findOrFail($id);
          
@@ -106,7 +139,8 @@ class PerifericosController extends Controller
          $marcas = Marca::all();
          $modelos = Modelo::all();
          $tipo_perifericos = TipoPeriferico::all(); // Obtener todos los registros de la tabla "tipo de periférico"
-         
+         $bitacora = new BitacoraController;
+         $bitacora->update();
          return redirect ('periferico');
          
     }
@@ -114,12 +148,20 @@ class PerifericosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\perifericos  $perifericos
+     * @param  \App\Models\Perifericos  $perifericos
      * @return \Illuminate\Http\Response
      */
     public function destroy(perifericos $perifericos, $id)
     {
-        Perifericos::destroy($id);
-        return redirect('periferico')->with('eliminar', 'ok');
+        try {
+            Perifericos::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
+            return redirect('periferico')->with('eliminar', 'ok');
+
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el periferico debido a que tiene este perifericos asignado a una persona.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

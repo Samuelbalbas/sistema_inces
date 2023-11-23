@@ -34,6 +34,9 @@
     <link href="{{ asset ('css/style.css') }}" rel="stylesheet">
 
     <script src="{{ asset ('js/validaciones.js') }}"></script> 
+
+    @yield('stylesheet')
+    
 </head>
                                 <!--                               ? Body o Cuerpo del sistama
                                     ? Spinner de carga (circulo de carga que aparece en el medio de la pantalla) -->
@@ -64,13 +67,13 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registros</a>
                         <div class="dropdown-menu bg-transparent border-0">
 
-                            @can('ver-sede')
-                            <a href="{{ url('sede') }}" class="dropdown-item">Sede</a>
-                            @endcan
-
                             @can('ver-division')
                                 <a href="{{ url('division') }}" class="dropdown-item">División</a>
                             @endcan
+                            
+                            @can('ver-sede')
+                            <a href="{{ url('sede') }}" class="dropdown-item">Sede</a>
+                            @endcan                            
                             
                             @can('ver-cargo')
                                 <a href="{{ url('cargo') }}" class="dropdown-item">Cargo</a>
@@ -96,20 +99,40 @@
                                 <a href="{{ url('periferico') }}" class="dropdown-item">Periféricos</a>
                             @endcan
                             
-                            @can('ver-equipo')
-                                <a href="{{ url('equipo') }}" class="dropdown-item">Equipos Informáticos</a>
-                            @endcan
-                                                        
                             @can('ver-sistema')
                                 <a href="{{ url('sistema') }}" class="dropdown-item">Sistemas Operativos</a>
                             @endcan
+
+                            @can('ver-equipo')
+                                <a href="{{ url('equipo') }}" class="dropdown-item">Incorporar Equipos</a>
+                            @endcan
+                                                        
                         </div>
                     </div>
-                    <a href="asigna.html" class="nav-item nav-link"><i class="bi bi-box-arrow-right me-2"></i>Asignar</a>
-                    <a href="desincorpora.html" class="nav-item nav-link"><i class="bi bi-box-arrow-left me-1 "></i>Desincorporar</a>
-                    <a href="inventario.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
-                    <a href="reportes.html" class="nav-item nav-link"><i class="bi bi-chat-square-text-fill me-2"></i>Reportes</a>
-                    <a href="manual.html" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
+                    <a href="{{ url('asignar') }}" class="nav-item nav-link"><i class="bi bi-arrow-right-circle"></i>   Asignar</a>
+                    <a href="{{ url('reincorporar') }}" class="nav-item nav-link"><i class="bi bi-arrow-repeat"></i> Reincorporar</a>
+                    <a href="{{ url('desincorporar') }}" class="nav-item nav-link"><i class="bi bi-arrow-left-circle"></i>  Desincorporar</a>
+                    <a href= "{{ url('inventario') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Inventario</a>
+                    <a href="{{ url('estadistica') }}" class="nav-item nav-link"><i class="bi bi-bar-chart-line"></i>  Estadística</a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Reportes</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+
+                        @can('ver-reporte')
+                        <a href="{{ url('reportes') }}" class="dropdown-item"></i>Reporte General</a>
+                        @endcan
+
+                        @can('ver-reporte')
+                        <a href="{{ url('reportes/indexperif') }}" class="dropdown-item"></i>Reporte Perifericos</a>
+                        @endcan
+                        </div>
+                    </div>
+
+                    
+                    <a href="{{ url('bitacora') }}" class="nav-item nav-link"><i class="bi bi-arrows-angle-contract"></i>  Bitácora</a>
+                    
+                    <a href="./manual/manual_usuario.pdf" target="_blank" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
                 </div>
             </nav>
@@ -131,7 +154,7 @@
                 
                 
                 <div class="d-none d-md-flex ms-4" style="margin-top: 10px;">
-                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO EQUIPOS INFORMATICOS PARA LA DIVISION INFORMÁTICA DE LA SEDE REGIONAL INCES (S.I.E.I.D.I)</MARQUEE> </h6> 
+                    <h6 class="text-lg-center" style="color: rgb(255, 255, 255);"> <MARQUEE> BIENVENID@ {{ Auth::user()->name }} al SISTEMA DE INVENTARIO PARA LA DIVISIÓN INFORMÁTICA DE LA SEDE REGIONAL INCES ESTADO YARACUY(S.I.D.I)</MARQUEE> </h6> 
                 </div>
                 
                 <div class="navbar-nav align-items-center ms-auto">
@@ -141,6 +164,9 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" ><i class="fa fa-user me-2"></i> {{auth()->user()->username }}</a>
                     <div class="dropdown-menu  border-0" style="background:rgb(190, 38, 38); ">
                         @can('ver-usuario')
+                            <a href= "/roles" class="dropdown-item" style="color: white;">Roles</a>
+                        @endcan
+                        @can('ver-rol')
                             <a href="/usuarios" class="dropdown-item" style="color: white;">Usuarios</a>
                         @endcan
                          <a href="{{ route('Perfil') }}" class="dropdown-item" style="color: white;">Mi Perfil</a>
@@ -183,9 +209,10 @@
 
                                                 <!-- ? Libreria de JavaScript -->
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="{{ asset ('js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
@@ -200,6 +227,8 @@
     @yield('js-datatable')
 
     @yield('sweetalert')
+
+    @yield('scripts')
     
 @endauth
 

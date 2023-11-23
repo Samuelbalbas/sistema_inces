@@ -9,19 +9,25 @@
 
 @section('content')
 
-<div class="container-fluid" style="margin-top: 2%">
-        <div class="p-3" style="background: rgb(240, 236, 236); border-radius: 20px;">
+    <div class="container-fluid" style="margin-top: 11%">
+        <div class="p-3" style="background:  rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
-                
-                
-                <h2 style="color: black; margin-left: 33%;">Gestión de la División</h2>
+            
+            
+            <a href="{{ url('division/archivo') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
+            
+
+                <h2 style="color: black; margin-left: 1%;">División</h2>
                 
                 @can('crear-division')
                     <form action="{{ url('division/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar una nueva División" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
+    
             </div>
             <div class="">
                 <table id="divisiones" class="table text-start align-middle table-bordered table-hover mb-0">
@@ -38,16 +44,16 @@
                                     <!-- <td style="color: black;">{{ $division->id}}</td> -->
                                     <td class="col-10" style="color: black;">{{ $division->nombre_division }}</td>
 
-                                    <td> 
+                                    <td>
                                         @can('editar-division')
-                                            <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/division/'.$division->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar la División" style="margin-left: 30%;" href="{{ url('/division/'.$division->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-division')
                                             <form action="{{ url('/division/'.$division->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar la División" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form>
                                         @endcan 
                                     </td>
@@ -144,5 +150,24 @@
             
             </script>
     
+    @if ($errors->any())
+    <script>
+        var errorMessage = @json($errors->first());
+        Swal.fire({
+                            title: 'División',
+                            text: "No se puede eliminar la división debido a que tiene personas asignadas a esta división en una o varias sedes.",
+                            icon: 'warning',
+                            showconfirmButton: true,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '¡OK!',
+                            
+                            }).then((result) => {
+                        if (result.isConfirmed) {
+
+                            this.submit();
+                        }
+                        })
+    </script>
+@endif       
 @endsection
 

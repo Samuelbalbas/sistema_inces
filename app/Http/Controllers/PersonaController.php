@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\persona;
+use App\Models\Persona;
 use Illuminate\Http\Request;
-use App\Models\cargo;
+use App\Models\Cargo;
 use App\Models\Division;
 use App\Models\DivisionSede;
 use App\Models\Sede;
 use App\Models\PersonaDivisionSede;
+use App\Http\Controllers\BitacoraController;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class PersonaController extends Controller
@@ -28,10 +31,17 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $personas = Persona::with('cargo')->get(); // Cargar la relación con "cargo"
+        $personas = Persona::with(['cargo', 'divisionesSedes.sede', 'divisionesSedes.division'])->get();
         return view('persona.index', compact('personas'));
     }
 
+    public function pdf()
+    {
+          $personas=Persona::all();
+          $pdf=Pdf::loadView('persona.pdf', compact('personas'));
+          return $pdf->stream();
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -58,15 +68,32 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+        $request->validate(
+            [
+            'cedula' => 'unique:personas,cedula',
+            'id_usuario' => 'unique:personas,id_usuario',
+            ],
+            [
+            'cedula.unique' => 'El valor del campo Cedula ya existe en la base de datos.',
+            'id_usuario.unique' => 'El valor del campo Id Usuario ya existe en la base de datos.',
+            ]
+        );
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
         $datosPersona = $request->except('_token');
         $persona = Persona::create($datosPersona);
-
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         $idDivision = $request->input('id_division');
 
         $personaDivisionSede = new PersonaDivisionSede();
         $personaDivisionSede->id_persona = $persona->id;
         $personaDivisionSede->id_division_sede = $idDivision;
         $personaDivisionSede->save();
+
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect('persona');
     }
@@ -101,6 +128,10 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
         $persona = Persona::findOrFail($id);
         $cargos = Cargo::all();
         $sedes = Sede::all();
@@ -125,6 +156,10 @@ class PersonaController extends Controller
             ->toArray();
     
         return view('persona.edit', compact('persona', 'cargos', 'sedes', 'divisiones', 'id_sede', 'id_division_sede'));
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
     }
     
 
@@ -145,7 +180,13 @@ class PersonaController extends Controller
        $persona->id_usuario = $request->input('id_usuario');
        $persona->id_cargo = $request->input('id_cargo');
        $persona->telefono = $request->input('telefono');
+<<<<<<< HEAD
     
+=======
+       $bitacora = new BitacoraController;
+       $bitacora->update();
+
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
        // Obtener el ID de la relación persona_division_sede correspondiente a la persona
        $id_division_sede = $request->input('id_division_sede');
 
@@ -160,12 +201,23 @@ class PersonaController extends Controller
         $relacion->id_persona = $id;
         $relacion->id_division_sede = $id_division_sede;
         $relacion->save();
+<<<<<<< HEAD
     }
        
     $persona->save();
 
     return redirect('persona');
+=======
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
     }
+    $bitacora = new BitacoraController;
+    $bitacora->update(); 
+    $persona->save();
+     
+
+    return redirect('persona');
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -175,6 +227,7 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         // persona::destroy($id);
         // return redirect('persona');
 
@@ -190,5 +243,26 @@ class PersonaController extends Controller
         $persona->delete();
     
         return redirect('persona')->with('eliminar', 'ok');
+=======
+        try {
+            // Obtener la persona a eliminar
+            $persona = persona::findOrFail($id);
+        
+            // Eliminar los registros relacionados en la tabla puente
+            $persona->PersonaDivisionSede()->detach();
+        
+            // Eliminar la persona
+            $persona->delete();
+            $bitacora = new BitacoraController;
+            $bitacora->update();
+        
+            return redirect('persona')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar la persona debido a que tiene un equipo y perifericos asignados.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
+        
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
     }
+    
 }

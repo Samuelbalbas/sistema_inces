@@ -9,10 +9,10 @@
 
                     <!-- ? Tabla o formulario con sus respectivos campos -->
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid" style="margin-top: 11%">
     <div class="row g-4">
         <div class="col-sm-12 col-xl-13">
-        <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+        <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                 
                 <center>
                     <h3 class="mb-4" style="color: black;">Editar de Sede</h3>
@@ -20,9 +20,10 @@
                 
                 <form method="post" action="{{ url('/sede/'.$sede->id )}}" enctype="multipart/form-data">
                     @csrf
-                    {{ method_field('PATCH')}}                   
+                    {{ method_field('PATCH')}}
+                                     
                     <div class="row">
-
+                    
                         <div class="col-3">
                             <label style="color: black;">Lugar de la Sede</label>
                             <input type="text" class="form-control" name="nombre_sede" id="nombre_sede" value="{{ isset($sede->nombre_sede)?$sede->nombre_sede:'' }}" onkeypress="return soloLetras(event);" style="background: white;">
@@ -37,9 +38,10 @@
                                     @endforeach
                                 </select>                            
                         </div> --}}
-                        
+                    
+
                         <div class="col-3">
-                            <label for="division" style="color: black;">División de la Sede</label>
+                            <label style="color: black;">División de la Sede</label>
                             <div class="form-check">
                                 @foreach($divisions as $division)
                                     <input class="form-check-input" type="checkbox" name="division[]" value="{{ $division->id }}" {{ $sede->division && $sede->division->pluck('id')->contains($division->id) ? 'checked' : '' }}>
@@ -51,7 +53,7 @@
                         
                     </div>
 
-                    <br>
+                    <br><br>
                     <center>
                     
                     <button type="submit" class="btn btn-primary" style="width: 10%; color: black; background: white;">Guardar</button>
@@ -63,7 +65,12 @@
         </div> 
     </div>
 </div>
-                                                
+@if ($errors->any())
+    <script>
+        var errorMessageEdit = @json($errors->first());
+        alert(errorMessageEdit);
+    </script>
+@endif                                                
 <!-- Form End -->
 
 @endsection

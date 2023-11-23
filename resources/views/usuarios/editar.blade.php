@@ -16,21 +16,22 @@
         </div>
     @endif
 
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-                <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+                <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     <center>
                         <h3 class="mb-4" style="color: black;">Ediar Usuario</h3>
                     </center>
                     
+                    {{-- {!! Form::model($user, ['method' => 'PATCH','route' => ['usuarios.update', $user->id], 'onsubmit' => 'return usuario(this)']) !!} --}}
                     {!! Form::model($user, ['method' => 'PATCH','route' => ['usuarios.update', $user->id]]) !!}
 
                         <div class="row">
 
                             <div class="col-3">
                                 <label style="color: black;">Nombre</label>
-                                {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                {!! Form::text('name', null, array('class' => 'form-control', 'onkeypress' => 'return soloLetras(event);')) !!}
                             </div>
 
                             <div class="col-3">

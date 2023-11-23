@@ -4,80 +4,132 @@
 
 @section('content')
 
-<!-- Form Start -->
-
-                    <!-- ? Tabla o formulario con sus respectivos campos -->
-
-          <!-- Recent Sales Start -->
-          @include('partials.messages')
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-xl-13">
-                        <div class="">
-                            <div class="row">
-
-                                {{-- Primera Carta --}}
-                                <div class="card mb-3" style="width: 20% ; left: 5%; margin-top: 1% ;">
-                                    <div class="card-body">
-                                        <img src="img/descarga.jpg" class="card-img-top" alt="" height=" 80%; ">
-                                        <center>
-                                            <h3 class="card-title" style="color: black; margin-top: 10%;">Misión</h3>
-                                        </center>
-                                    </div>
-                                    <p class="card-text" align="justify" style="color: black ;">"El Inces es la institución del Estado encargada de la formación y autoformación 
-                                        colectiva, integral, continua y permanente de los trabajadores y las trabajadoras, orientada al desarrollo de sus capacidades para la producción de bienes
-                                        y prestación de servicios que satisfagan las necesidades del Poder Popular".
-                                    </p>
-                                </div>
-
-                                {{-- Segunda Carta --}}
-                                <div class="card mb-3" style="width: 20% ; left: 8%; margin-top: 1% ;">
-                                    <div class="card-body">
-                                        <center>
-                                            <h3 class="card-title" style="color: black;">Visión</h3>
-                                        </center>
-                                        <p class="card-text" align="justify" style="color: black ;">"Convertirnos en una poderosa herramienta para la transformación y consolidación
-                                            de una economía soberana y diversificada, siendo referente nacional e internacional de la formación técnica profesional inclusiva
-                                             y colectiva, con altos niveles de calidad".
-                                        </p>
-                                        <img src="img/banner_comunidad_inces.png" class="card-img-top" alt="" style="height: 37% ;">
-                                    </div>
-                                </div>
-
-                                {{-- Tercera Carta --}}
-                                <div class="card mb-3" style="width: 20% ; left: 11%; margin-top: 1% ;">
-                                    <div class="card-body">
-                                        <img src="img/historia.jpg" class="card-img-top" alt="" height=" 60%; ">
-                                        <center>
-                                            <h3 class="card-title" style="color: black; margin-top: 10%;">Reseña Histórica</h3>
-                                        </center>
-                                    </div>
-                                    <p class="card-text" align="justify" style="color: black ;">"El 22 de agosto de 1959 se abrió un capitulo en la vida del pueblo venezolano,
-                                        cuando se creó el Instituto Nacional de Cooperación Educativa (Ince), 
-                                        el proyecto de Ley de Creación del instituto estuvo a cargo del maestro Luis Beltrán Prieto Figueroa".
-                                    </p>
-                                </div>
-                                
-                                {{-- Cuarta Carta --}}
-                                <div class="card mb-3" style="width: 20% ; left: 14%; margin-top: 1% ;">
-                                    <div class="card-body">
-                                        <center>
-                                            <h3 class="card-title" style="color: black;">Valores</h3>
-                                        </center>
-                                        <p class="card-text" align="justify" style="color: black ;">"El bien común, la prosperidad y el bienestar del pueblo.
-                                            La solidaridad, la convivencia y la integridad del nuevo ciudadano y ciudadana republicanos. Planificación, organización, ejecución, control 
-                                            y evaluación para garantizar el cumplimiento cabal de los planes, programas y proyectos".
-                                        </p>
-                                        <img src="img/valores.jpg" class="card-img-top" alt="">
-                                    </div>
+           @include('partials.messages')
+           <br><br>
+                <div class="container-fluid pt-1 px-4" style="margin-top: 9%">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-university fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Sede</h4>
+                                <div class="ms-3">    
+                                    <h4 class="mb-0" style="color: black;">{{ ($count_sede) }}</h4>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-building fa-3x"  style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black">División</h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black">{{ ($count_division) }}</h4>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-briefcase fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black"> Cargo</h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black">{{ ($count_cargo) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-users fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Persona </h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black;"> {{ ($count_persona) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-star fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Marca </h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black">{{ ($count_marca) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                        <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                            <i class="fa fa-tags fa-3x" style="color: red;"></i>
+                            <h4 class="mb-0" style="color: black;">Modelo</h4>
+                            <div class="ms-3">
+                                <h4 class="mb-0" style="color: black;">{{ ($count_modelo) }}</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-          <!-- Recent Sales End -->
-                                                
-<!-- Form End -->
+                <br>
+
+                <div class="container-fluid pt-1 px-0">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-cogs fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Tipo Periferico</h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black;">{{ ($count_tipo_periferico) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-cog fa-3x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Periferico</h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black;">{{ ($count_periferico) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-code fa-2x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Sistemas Operativos</h4>
+                                <div class="ms-3">
+                                    <h4 class="mb-0" style="color: black;">{{ ($count_sistema) }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-desktop fa-2x" style="color: red;"></i>
+                                <h4 class="mb-0" style="color: black;">Equipos Incorporados</h4>
+                                <h4 class="mb-0" style="color: black;">{{ ($count_equipo) }}</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class=" rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-share fa-2x" style="color: red;"></i>
+                                    <h4 class="mb-0" style="color: black;">Equipos Asignados</h4>
+                                    <h4 class="mb-0" style="color: black;">{{ ( $count_asignar) }}</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-random fa-2x" style="color: red;"></i>
+                                    <h5 class="mb-0"style="color: black;">Equipos Reincorporados</h5>
+                                    <h4 class="mb-0" style="color: black;">{{ ($count_resicorporar) }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="container-fluid pt-1 px-0">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-2">
+                            <div class="rounded d-flex align-items-center justify-content-between p-4" style="background-image:radial-gradient(circle at 49.74% 49.85%, #ffffff 0, #ffffff 12.5%, #ffffff 25%, #feffff 37.5%, #fcfcfc 50%, #faf3f5 62.5%, #f7eaef 75%, #f3e3eb 87.5%, #efdce8 100%);">
+                                <i class="fa fa-reply fa-2x" style="color: red;"></i>
+                                <h5 class="mb-3" style="color: black; ">Equipos Desincorporados</h5>
+                                <h4 class="mb-" style="color: black;">{{ ( $count_desincorporar) }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 @endsection
+

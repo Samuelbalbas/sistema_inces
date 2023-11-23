@@ -1,20 +1,34 @@
 @extends('layouts.index')
 
 <title>@yield('title') Registrar Persona</title>
+
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 @section('content')
 
-    <div class="container-fluid pt-4 px-4">
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     
                     <center>
                         <h3 class="mb-4" style="color: black;">Crear Persona</h3>
                     </center>
 
-                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/persona') }}" enctype="multipart/form-data" id="formulario_persona" onsubmit="return persona(this)">
                     
                         @csrf
                         <div class="row">
@@ -37,8 +51,8 @@
                             </div>
                             <div class="col-3">
                                 <label for="cargo" style="color: black;">Cargo de la Persona</label>
-                                <select class="form-select" id="cargo" name="id_cargo">
-                                    <option value="0">Seleccione un cargo</option>
+                                <select class="form-select" id="cargo" required name="id_cargo">
+                                    <option value="">Seleccione un cargo</option>
                                     @foreach($cargos as $cargo)
                                         <option value="{{ $cargo->id }}">{{ $cargo->nombre_cargo }}</option>
                                     @endforeach
@@ -50,8 +64,8 @@
                             </div>
                             <div class="col-3">
                                     <label for="sede" style="color: black;">Sede</label>
-                                    <select class="form-select" id="id_sede" name="id_sede" onchange="fetchDivisiones(this)">
-                                        <option value="0">Seleccione una sede</option>
+                                    <select class="form-select" id="id_sede" name="id_sede" required onchange="fetchDivisiones(this)">
+                                        <option value="">Seleccione una sede</option>
                                         @foreach ($sedes as $sede)
                                             <option value="{{ $sede->id }}" data-url="{{ route('divisiones.by.sede', $sede->id) }}">{{ $sede->nombre_sede }}</option>
                                         @endforeach
@@ -59,8 +73,8 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="division" style="color: black;">División de la Persona</label>
-                                    <select class="form-select" id="id_division" name="id_division">
-                                        <option value="0">Seleccione una división</option>
+                                    <select class="form-select" id="id_division" required name="id_division">
+                                        <option value="">Seleccione una división</option>
                                     </select>
                                 </div>
                             </div>

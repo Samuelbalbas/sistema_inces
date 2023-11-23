@@ -1,23 +1,34 @@
 @extends('layouts.index')
 
-<title>@yield('title') Tipo Periérico</title>
+<title>@yield('title') Tipo Periférico</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
 @endsection
-
+@if ($errors->any())
+        <script>
+            var errorMessage = @json($errors->first());
+            alert(errorMessage);
+        </script>
+    @endif     
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 2%">
-        <div class="p-3" style="background: rgb(240, 236, 236); border-radius: 20px;">
+    <div class="container-fluid" style="margin-top: 11%">
+        <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                <h2 style="color: black; margin-left: 30%;">Gestión de los Tipos de Periéricos</h2>
+            
+            <a href="{{ url('tipoperiferico/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
+            
+
+                <h2 style="color: black;">Tipos de Periféricos</h2>
                 
                 @can('crear-tipoperif')
                     <form action="{{ url('tipoperif/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Tipo Periférico" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -39,14 +50,14 @@
 
                                     <td> 
                                         @can('editar-tipoperif')
-                                        <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/tipoperif/'.$tipo_periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-warning" title="Desea Editar el Tipo Periférico" style="margin-left: 30%;" href="{{ url('/tipoperif/'.$tipo_periferico->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-tipoperif')
                                             <form action="{{ url('/tipoperif/'.$tipo_periferico->id) }}" method="POST" class="sweetalert" style="display:inline;">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Tipo Periférico" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>
@@ -142,5 +153,6 @@
 
             
             </script>
+      
     
 @endsection

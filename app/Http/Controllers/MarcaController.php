@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class MarcaController extends Controller
 {
@@ -29,6 +32,14 @@ class MarcaController extends Controller
         return view('marca.index',$datos);
     }
 
+    public function pdf()
+    {
+          $marcas=Marca::all();
+          $pdf=Pdf::loadView('marca.pdf', compact('marcas'));
+          return $pdf->stream();
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,6 +61,8 @@ class MarcaController extends Controller
     {
         $datosMarca = request()->except('_token');
         marca::create($datosMarca);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('marca');
     }
@@ -102,6 +115,8 @@ class MarcaController extends Controller
     {
         $datosMarca = request()->except('_token','_method');
         marca::where('id','=',$id)->update($datosMarca);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('marca');
     }
@@ -115,6 +130,8 @@ class MarcaController extends Controller
     public function destroy($id)
     {
         marca::destroy($id);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('marca')->with('eliminar', 'ok');
     }
 }

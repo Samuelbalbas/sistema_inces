@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\TipoPeriferico;
+use App\Http\Controllers\BitacoraController;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TipoPerifericoController extends Controller
 {
@@ -28,6 +31,14 @@ class TipoPerifericoController extends Controller
         return view('tipoperiferico.index',$datos);
     }
 
+    public function pdf()
+    {
+          $tipo_perifericos=TipoPeriferico::all();
+          $pdf=Pdf::loadView('tipoperiferico.pdf', compact('tipo_perifericos'));
+          return $pdf->stream();
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,6 +59,8 @@ class TipoPerifericoController extends Controller
     {
         $datosTipoPeriferico = request()->except('_token');
         TipoPeriferico::create($datosTipoPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('tipoperiferico');
     }
@@ -89,6 +102,8 @@ class TipoPerifericoController extends Controller
         //
         $datosTipoPeriferico = request()->except('_token','_method');
         TipoPeriferico::where('id','=',$id)->update($datosTipoPeriferico);
+        $bitacora = new BitacoraController;
+        $bitacora->update();
 
         return redirect ('tipoperiferico');
     }
@@ -101,8 +116,14 @@ class TipoPerifericoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        TipoPeriferico::destroy($id);
-        return redirect('tipoperiferico')->with('eliminar', 'ok');
+        try {
+            TipoPeriferico::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
+            return redirect('tipoperiferico')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el tipo de periferico debido a que tiene perifericos registrados en esta categoria.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

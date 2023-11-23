@@ -23,6 +23,6 @@ class NominaController extends Controller
     {
         $file = $request->file('documento');
         Excel::import(new NominasImport, $file);
-        return redirect('/')->with('success', 'Nómina Importada Correctamente.');
+        return redirect('usuarios')->with('success', 'Nómina Importada Correctamente.');
     }
 }

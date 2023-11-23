@@ -2,12 +2,30 @@
 
 <title>@yield('title') Registrar Equipo</title>
 
+<script src="{{ asset('js/validaciones.js') }}"></script>
 <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+<script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}}"></script>
 
 <script>
 $(document).ready(function() {
   $('#guardarMarca').click(function(event) { // al hacer clic en el botón con id 'guardarMarca'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_marca').val())) { // Validamos que no pueda guardar con carecteres repetidos
+        Swal.fire({
+        title: 'Periférico',
+        text: "El campo marca no debe contener solo caracteres repetidos.",
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        }).then((result) => {
+    if (result.isConfirmed) {
+        this.submit();
+    }
+    })
+    
+    obj.nombre_marca.focus();
+    return false;
+    } 
     $.ajax({
       url: '/marca/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -19,11 +37,27 @@ $(document).ready(function() {
         })).trigger('change'); // opcional si usas algún plugin de select
         $('#staticBackdrop').modal('hide'); // oculta el modal con id 'staticBackdrop'
         $('#marcaForm')[0].reset(); // reinicia el formulario con id 'marcaForm'
-        alert("Creado Exitosamnete.") // muestra una alerta con un mensaje de éxito
+        Swal.fire(
+                '¡Marca!',
+                'Creado Exitosamente.',
+                'success'
+                )
+        //alert("Creado Exitosamnete.") // muestra una alerta con un mensaje de éxito
       },
       error: function(error){ // si hay un error en la petición
         console.log('Error al guardar la marca:', error); // muestra un mensaje en la consola del navegador
-        alert("Error al guardar la marca"); // muestra una alerta con un mensaje de error
+        Swal.fire({ // muestra una alerta con un mensaje de error
+        title: 'Marca',
+        text: "Error al guardar la marca",
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        }).then((result) => {
+    if (result.isConfirmed) {
+        this.submit();
+    }
+    })
+        
       }
     });
   });
@@ -34,6 +68,22 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#guardarModelo').click(function(event) { // al hacer clic en el botón con id 'guardarModelo'
     event.preventDefault(); // prevenimos el comportamiento por defecto del botón
+    if (/^([a-zA-Z0-9])\1+$/.test($('#nombre_modelo').val())) { // Validamos que no pueda guardar con carecteres repetidos
+        Swal.fire({
+        title: 'Periférico',
+        text: "El campo modelo no debe contener solo caracteres repetidos.",
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        }).then((result) => {
+    if (result.isConfirmed) {
+        this.submit();
+    }
+    })
+        
+    obj.nombre_modelo.focus();
+    return false;
+    }
     $.ajax({
       url: '/modelo/saveModal', // la url que se va a ejecutar la acción del controlador
       type: 'POST', // el método HTTP utilizado
@@ -45,11 +95,27 @@ $(document).ready(function() {
         })).trigger('change'); // opcional si usas algún plugin de select
         $('#staticBackdropModelo').modal('hide'); // oculta el modal con id 'staticBackdrop'
         $('#modeloForm')[0].reset(); // reinicia el formulario con id 'modeloForm'
-        alert("Creado Exitosamnete.") // muestra una alerta con un mensaje de éxito
+        Swal.fire( // muestra una alerta con un mensaje de éxito
+                '¡Modelo!',
+                'Creado Exitosamente.',
+                'success'
+                )
+        
       },
       error: function(error){ // si hay un error en la petición
         console.log('Error al guardar la modelo:', error); // muestra un mensaje en la consola del navegador
-        alert("Error al guardar la modelo"); // muestra una alerta con un mensaje de error
+        Swal.fire({ // muestra una alerta con un mensaje de error
+        title: 'Modelo',
+        text: "Error al guardar el modelo",
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        }).then((result) => {
+    if (result.isConfirmed) {
+        this.submit();
+    }
+    })
+
       }
     });
   });
@@ -59,16 +125,27 @@ $(document).ready(function() {
 
 @section('content')
 
-    <div class="container-fluid pt-4 px-4">
+    @if ($errors->any())
+    <div class="alert alert-warning d-flex align-items-center alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
+
+    <div class="container-fluid" style="margin-top: 11%">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-13">
-            <div class="p-3" style="background: rgb(255, 253, 253); margin-top: 20vh; border-radius: 20px;">
+            <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
                     
                     <center>
                         <h3 class="mb-4" style="color: black;">Crear Equipo</h3>
                     </center>
                     
-                    <form method="post" action="{{ url('/equipo') }}" enctype="multipart/form-data" onsubmit="return modelo(this)">
+                    <form method="post" action="{{ url('/equipo') }}" enctype="multipart/form-data" onsubmit="return Equipo(this)">
                         @csrf
                         <div class="row">
                             <div class="col-3">
@@ -102,7 +179,7 @@ $(document).ready(function() {
                             
                             <div class="col-3">
                                 <label style="color: black;">Serial Activo</label>
-                                <input type="text" class="form-control" name="serialA" id="serialA" value="{{ isset($equipo->serialA)?$equipo->serialA:'' }}" onkeypress="return solonum(event);" style="background: white;">
+                                <input type="text" class="form-control" name="serialA" id="serialA" value="{{ isset($equipo->serialA)?$equipo->serialA:'' }}" onkeypress="return sinespancios(event);" style="background: white;">
                             </div>
 
                             <div class="col-3">
@@ -147,16 +224,20 @@ $(document).ready(function() {
                                     <option value="0" selected>Seleccione un Sistema</option>
                                     @foreach($sistemas as $sistema)
                                         @if ($sistema->tipo == 'Privativo')
-                                            <option value="{{ $sistema->id }}" data-tipo="Privativo">{{ $sistema->nombre }}</option>
+                                            <option value="{{ $sistema->id }}" data-tipo="Privativo">{{ $sistema->nombre }} {{ $sistema->version }}</option>
                                         @elseif ($sistema->tipo == 'Libre')
-                                            <option value="{{ $sistema->id }}" data-tipo="Libre">{{ $sistema->nombre }}</option>
+                                            <option value="{{ $sistema->id }}" data-tipo="Libre">{{ $sistema->nombre }} {{ $sistema->version }}</option>
                                         @endif
                                     @endforeach
                                 </select>
 
                             </div>
 
+                            <div class="col-3" style="display:none;">
+                                <label style="color: black;">Estatus</label>
+                                <input type="text" class="form-control" name="estatus" id="equipo" value="Incorporado" onkeypress="return soloLetras(event);" style="background: white;">
                             </div>
+
                         </div>
 
                         <br>
@@ -209,7 +290,6 @@ $(document).ready(function() {
         });
     });
 </script>
-
 
 
 

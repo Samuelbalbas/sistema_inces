@@ -9,16 +9,20 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 2.5%">
-        <div class="p-3" style="background: rgb(240, 236, 236); border-radius: 20px;">
+    <div class="container-fluid" style="margin-top: 11%">
+        <div class="p-3" style="background: rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
+               
+                <a href="{{ url('modelo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+                {{ ('PDF') }}
+                </a>
                 
-                <h2 style="color: black; margin-left: 33%;">Gestión de la Modelo</h2>
-                
+
+                <h2 style="color: black;">Modelo</h2>
                 
                 <form action="{{ url('modelo/create') }}" method="get">
-                    <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                    <button type="submit" title="Desea Registar un nuevo Modelo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                 </form>
 
             </div>
@@ -39,14 +43,14 @@
 
                                     <td>
                                         @can('editar-modelo')
-                                            <a class="btn btn-warning" style="margin-left: 30%;" href="{{ url('/modelo/'.$modelo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el Modelo" style="margin-left: 30%;" href="{{ url('/modelo/'.$modelo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
 
                                         @can('borrar-modelo')
                                             <form action="{{ url('/modelo/'.$modelo->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Modelo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form> 
                                         @endcan
                                     </td>

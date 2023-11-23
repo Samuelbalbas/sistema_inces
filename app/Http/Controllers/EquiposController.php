@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\equipos;
+use App\Models\Equipos;
 use Illuminate\Http\Request;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Sistema;
+use App\Http\Controllers\BitacoraController;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EquiposController extends Controller
 {
@@ -31,6 +34,22 @@ class EquiposController extends Controller
 
     }
 
+    public function indexinvent()
+    {
+        $equipos = Equipos::with('marca')->get(); // Cargar la relación con "marca"
+        $equipos = Equipos::with('modelo')->get(); // Cargar la relación con "modelo"
+        return view('inventario.index', compact('equipos'));
+
+    }
+
+    public function pdf()
+    {
+          $equipos=Equipos::all();
+          $pdf=Pdf::loadView('equipo.pdf', compact('equipos'));
+          return $pdf->stream();
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,11 +71,22 @@ class EquiposController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:equipos,serial',
+            'serialA' => 'unique:equipos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
         $datosEquipo = $request->except('_token', 'nuevamarca', 'nuevomodelo');
         Equipos::create($datosEquipo);
-    
+       
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('equipo');
-
        /* $datosEquipo = request()->except('_token', 'nuevamarca', 'nuevomodelo', 'tipo');
         $datosEquipo['id_so'] = $request->input('id_so');
         $datosEquipo['tipo'] = $request->input('tipo');
@@ -118,18 +148,35 @@ class EquiposController extends Controller
      */
     public function update(Request $request, Equipos $equipos, $id)
     {
+        $request->validate(
+            [
+            'serial' => 'unique:equipos,serial',
+            'serialA' => 'unique:equipos,serialA',
+            ],
+            [
+            'serial.unique' => 'El valor del campo Serial ya existe en la base de datos.',
+            'serialA.unique' => 'El valor del campo Serial Activo ya existe en la base de datos.'
+            ]
+        );
         // Excluir el campo "tipo" al actualizar los datos del equipo con los datos del formulario
         $data = $request->except(['_token', '_method', 'id', 'tipo']);
-        Equipos::where('id', $id)->update($data);
+
+        $equipo = Equipos::findOrFail($id);
+        $equipo->fill($data);
+        $equipo->save();
+        $bitacora = new BitacoraController;
+        $bitacora->update();
+        // Equipos::where('id', $id)->update($data);
     
         // Obtén el equipo actualizado
-        $equipo = Equipos::findOrFail($id);
+        // $equipo = Equipos::findOrFail($id);
     
         // Obtén la lista de las marcas, modelos y sistemas
         $marcas = Marca::all();
         $modelos = Modelo::all();
         $sistemas = Sistema::all();
-    
+        $bitacora = new BitacoraController;
+        $bitacora->update();
         return redirect('equipo');
     }
     
@@ -142,7 +189,14 @@ class EquiposController extends Controller
      */
     public function destroy(equipos $equipos, $id)
     {
-        Equipos::destroy($id);
-        return redirect('equipo')->with('eliminar', 'ok');
+        try {
+            Equipos::destroy($id);
+            $bitacora = new BitacoraController;
+            $bitacora->update();
+            return redirect('equipo')->with('eliminar', 'ok');
+        } catch (QueryException $exception) {
+            $errorMessage = 'Error: No se puede eliminar el equipo debido a que esta asignado a una persona.';
+            return redirect()->back()->withErrors($errorMessage);
+        }
     }
 }

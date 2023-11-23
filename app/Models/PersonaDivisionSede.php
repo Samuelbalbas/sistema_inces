@@ -23,5 +23,7 @@ class PersonaDivisionSede extends Model
         return $this->belongsTo(DivisionSede::class, 'id_division_sede', 'id');
     
     }
+
+    
     
 }

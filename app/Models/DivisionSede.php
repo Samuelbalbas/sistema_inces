@@ -22,4 +22,8 @@ class DivisionSede extends Model
     {
         return $this->belongsTo(Sede::class, 'id_sede', 'id', 'nombre_sede');
     }
+
+    public function personasDivision() {
+        return $this->hasMany(PersonaDivisionSede::class,'id_division_sede'); 
+    }
 }

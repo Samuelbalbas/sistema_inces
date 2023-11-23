@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Equipos</title>
+<title>@yield('title') Incorporar Equipos</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -9,16 +9,21 @@
 
 @section('content')
 
-    <div class="container-fluid" style="margin-top: 2.5%">
-        <div class="p-3" style="background: rgb(240, 236, 236); border-radius: 20px;">
+    <div class="container-fluid" style="margin-top: 11%">
+        <div class="p-3" style="background:rgb(255, 253, 253); border-radius: 20px;">
             <div class="d-flex align-items-center justify-content-between mb-2">
                 
-                
-                <h2 style="color: black;  margin-left: 33%;">Gestión del Equipo</h2>
+            
+            <a href="{{ url('equipo/pdf') }}" class="btn btn-sm btn-danger" target="_blank">
+            {{ ('PDF') }}
+            </a>
+           
+
+                <h2 style="color: black;">Equipos Incorporados</h2>
                 
                 @can('crear-equipo')
                     <form action="{{ url('equipo/create') }}" method="get">
-                        <button type="submit" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
+                        <button type="submit" title="Desea Registar un nuevo Equipo" class="btn btn-sm btn-light"><i class="bi bi-person-plus-fill"></i></button>
                     </form>
                 @endcan
 
@@ -56,14 +61,14 @@
 
                                     <td> 
                                         @can('editar-equipo')
-                                            <a class="btn btn-warning" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-warning" title="Desea Editar el Equipo" style="margin-left: 15%;" href="{{ url('/equipo/'.$equipo->id.'/edit') }}"><i class="bi bi-pencil-square"></i></a>
                                         @endcan
                                         
                                         @can('borrar-equipo')
                                             <form action="{{ url('/equipo/'.$equipo->id) }}" method="POST" class="sweetalert" style="display: inline; ">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button class="btn btn-danger" type="submit" value=""><i class="bi bi-trash"></i></button>
+                                                <button class="btn btn-danger" title="Desea Eliminar el Equipo" type="submit" value=""><i class="bi bi-trash"></i></button>
                                             </form>
                                         @endcan 
                                     </td>
@@ -74,7 +79,12 @@
             </div>
         </div>
     </div>
-
+    @if ($errors->any())
+    <script>
+        var errorMessage = @json($errors->first());
+        alert(errorMessage);
+    </script>
+@endif      
     @section('js-datatable')
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
