@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-<title>@yield('title') Reportes</title>
+<title>@yield('title') Bitacora</title>
 
 @section('css-datatable')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
