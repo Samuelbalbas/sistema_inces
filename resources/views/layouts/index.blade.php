@@ -132,7 +132,7 @@
                     
                     <a href="{{ url('bitacora') }}" class="nav-item nav-link"><i class="bi bi-arrows-angle-contract"></i>  Bitácora</a>
                     
-                    <a href="{{ url('manual') }}" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
+                    <a href="./manual/manual_usuario.pdf" target="_blank" class="nav-item nav-link"><i class="bi bi-journal-text me-2"></i>Manual</a>
                     
                 </div>
             </nav>

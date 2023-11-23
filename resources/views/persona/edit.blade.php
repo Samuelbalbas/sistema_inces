@@ -88,8 +88,65 @@
                     </form>
 
                     <script>
+<<<<<<< HEAD
+    function fetchDivisiones(selectElement) {
+        var url = selectElement.options[selectElement.selectedIndex].dataset.url;
+
+        fetch(url)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                var divisionSelect = document.getElementById('id_division');
+                divisionSelect.innerHTML = '';
+                for (var divisionSedeId in data) {
+                    var divisionNombre = data[divisionSedeId];
+                    var option = new Option(divisionNombre, divisionSedeId);
+                    divisionSelect.add(option);
+                }
+                
+                // Seleccionar la opción que corresponde a la división actual de la persona
+                var idDivisionSedeActual = document.getElementById('id_division_sede').value;
+divisionSelect.value = idDivisionSedeActual;
+
+                setDivisionSedeId();
+            })
+            .catch(function(error) {
+                console.log(error);
+                divisionSelect.innerHTML = '<option value="0">Error al cargar las divisiones</option>';
+            });
+    }
+    
+    function setDivisionSedeId() {
+        var divisionSelect = document.getElementById('id_division');
+        var selectedOption = divisionSelect.options[divisionSelect.selectedIndex];
+        var nuevoIdDivisionSede = selectedOption.value;
+        document.getElementById('id_division_sede').value = nuevoIdDivisionSede;
+    }
+
+    document.addEventListener('DOMContentLoaded', function(event) {
+        var selectElement = document.getElementById('id_sede');
+        fetchDivisiones(selectElement);
+    });
+
+    // Escuchar el evento de cambio de sede
+    document.getElementById('id_sede').addEventListener('change', function(event) {
+        fetchDivisiones(this);
+    });
+
+    // Escuchar el evento de cambio de división
+    document.getElementById('id_division').addEventListener('change', setDivisionSedeId);
+    console.log('ID division_sede actual:', idDivisionSedeActual);
+console.log('Opciones de select de divisiones:', divisionSelect.options);
+
+</script>
+=======
                         function fetchDivisiones(selectElement) {
                             var url = selectElement.options[selectElement.selectedIndex].dataset.url;
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
 
                             fetch(url)
                                 .then(function(response) {
@@ -141,7 +198,11 @@
                         console.log('ID division_sede actual:', idDivisionSedeActual);
                     console.log('Opciones de select de divisiones:', divisionSelect.options);
 
+<<<<<<< HEAD
+
+=======
                     </script>
+>>>>>>> e94c959b7e948d08d355251c75cba422ae15928d
                 </div>
             </div> 
         </div>
