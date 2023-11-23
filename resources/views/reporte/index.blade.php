@@ -116,7 +116,10 @@
                                     }
                                 ); 
                             } 
-                        }
+                        },
+                        {
+                            extend: "excelHtml5"
+                        },
                     ],
                     responsive: true,
                     autoWidth: false,
